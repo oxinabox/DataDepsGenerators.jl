@@ -1,7 +1,7 @@
 RegisterDataDep(
     "UCI Air+Quality",
     """
-	Dataset: Air Quality Data Set UCI ML Repository
+	Dataset: Air Quality Data Set (UCI ML Repository)
 	Website: https://archive.ics.uci.edu/ml/datasets/Air+Quality
 	Abstract : Contains the responses of a gas multisensor device deployed on the field in an Italian city. Hourly responses averages are recorded along with gas concentrations references from a certified analyzer. 
 	

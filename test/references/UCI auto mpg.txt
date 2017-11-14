@@ -1,7 +1,7 @@
 RegisterDataDep(
     "UCI auto+mpg",
     """
-	Dataset: Auto MPG Data Set UCI ML Repository
+	Dataset: Auto MPG Data Set (UCI ML Repository)
 	Website: https://archive.ics.uci.edu/ml/datasets/auto+mpg
 	Abstract : Revised from CMU StatLib library, data concerns city-cycle fuel consumption
 	

@@ -48,5 +48,5 @@ end
 
 function data_fullname(::UCI, mainpage)
     data_fullname = text_only(matchall(sel".heading b", mainpage.root))
-    data_fullname*= " UCI ML Repository"
+    data_fullname*= " (UCI ML Repository)"
 end

@@ -1,5 +1,5 @@
 RegisterDataDep(
-    "UCI auto+mpg",
+    "Auto MPG Data Set (UCI ML Repository)",
     """
 	Dataset: Auto MPG Data Set (UCI ML Repository)
 	Website: https://archive.ics.uci.edu/ml/datasets/auto+mpg
@@ -8,8 +8,6 @@ RegisterDataDep(
 	Please refer to the Machine Learning 
 	Repository's  citation policy
 	Lichman, M. (2013). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
-	
-	
 	""",
     String["https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/auto-mpg/Index", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/auto-mpg/auto-mpg.data", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/auto-mpg/auto-mpg.data-original", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/auto-mpg/auto-mpg.names"]
 )

@@ -5,9 +5,10 @@ RegisterDataDep(
 	Website: https://archive.ics.uci.edu/ml/datasets/bank+marketing
 	Abstract : The data is related with direct marketing campaigns (phone calls) of a Portuguese banking institution. The classification goal is to predict if the client will subscribe a term deposit (variable y).
 	
-	If you make use of this data it is requested that you cite:
-	- This dataset is public available for research. The details are described in [Moro et al., 2014]. 
-	- Lichman, M. (2013). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
+	This dataset is public available for research. The details are described in [Moro et al., 2014].   Please include this citation if you plan to use this database:    [Moro et al., 2014] S. Moro, P. Cortez and P. Rita. A Data-Driven Approach to Predict the Success of Bank Telemarketing. Decision Support Systems, Elsevier, 62:22-31, June 2014
+	Lichman, M. (2013). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
+	
+	
 	""",
     String["https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/00222/bank-additional.zip", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/00222/bank.zip"]
 )

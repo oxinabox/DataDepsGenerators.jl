@@ -15,8 +15,8 @@ Extracts just the unformatted text (no attributes etc),
 from a HTML document or fragment(/s)
 """
 text_only(doc::HTMLDocument) = text_only(doc.root)
-text_only(frag) = join([text(leaf) for leaf in Leaves(frag) if leaf isa HTMLText], " ")
-text_only(frags::Vector) = join(text_only.(frags), "\n")
+text_only(frag) = join([replace(text(leaf), "\r","") for leaf in Leaves(frag) if leaf isa HTMLText], " ")
+text_only(frags::Vector) = join(text_only.(frags), " ")
 
 
 "

@@ -19,7 +19,6 @@ function find_metadata(::UCI, dataname)
     Metadata(
         data_fullname(UCI(), mainpage),
         mainpage_url,
-        to_cite(UCI(), mainpage),
         description(UCI(), mainpage),
         data_urls
     )
@@ -27,23 +26,18 @@ function find_metadata(::UCI, dataname)
 end
 
 function to_cite(::UCI, mainpage)
-    repo  = ["Lichman, M. (2013). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science."]
-    papers = try
-        paper = text_only(first(Gumbo.children(last(matchall(sel"p + p.normal", mainpage.root)))))
-        if !startswith(paper, "Please refer to")
-            [paper]
-        else
-            String[]
-        end
-    catch ex #if not found then throws bounds error
-        ex isa BoundsError || rethrow(ex)
-        String[]
-    end
-    [papers; repo]
+    section = text_only(Gumbo.children(last(matchall(sel"p + p.normal", mainpage.root))))
+
+    section = replace(section, "Available at: \n[Web Link]", "")
+    section = replace(section, r"\(?\s*\[Web Link\]\s*\)?","")
+    section *= "\nLichman, M. (2013). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science."
+
+    replace(section, r"\n+","\n")
 end
 
 function description(::UCI, mainpage)
-    text_only(first(matchall(sel"p.normal", mainpage.root)))
+    desc =  text_only(first(matchall(sel"p.normal", mainpage.root)))
+    desc * "\n\n" *  to_cite(UCI(), mainpage)
 end
 
 function data_fullname(::UCI, mainpage)

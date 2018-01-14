@@ -51,17 +51,17 @@ So best to `print` it, or write it to file.
 
 To write the dependency block to a file, you just need to open the file (`"data.jl"` in this example) and write to it.
 
-```
+```julia
 using DataDepsGenerators
 
 open("data.jl", "w") do fh
-  println(fh, generate(UCI(), https://archive.ics.uci.edu/ml/datasets/Air+quality, "UCI Air))
+  generate(UCI(), "https://archive.ics.uci.edu/ml/datasets/Air+quality", "UCI Air"))
 end
 ```
 
 Then in your project you can do:
 
-```
+```julia
 using DataDeps
 
 function __init__()
@@ -76,7 +76,7 @@ to load registration up
 This is pretty easy:
 
 ```
-println(generate(UCI(), https://archive.ics.uci.edu/ml/datasets/Air+quality, "UCI Air))
+println(generate(UCI(), "https://archive.ics.uci.edu/ml/datasets/Air+quality", "UCI Air"))
 ````
 
 then copy and paste into your project.
@@ -87,11 +87,11 @@ then copy and paste into your project.
 While this isn't advise for use in packages -- since it throws away many of the benifits of using DataDeps, it can be done.
 It is probably most useful in the REPL/IJulia.
 
-```
+```julia
 using DataDeps
 using DataDepsGenerators
 
-`eval(parse(generate(UCI(), https://archive.ics.uci.edu/ml/datasets/Air+quality, "UCI Air))
+eval(parse(generate(UCI(), "https://archive.ics.uci.edu/ml/datasets/Air+quality", "UCI Air"))
 ```
 
 Then just use anywhere in your code (later in the REPL session for example)  `datadep"UCI Air"` as if it were the name of a directory holding that data.

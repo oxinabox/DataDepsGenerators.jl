@@ -1,5 +1,6 @@
 module DataDepsGenerators
 using Gumbo, Cascadia, AbstractTrees
+using Suppressor
 
 export generate, UCI
 

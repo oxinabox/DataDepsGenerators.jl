@@ -1,12 +1,12 @@
 
 
+
 """
     getpage(url)
 
 downloads and parses the page from the URL
 """
-getpage(url) = parsehtml(readstring(download(url)))
-
+getpage(url) = parsehtml(readstring(@suppress(download(url))))
 
 """
     text_only(doc)

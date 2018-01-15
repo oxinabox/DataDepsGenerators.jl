@@ -18,7 +18,7 @@ function get_docfile(::GitHub, page, docname)
             node = first(nodes)
             url = "https://rawgit.com" * getattr(node.parent, "href")
             url = replace(url, "blob/", "")
-            String(read(download(url)))
+            String(read(quiet_download(url)))
         else
             ""
         end

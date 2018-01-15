@@ -112,4 +112,30 @@ A fairly classic repository for (mostly) small Machine Learning datasets
 It not very consistantly written or formatted, so the registrations can be a bit chopy and may e.g. contain links that should have been removed etc.
  
  
- 
+### `GitHub()`
+ https://github.com
+
+Notable Datasets:
+ - the folders with-in https://github.com/fivethirtyeight/data
+ - The repositories in https://github.com/BuzzFeedNews ([index page](https://github.com/BuzzFeedNews/everything))
+
+Note that storing data in github is bad.
+However, a fair few datasets are stored there anyway.
+A lot of these are plain-text and small files so it works out ok enough.
+
+The generator for Github works on whole repositories, or on folders within repositories.
+When downloadining whole repositories, your other option would be to download a `zip` or `tarball` which github provides; rather than generating a datadep with datadep generators which will result in downloading each file separately.
+You could even manipulate DataDeps into doing a `git clone`.
+
+Note github does not like being used as a CDN.
+For this reason DataDepsGenerators generates URLs to http://cdn.rawgit.com which is a CDN wrapper over github, so you won't thrash github's servers.
+Also note that the DataDepGenerator will produce URLs pointing to the current commit.
+So the if the repository is updated, the DataDep will still download the old data.
+(This is a feature).
+
+At present, we do not support generating for any branch's other than master.
+Though it is a simple matter to do a find and replace for the commit SHAs in the generated code so as to point at any commit.
+
+
+
+

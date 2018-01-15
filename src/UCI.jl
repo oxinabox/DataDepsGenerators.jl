@@ -4,26 +4,8 @@ immutable UCI <: DataRepo
 end
 
 
-function find_metadata(::UCI, dataname)
-    base_url = "https://archive.ics.uci.edu/ml/datasets/"
-    mainpage_url = joinpath(base_url, dataname)
-    mainpage = getpage(mainpage_url)
+base_url(::UCI) = "https://archive.ics.uci.edu/ml/datasets/"
 
-    datapage_link = first(matchall(sel"tr tr a", mainpage.root))
-    datapage_url = joinpath(base_url, attrs(datapage_link)["href"])
-
-    data_urls = get_dataurls_from_webserver_index(datapage_url)
-
-
-
-    Metadata(
-        data_fullname(UCI(), mainpage),
-        mainpage_url,
-        description(UCI(), mainpage),
-        data_urls
-    )
-
-end
 
 function to_cite(::UCI, mainpage)
     section = text_only(Gumbo.children(last(matchall(sel"p + p.normal", mainpage.root))))
@@ -43,4 +25,11 @@ end
 function data_fullname(::UCI, mainpage)
     data_fullname = text_only(matchall(sel".heading b", mainpage.root))
     data_fullname*= " (UCI ML Repository)"
+end
+
+function get_urls(::UCI, mainpage)
+    datapage_link = first(matchall(sel"tr tr a", mainpage.root))
+    datapage_url = joinpath(base_url(UCI()), attrs(datapage_link)["href"])
+
+    data_urls = get_dataurls_from_webserver_index(datapage_url)
 end

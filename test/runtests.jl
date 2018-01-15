@@ -2,7 +2,8 @@ using Base.Test
 using TestSetExtensions
 
 tests = [
-    "UCI"
+    "UCI",
+    "GitHub"    
 ]
 
 for filename in tests

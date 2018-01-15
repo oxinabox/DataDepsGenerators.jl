@@ -1,12 +1,12 @@
 
-
+quiet_download(url) = @suppress(download(url))
 
 """
     getpage(url)
 
 downloads and parses the page from the URL
 """
-getpage(url) = parsehtml(readstring(@suppress(download(url))))
+getpage(url) = parsehtml(String(read(quiet_download(url))))
 
 """
     text_only(doc)

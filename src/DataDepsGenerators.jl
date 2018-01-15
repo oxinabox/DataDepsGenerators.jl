@@ -2,8 +2,7 @@ module DataDepsGenerators
 using Gumbo, Cascadia, AbstractTrees
 using Suppressor
 
-export generate, UCI
-
+export generate, UCI, GitHub
 
 abstract type DataRepo end
 
@@ -11,18 +10,26 @@ struct Metadata
     fullname::String
     website::String
     description::String
-    dataurls::Vector{String}
+    dataurls::Vector
 end
 
+function find_metadata(repo, dataname)
+    if startswith(dataname, "http")
+        mainpage_url = dataname
+        #TODO: This isn't going to take https/http differences.
+        dataname = first(split(replace(mainpage_url, base_url(repo), ""), "/"))
+    else # not a URL
+        mainpage_url = joinpath(base_url(repo), dataname)
+    end
+        
+    mainpage = getpage(mainpage_url)
 
-function message(meta)
-    escape_multiline_string("""
-    Dataset: $(meta.fullname)
-    Website: $(meta.website)
-    $(meta.description)
-
-
-    """, "\$")
+    Metadata(
+        data_fullname(repo, mainpage),
+        mainpage_url,
+        description(repo, mainpage),
+        get_urls(repo, mainpage)
+    )
 end
 
 
@@ -30,14 +37,33 @@ end
 include("utils.jl")
 include("generic_extractors.jl")
 include("UCI.jl")
+include("GitHub.jl")
 
-function data_shortnamename(repo::DataRepo, dataname)
-    string(typeof(repo).name.name) * " " * dataname
+
+
+function message(meta)
+    escape_multiline_string("""
+    Dataset: $(meta.fullname)
+    Website: $(meta.website)
+    $(meta.description)
+    """, "\$")
 end
 
-function generate(repo::DataRepo, dataname)
-    shortname = data_shortnamename(repo, dataname)
+
+function data_shortnamename(repo::DataRepo, meta)
+    short_name = meta.fullname
+    reduce((s,r)->replace(s, r, ""), short_name, ['\\', '/', ':', '*', '?', '<', '>', '|'])
+end
+
+function generate(repo::DataRepo,
+                  dataname,
+                  shortname = nothing
+    )
+    
     meta = find_metadata(repo, dataname)
+    if shortname == nothing
+        shortname = data_shortnamename(repo, meta)
+    end
     """
     RegisterDataDep(
         \"$shortname\",
@@ -47,6 +73,7 @@ function generate(repo::DataRepo, dataname)
     )
     """
 end
+
 
 
 end # module

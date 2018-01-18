@@ -1,6 +1,5 @@
 # DataDepsGenerators
-**Generating registration blocks for [DataDeps.jl](https://github.com/oxinabox/DataDeps.jl) in 1 key press.**
-
+**Generating registration blocks for [DataDeps.jl](https://github.com/oxinabox/DataDeps.jl) in one key press.**
 
 This package should not be used as a dependancy
 Instead the interactive features of this package should be used from the Julia REPL,
@@ -22,7 +21,7 @@ It might get things wrong (particularly when it is scraping websites that are no
 After generating make sure to take a few minutes to check the code is code you are happy with.
 Make a few tweaks, and it should be good to go.
 
-
+An example of use [is in this blog-post](http://white.ucc.asn.au/2018/01/18/DataDeps.jl-Repeatabled-Data-Setup-for-Repeatable-Science.html#example-3-538-avenegers-comic-book-characters--datadepsgeneratorsjl)
 
 ## Usage
 

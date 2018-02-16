@@ -117,7 +117,9 @@ It not very consistantly written or formatted, so the registrations can be a bit
 Notable Datasets:
  - the folders with-in https://github.com/fivethirtyeight/data
  - The repositories in https://github.com/BuzzFeedNews ([index page](https://github.com/BuzzFeedNews/everything))
-
+ - Everything from https://github.com/collections/open-data
+ 
+ 
 Note that storing data in github is bad.
 However, a fair few datasets are stored there anyway.
 A lot of these are plain-text and small files so it works out ok enough.

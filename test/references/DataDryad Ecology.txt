@@ -5,16 +5,16 @@ RegisterDataDep(
 	Website: https://datadryad.org/resource/doi:10.5061/dryad.74699
 	Author: von Wettberg EJB et. al.
 	License: http://creativecommons.org/publicdomain/zero/1.0/
-	Date: 1.51994580205703e9
+	Date: February 27, 2018
 	
 	Domesticated species are impacted in unintended ways during domestication and breeding. Changes in the nature and intensity of selection impart genetic drift, reduce diversity, and increase the frequency of deleterious alleles. Such outcomes constrain our ability to expand the cultivation of crops into environments that differ from those under which domestication occurred. We address this need in chickpea, an important pulse legume, by harnessing the diversity of wild crop relatives. We document an extreme domestication-related genetic bottleneck and decipher the genetic history of wild populations. We provide evidence of ancestral adaptations for seed coat color crypsis, estimate the impact of environment on genetic structure and trait values, and demonstrate variation between wild and cultivated accessions for agronomic properties. A resource of genotyped, association mapping progeny functionally links the wild and cultivated gene pools and is an essential resource chickpea for improvement, while our methods inform collection of other wild crop progenitor species.
 	
 	Please cite this paper:
-	https://doi.org/10.1038/s41467-018-02867-z
+	von Wettberg EJB, Chang PL, Başdemir F, Carrasquila-Garcia N, Korbu L, Moenga SM, Bedada G, Greenlon A, Moriuchi KS, Suryawanshi V, Cordeiro MA, Noujdina NV, Dinegde KN, Abbas Shah Sani SG, Getahun T, Vance L, Bergmann E, Lindsay D, Mamo BE, Warschefsky EJ, Dacosta-Calheiros E, Marques E, Yilmaz MA, Cakmak AM, Rose J, Migneault A, Krieg CP, Saylak S, Temel H, Friesen ML, Silor E, Akhmetov Z, Ozelik H, Kholova J, Can C, Gaur P, Yildirim M, Sharma H, Vadez V, Tesfaye K, Woldemedhin AF, Tar'an B, Aydogan A, Bukun B, Penmetsa RV, Berger J, Kahraman A, Nuzhdin SV, Cook DR (2018) Ecology and genomics of an important crop wild relative as a prelude to agricultural innovation. Nature Communications 9: 649.  https://doi.org/10.1038/s41467-018-02867-z
 	as well as this dataset:
 	https://doi.org/10.5061/dryad.74699
 	if you use this in your research.
 	
 	""",
-    Any["https://datadryad.org/mn/object/http://dx.doi.org/10.5061/dryad.74699/1/bitstream", ("md5", "bc96dba38d8659f42527cc22ff7f6e3b")]
+    Any["https://datadryad.org/bitstream/handle/10255/dryad.166590/draft_dryad_upload_dec2017.xls?sequence=1"]
 )

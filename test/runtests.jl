@@ -3,7 +3,8 @@ using TestSetExtensions
 
 tests = [
     "UCI",
-    "GitHub"    
+    "GitHub",
+    "DataDryad"    
 ]
 
 for filename in tests

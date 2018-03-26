@@ -139,4 +139,14 @@ Though it is a simple matter to do a find and replace for the commit SHAs in the
 
 
 
+### `DataDryad()`
+https://datadryad.org
 
+DataDryad is one of the bigger research data stores.
+Almost all the data in it is directly linked to one paper or another.
+
+Example of use:
+
+    generate(DataDryad(), "https://datadryad.org/resource/doi:10.5061/dryad.74699", "Wild Crop Genomics")
+    
+    

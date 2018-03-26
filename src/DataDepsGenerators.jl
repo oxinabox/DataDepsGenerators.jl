@@ -2,7 +2,7 @@ module DataDepsGenerators
 using Gumbo, Cascadia, AbstractTrees
 using Suppressor
 
-export generate, UCI, GitHub
+export generate, UCI, GitHub, DataDryad
 
 abstract type DataRepo end
 
@@ -21,7 +21,7 @@ function find_metadata(repo, dataname)
     else # not a URL
         mainpage_url = joinpath(base_url(repo), dataname)
     end
-        
+
     mainpage = getpage(mainpage_url)
 
     Metadata(
@@ -38,6 +38,7 @@ include("utils.jl")
 include("generic_extractors.jl")
 include("UCI.jl")
 include("GitHub.jl")
+include("DataDryad.jl")
 
 
 
@@ -59,7 +60,7 @@ function generate(repo::DataRepo,
                   dataname,
                   shortname = nothing
     )
-    
+
     meta = find_metadata(repo, dataname)
     if shortname == nothing
         shortname = data_shortnamename(repo, meta)

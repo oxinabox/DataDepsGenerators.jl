@@ -453,5 +453,5 @@ RegisterDataDep(
 	Creative Commons may be contacted at creativecommons.org.
 	
 	""",
-    Any["https://cdn.rawgit.com/fivethirtyeight/data//college-majors/all-ages.csv", "https://cdn.rawgit.com/fivethirtyeight/data//college-majors/college-majors-rscript.R", "https://cdn.rawgit.com/fivethirtyeight/data//college-majors/grad-students.csv", "https://cdn.rawgit.com/fivethirtyeight/data//college-majors/majors-list.csv", "https://cdn.rawgit.com/fivethirtyeight/data//college-majors/readme.md", "https://cdn.rawgit.com/fivethirtyeight/data//college-majors/recent-grads.csv", "https://cdn.rawgit.com/fivethirtyeight/data//college-majors/women-stem.csv"]
+    Any["https://rawgit.com/fivethirtyeight/data/master/college-majors/all-ages.csv", "https://rawgit.com/fivethirtyeight/data/master/college-majors/college-majors-rscript.R", "https://rawgit.com/fivethirtyeight/data/master/college-majors/grad-students.csv", "https://rawgit.com/fivethirtyeight/data/master/college-majors/majors-list.csv", "https://rawgit.com/fivethirtyeight/data/master/college-majors/readme.md", "https://rawgit.com/fivethirtyeight/data/master/college-majors/recent-grads.csv", "https://rawgit.com/fivethirtyeight/data/master/college-majors/women-stem.csv"]
 )

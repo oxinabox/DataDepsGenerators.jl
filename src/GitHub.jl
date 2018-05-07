@@ -39,10 +39,11 @@ end
 
 
 function get_cdn_url_converter(mainpage)
-    commit = strip(text_only(matchall(sel".commit-tease-sha", mainpage.root)))
+    # commit = strip(text_only(matchall(sel".commit-tease-sha", mainpage.root)))
     function(urlsub)
-        ret = "https://cdn.rawgit.com"*urlsub
-        replace(ret, "blob/master", commit, 1)
+        ret = "https://rawgit.com"*urlsub
+        # replace(ret, "blob/master", commit, 1)
+        replace(ret, "blob/", "")
     end
 end
 

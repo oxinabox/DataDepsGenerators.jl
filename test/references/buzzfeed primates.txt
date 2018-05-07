@@ -19,5 +19,5 @@ RegisterDataDep(
 	
 	
 	""",
-    Any["https://rawgit.com/BuzzFeedNews/2015-07-primates/master/README.md", "https://rawgit.com/BuzzFeedNews/2015-07-primates/master/facility.json", "https://rawgit.com/BuzzFeedNews/2015-07-primates/master/facility.tsv", "https://rawgit.com/BuzzFeedNews/2015-07-primates/master/facility.txt", "https://rawgit.com/BuzzFeedNews/2015-07-primates/master/primates.r", "https://rawgit.com/BuzzFeedNews/2015-07-primates/master/report.json", "https://rawgit.com/BuzzFeedNews/2015-07-primates/master/report.tsv", "https://rawgit.com/BuzzFeedNews/2015-07-primates/master/report.txt"]
+    Any["https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/tree-commit/README.md", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/tree-commit/facility.json", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/tree-commit/facility.tsv", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/tree-commit/facility.txt", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/tree-commit/primates.r", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/tree-commit/report.json", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/tree-commit/report.tsv", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/tree-commit/report.txt"]
 )

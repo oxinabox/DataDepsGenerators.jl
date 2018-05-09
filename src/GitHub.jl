@@ -39,9 +39,14 @@ end
 
 
 function get_cdn_url_converter(mainpage)
-    commit = split(matchall(sel".commit-tease", mainpage.root)[1].attributes["src"], r"[/]")[end-1]
+    commit = match(r"\b[0-9a-f]{5,40}\b", matchall(sel".commit-tease", mainpage.root)[1].attributes["src"])
     function(urlsub)
         ret = "https://cdn.rawgit.com"*urlsub
+        if commit === nothing
+            commit = "master"
+        else
+            commit = commit.match
+        end
         replace(ret, "blob/master", commit)
     end
 end

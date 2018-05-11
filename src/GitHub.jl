@@ -39,10 +39,17 @@ end
 
 
 function get_cdn_url_converter(mainpage)
-    commit = strip(text_only(matchall(sel".commit-tease-sha", mainpage.root)))
+    commit_ele = matchall(sel".commit-tease", mainpage.root)[1]
+    commit = match(r"\b[0-9a-f]{5,40}\b", commit_ele.attributes["src"])
     function(urlsub)
         ret = "https://cdn.rawgit.com"*urlsub
-        replace(ret, "blob/master", commit, 1)
+        if commit === nothing
+            warn("Not able to retrieve commit hash. Switching to master.")
+            rep_string = "master"
+        else
+            rep_string = commit.match
+        end
+        replace(ret, "blob/master", rep_string)
     end
 end
 

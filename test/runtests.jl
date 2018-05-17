@@ -7,6 +7,7 @@ tests = [
     "DataDryadWeb",
     "DataDryadAPI",
     "format_checksum"
+    "DataDepsTest"    
 ]
 
 for filename in tests

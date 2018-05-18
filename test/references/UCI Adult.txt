@@ -9,6 +9,6 @@ RegisterDataDep(
 	Repository's  citation policy
 	Lichman, M. (2013). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
 	""",
-    String["https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/adult/Index", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/adult/adult.data", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/adult/adult.names", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/adult/adult.test", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/adult/old.adult.names"]
-    Any[]
+    String["https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/adult/Index", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/adult/adult.data", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/adult/adult.names", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/adult/adult.test", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/adult/old.adult.names"],
+    nothing
 )

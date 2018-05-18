@@ -35,6 +35,6 @@ function get_urls(::UCI, mainpage)
 end
 
 function get_checksums(::UCI, page)
-    checksums = []
+    checksums = nothing
     checksums
 end

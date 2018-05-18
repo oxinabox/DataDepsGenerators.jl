@@ -71,7 +71,7 @@ function get_urls(repo::GitHub, page, cdn_url_converter=get_cdn_url_converter(pa
 end
 
 function get_checksums(repo::GitHub, page)
-    checksums = []
+    checksums = nothing
     checksums
 end
 

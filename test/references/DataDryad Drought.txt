@@ -17,4 +17,5 @@ RegisterDataDep(
 	
 	""",
     Any["https://datadryad.org/bitstream/handle/10255/dryad.173063/Drought%20intensities.csv?sequence=1", "https://datadryad.org/bitstream/handle/10255/dryad.173064/Presence-absence%20data.csv?sequence=1", "https://datadryad.org/bitstream/handle/10255/dryad.173075/Fuzzy%20coded%20trait%20data.xlsx?sequence=1"]
+    Any[("md5", "0c484b24ed9b8ba6cfd85e6035b1a9e9"), ("md5", "8afefad6872124ceda8a2171465cf277"), ("md5", "91cff120293ae639d599b9057313f107")]
 )

@@ -49,6 +49,19 @@ function get_urls(repo::DataDryad, page)
     urls
 end
 
+function get_checksums(repo::DataDryad, page)
+    checksums = []
+    checksum_eles = matchall(sel"a", page.root)
+    for checksum_ele in checksum_eles
+        if ismatch(r"\bresource\/doi:[0-9]*.[0-9]*\/dryad.[a-z, 0-9]*\/[0-9]+\b", checksum_ele.attributes["href"])
+            checksum = match(r"\bresource\/doi:[0-9]*.[0-9]*\/dryad.[a-z, 0-9]*\/[0-9]+\b", checksum_ele.attributes["href"])
+            md5 = ("md5", text_only(getpage(replace(checksum.match, "resource/doi:", "https://datadryad.org/mn/checksum/doi:")).root))
+            push!(checksums, md5)
+        end
+    end
+    checksums
+end
+
 function data_fullname(::DataDryad, mainpage)
     # mainpage = replace(mainpage, "resource", "mn/object")
     text_only(first(matchall(sel".pub-title", mainpage.root)))

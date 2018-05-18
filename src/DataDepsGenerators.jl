@@ -11,6 +11,7 @@ struct Metadata
     website::String
     description::String
     dataurls::Vector
+    datachecksums::Vector
 end
 
 function find_metadata(repo, dataname)
@@ -28,7 +29,8 @@ function find_metadata(repo, dataname)
         data_fullname(repo, mainpage),
         mainpage_url,
         description(repo, mainpage),
-        get_urls(repo, mainpage)
+        get_urls(repo, mainpage),
+        get_checksums(repo, mainpage)
     )
 end
 
@@ -71,6 +73,7 @@ function generate(repo::DataRepo,
         \"\"\"
     $(indent(message(meta)))\"\"\",
         $(meta.dataurls)
+        $(meta.datachecksums)
     )
     """
 end

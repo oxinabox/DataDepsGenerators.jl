@@ -1,5 +1,8 @@
 using DataDeps
 using Base.Test
+
+ENV["DATADEPS_ALWAY_ACCEPT"]=true
+
 @testset "Testing DataDyrad DataDeps" begin
     include("references/DataDryad Drought.txt")
     include("references/DataDryad Plasticity.txt")

@@ -33,8 +33,3 @@ function get_urls(::UCI, mainpage)
 
     data_urls = get_dataurls_from_webserver_index(datapage_url)
 end
-
-function get_checksums(::UCI, page)
-    checksums = nothing
-    checksums
-end

@@ -78,6 +78,9 @@ function generate(repo::DataRepo,
     """
 end
 
-
+function get_checksums(repo::DataRepo, page)
+    checksums = nothing
+    checksums
+end
 
 end # module

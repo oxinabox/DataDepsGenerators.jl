@@ -70,11 +70,6 @@ function get_urls(repo::GitHub, page, cdn_url_converter=get_cdn_url_converter(pa
     urls
 end
 
-function get_checksums(repo::GitHub, page)
-    checksums = nothing
-    checksums
-end
-
 function data_fullname(::GitHub, mainpage)
     text_only(last(matchall(sel"h1", mainpage.root)))
 end

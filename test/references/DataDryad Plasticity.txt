@@ -17,5 +17,5 @@ RegisterDataDep(
 	
 	""",
     Any["https://datadryad.org/bitstream/handle/10255/dryad.173251/raw_data.zip?sequence=1", "https://datadryad.org/bitstream/handle/10255/dryad.173251/README.txt?sequence=2", "https://datadryad.org/bitstream/handle/10255/dryad.173252/GSplasticity_code.R?sequence=1"],
-    Any[("md5", "898237b1dd8306be586ffc036ebda768"), ("md5", "af502ff7111868c548cc7923a9193673")]
+    [(:md5, "898237b1dd8306be586ffc036ebda768"), (:md5, "af502ff7111868c548cc7923a9193673")]
 )

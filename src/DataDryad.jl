@@ -55,7 +55,8 @@ function get_checksums(repo::DataDryad, page)
     for checksum_ele in checksum_eles
         if ismatch(r"\bresource\/doi:[0-9]*.[0-9]*\/dryad.[a-z, 0-9]*\/[0-9]+\b", checksum_ele.attributes["href"])
             checksum = match(r"\bresource\/doi:[0-9]*.[0-9]*\/dryad.[a-z, 0-9]*\/[0-9]+\b", checksum_ele.attributes["href"])
-            md5 = ("md5", text_only(getpage(replace(checksum.match, "resource/doi:", "https://datadryad.org/mn/checksum/doi:")).root))
+            md5 = (:md5, text_only(getpage(replace(checksum.match, "resource/doi:", "https://datadryad.org/mn/checksum/doi:")).root))
+            info("The generated registration block uses md5 hash, the MD5.jl package must be loaded to run the registration")
             push!(checksums, md5)
         end
     end

@@ -17,5 +17,5 @@ RegisterDataDep(
 	
 	""",
     Any["https://datadryad.org/bitstream/handle/10255/dryad.166590/draft_dryad_upload_dec2017.xls?sequence=1"],
-    Any[("md5", "efc75490db3444d3708b3e9ccd030d38")]
+    [(:md5, "efc75490db3444d3708b3e9ccd030d38")]
 )

@@ -73,7 +73,7 @@ function generate(repo::DataRepo,
         \"\"\"
     $(indent(message(meta)))\"\"\",
         $(meta.dataurls),
-        $(meta.datachecksums)
+        $(format_checksums(meta.datachecksums))
     )
     """
 end
@@ -82,5 +82,15 @@ function get_checksums(repo::DataRepo, page)
     checksums = nothing
     checksums
 end
+
+function format_checksums(csums::Vector)
+    formattedlist = csums[1]
+    for i in csums[2:end]
+        formattedlist = "$formattedlist, " * "$i"
+    end
+	"[$formattedlist]"
+end
+
+format_checksums(::Void) = ""
 
 end # module

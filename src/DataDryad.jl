@@ -49,6 +49,23 @@ function get_urls(repo::DataDryad, page)
     urls
 end
 
+function get_checksums(repo::DataDryad, page)
+    checksums = []
+    links = matchall(sel"a", page.root)
+    regex = r"\bresource\/doi:[0-9]*.[0-9]*\/dryad.[a-z, 0-9]*\/[0-9]+\b"
+    for checksum_link in links
+        if ismatch(regex,checksum_link.attributes["href"])
+            checksum = match(regex, checksum_link.attributes["href"])
+            url = replace(checksum.match, "resource/doi:", "https://datadryad.org/mn/checksum/doi:")
+            md5 = (:md5, text_only(getpage(url).root))
+            info("The generated registration block uses md5 hash, " *
+            "the MD5.jl package must be loaded to run the registration")
+            push!(checksums, md5)
+        end
+    end
+    checksums
+end
+
 function data_fullname(::DataDryad, mainpage)
     # mainpage = replace(mainpage, "resource", "mn/object")
     text_only(first(matchall(sel".pub-title", mainpage.root)))

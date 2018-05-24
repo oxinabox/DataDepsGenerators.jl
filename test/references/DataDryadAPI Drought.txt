@@ -1,0 +1,21 @@
+RegisterDataDep(
+    "Data from Drought intensification drives turnover of structure and function in stream invertebrate communities",
+    """
+	Dataset: Data from: Drought intensification drives turnover of structure and function in stream invertebrate communities
+	Website: https://datadryad.org/mn/object/http://dx.doi.org/10.5061/dryad.cc8834s
+	Author: Aspin, Thomas W.H. et. al.
+	License: http://creativecommons.org/publicdomain/zero/1.0/
+	Date: March 1, 2018
+	
+	Climatic extremes are becoming more frequent and intense across much of the globe, potentially transforming the biodiversity and functioning of affected ecosystems. In freshwaters, hydrological extremes such as drought can regulate beta diversity, acting as powerful environmental filters to dictate the complement of species and functional traits found at local and landscape scales. New methods that enable beta diversity and its functional equivalent to be partitioned into turnover (replacement of species/functions) and nestedness-resultant (gain/loss of species/functions) components may offer novel insights into the parallel impacts of drought on ecosystem structure and function. Using a series of artificial channels (mesocosms) designed to mimic perennial headwater streams, we experimentally manipulated streamflows to simulate a gradient of drought intensity. We then modelled taxonomic and functional turnover and nestedness of macroinvertebrate communities along this gradient, validating direct gradient approaches (bootstrapping, Mantel tests) against null models of nestedness. Drought intensification produced significant environmental distance decay trends (i.e. communities became increasingly taxonomically and functionally dissimilar the more differentially disturbed by drought they were). Taxonomic distance decay was primarily driven by turnover, while the functional trend reflected a combination of richness differences and turnover at different points along the gradient. Taxonomic and functional distance decay slopes were not significantly different, implying that communities were functionally vulnerable to drying. The increased frequency and intensity of droughts predicted under most climate change scenarios could thus profoundly modify not only the structure of running water invertebrate communities, but also the ecosystem functions they underpin.
+	
+	Please cite this paper:
+	Aspin, Thomas W.H. Matthews, Thomas J. Khamis, Kieran Milner, Alexander M. Wang, Zining O'Callaghan, Matthew J. Ledger, Mark E. (2018) Data from: Drought intensification drives turnover of structure and function in stream invertebrate communities https://doi.org/10.1111/ecog.03711
+	as well as this dataset:
+	https://doi.org/10.5061/dryad.cc8834s
+	if you use this in your research.
+	
+	""",
+    Any["/bitstream/handle/10255/dryad.173063/Drought%20intensities.csv?sequence=1", "/bitstream/handle/10255/dryad.173064/Presence-absence%20data.csv?sequence=1", "/bitstream/handle/10255/dryad.173075/Fuzzy%20coded%20trait%20data.xlsx?sequence=1"],
+    [(md5, "5f38cf6a98643ba49987eb89b02bfcb2"), (md5, "d77ccc58576b4c8fdf9c5b381baaedaa"), (md5, "d3f5faaea7cf4e70efe39fd5c0fedd24")]
+)

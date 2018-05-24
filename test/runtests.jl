@@ -4,8 +4,9 @@ using TestSetExtensions
 tests = [
     "UCI",
     "GitHub",
-    "DataDryad",
-    "format_checksum"    
+    "DataDryadWeb",
+    "DataDryadAPI",
+    "format_checksum"
 ]
 
 for filename in tests

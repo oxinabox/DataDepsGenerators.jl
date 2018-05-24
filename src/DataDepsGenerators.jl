@@ -2,7 +2,7 @@ module DataDepsGenerators
 using Gumbo, Cascadia, AbstractTrees
 using Suppressor
 
-export generate, UCI, GitHub, DataDryad, format_checksums
+export generate, UCI, GitHub, DataDryad
 
 abstract type DataRepo end
 
@@ -78,21 +78,20 @@ function generate(repo::DataRepo,
     """
 end
 
-function get_checksums(repo::DataRepo, page)
-    ""
-end
+get_checksums(repo::DataRepo, page) = ""
 
 function format_checksums(csums::Vector)
-    formatter(str) = if isa(str, String) "\"$str\"" else format_checksums(str) end
-    formattedlist = join([formatter(i) for i in csums], ", ")
-    "[$formattedlist]"
+    csumvec = join(format_checksums.(csums), ", ")
+    "[$csumvec]"
 end
 
 function format_checksums(csum::Tuple{T,<:AbstractString}) where T<:Symbol
-    replace(string(csum), r":md", "md")
+    func = string(csum[1])
+    hashstring = format_checksums(csum[2])
+    "($func, $hashstring)"
 end
 
-function format_checksums(csum::String)
+function format_checksums(csum::AbstractString)
     if length(csum)>0 "\"$csum\"" else "" end
 end
 

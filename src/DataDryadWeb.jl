@@ -1,9 +1,9 @@
-immutable DataDryad <: DataRepo
+immutable DataDryadWeb <: DataRepo
 end
 
-base_url(::DataDryad) = "https://datadryad.org/mn/"
+base_url(::DataDryadWeb) = "https://datadryad.org/resource/doi:"
 
-function description(::DataDryad, mainpage)
+function description(::DataDryadWeb, mainpage)
     desc = replace(text_only(first(matchall(sel".article-abstract", mainpage.root))), "Abstract ", "")
     author = ""
     try
@@ -32,7 +32,7 @@ function description(::DataDryad, mainpage)
     """, "\$")
 end
 
-function get_urls(repo::DataDryad, page)
+function get_urls(repo::DataDryadWeb, page)
     urls = []
     links = matchall(sel".package-file-description tbody tr td a", page.root)
     for link in links
@@ -49,7 +49,7 @@ function get_urls(repo::DataDryad, page)
     urls
 end
 
-function get_checksums(repo::DataDryad, page)
+function get_checksums(repo::DataDryadWeb, page)
     checksums = []
     links = matchall(sel"a", page.root)
     regex = r"\bresource\/doi:[0-9]*.[0-9]*\/dryad.[a-z, 0-9]*\/[0-9]+\b"
@@ -58,15 +58,17 @@ function get_checksums(repo::DataDryad, page)
             checksum = match(regex, checksum_link.attributes["href"])
             url = replace(checksum.match, "resource/doi:", "https://datadryad.org/mn/checksum/doi:")
             md5 = (:md5, text_only(getpage(url).root))
-            info("The generated registration block uses md5 hash, " *
-            "the MD5.jl package must be loaded to run the registration")
             push!(checksums, md5)
         end
+    end
+    if length(checksums) > 0
+        info("The generated registration block uses md5 hash, " *
+            "the MD5.jl package must be loaded to run the registration")
     end
     checksums
 end
 
-function data_fullname(::DataDryad, mainpage)
+function data_fullname(::DataDryadWeb, mainpage)
     # mainpage = replace(mainpage, "resource", "mn/object")
     text_only(first(matchall(sel".pub-title", mainpage.root)))
 end

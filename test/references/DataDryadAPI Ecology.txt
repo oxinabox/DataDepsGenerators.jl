@@ -1,0 +1,21 @@
+RegisterDataDep(
+    "Data from Ecology and genomics of an important crop wild relative as a prelude to agricultural innovation",
+    """
+	Dataset: Data from: Ecology and genomics of an important crop wild relative as a prelude to agricultural innovation
+	Website: http://dx.doi.org/10.5061/dryad.74699
+	Author: von Wettberg, Eric J. B. et al.
+	License: http://creativecommons.org/publicdomain/zero/1.0/
+	Date: February 27, 2018
+	
+	Domesticated species are impacted in unintended ways during domestication and breeding. Changes in the nature and intensity of selection impart genetic drift, reduce diversity, and increase the frequency of deleterious alleles. Such outcomes constrain our ability to expand the cultivation of crops into environments that differ from those under which domestication occurred. We address this need in chickpea, an important pulse legume, by harnessing the diversity of wild crop relatives. We document an extreme domestication-related genetic bottleneck and decipher the genetic history of wild populations. We provide evidence of ancestral adaptations for seed coat color crypsis, estimate the impact of environment on genetic structure and trait values, and demonstrate variation between wild and cultivated accessions for agronomic properties. A resource of genotyped, association mapping progeny functionally links the wild and cultivated gene pools and is an essential resource chickpea for improvement, while our methods inform collection of other wild crop progenitor species.
+	
+	Please cite this paper:
+	von Wettberg, Eric J. B. Chang, Peter L Başdemir, Fatma Carrasquila-Garcia, Noelia Korbu, Lijalem Moenga, Susan M. Bedada, Gashaw Greenlon, Alex Moriuchi, Ken S. Suryawanshi, Vasantika Cordeiro, Matilde A Noujdina, Nina V. Dinegde, Kassaye Negash Abbas Shah Sani, Syed Gul Getahun, Tsegaye Vance, Lisa Bergmann, Emily Lindsay, Donna Mamo, Bullo Erena Warschefsky, Emily J. Dacosta-Calheiros, Emmanuel Marques, Edward Yilmaz, Mustafa Abdullah Cakmak, Ahmet Murat Rose, Janna Migneault, Andrew Krieg, Christopher P. Saylak, Sevgi Temel, Hamdi Friesen, Maren L. Silor, Eleanor Akhmetov, Zhaslan Ozelik, Huseyin Kholova, Jana Can, Canan Gaur, Pooran Yildirim, Mehmet Sharma, Hari Vadez, Vincent Tesfaye, Kassahun Woldemedhin, Asnake Fikre Tar'an, Bunyamin Aydogan, Abdulkadir Bukun, Bekir Penmetsa, R. Varma Berger, Jens Kahraman, Abdullah Nuzhdin, Sergey V. Cook, Douglas R. (2018) Data from: Ecology and genomics of an important crop wild relative as a prelude to agricultural innovation https://doi.org/10.1038/s41467-018-02867-z
+	as well as this dataset:
+	https://doi.org/10.5061/dryad.74699
+	if you use this in your research.
+	
+	""",
+    Any["/bitstream/handle/10255/dryad.166590/draft_dryad_upload_dec2017.xls?sequence=1"],
+    [(md5, "3c837a0a41e01966a0f037beb7db43b8")]
+)

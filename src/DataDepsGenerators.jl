@@ -27,7 +27,7 @@ function find_metadata(repo, dataname)
 
     Metadata(
         data_fullname(repo, mainpage),
-        mainpage_url,
+        website(repo, mainpage_url),
         description(repo, mainpage),
         get_urls(repo, mainpage),
         get_checksums(repo, mainpage)
@@ -95,5 +95,17 @@ end
 function format_checksums(csum::AbstractString)
     if length(csum)>0 "\"$csum\"" else "" end
 end
+
+function format_authors(authors::Vector)
+    if length(authors) == 1
+        authors[1]
+    elseif length(authors) == 2
+        authors[1] * ", " * authors[2]
+    else
+        authors[1] * " et al."
+    end
+end
+
+website(::DataRepo, mainpage_url) = mainpage_url
 
 end # module

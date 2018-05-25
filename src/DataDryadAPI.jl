@@ -6,19 +6,17 @@ base_url(::DataDryadAPI) = "https://datadryad.org/mn/object/http://dx.doi.org/"
 function description(repo::DataDryadAPI, mainpage)
     desc = text_only(first(matchall(sel"dcterms\:description", mainpage.root)))
     authors = matchall(sel"dcterms\:creator", mainpage.root)
-    author = text_only(first(authors))
+    author = format_authors([text_only(i) for i in authors])
     license = "http://creativecommons.org/publicdomain/zero/1.0/"
-    rawdate = chop(text_only(first(matchall(sel"dcterms\:dateSubmitted", mainpage.root))))
-    year = Dates.year(Dates.DateTime(rawdate))
-    month = Dates.monthname(Dates.DateTime(rawdate))
-    day = Dates.day(Dates.DateTime(rawdate))
-    date = "$(month) $(day), $(year)"
+    rawdate = Dates.DateTime(chop(text_only(first(matchall(sel"dcterms\:dateSubmitted", mainpage.root)))))
+    year = Dates.year(rawdate)
+    date = Dates.format(rawdate, "U d, yyyy")
     references = text_only(first(matchall(sel"dcterms\:references", mainpage.root)))
     paper = text_only(authors) * " ($(year)) " * data_fullname(repo, mainpage) * " " * references
     dataset = text_only(first(matchall(sel"dcterms\:identifier", mainpage.root)))
 
     final = escape_multiline_string("""
-    Author: $(author) et. al.
+    Author: $(author)
     License: $(license)
     Date: $(date)
 
@@ -64,4 +62,8 @@ end
 
 function data_fullname(::DataDryadAPI, mainpage)
     text_only(first(matchall(sel"dcterms\:title", mainpage.root)))
+end
+
+function website(::DataDryadAPI, mainpage_url)
+    replace(mainpage_url, "https://datadryad.org/mn/object/", "")
 end

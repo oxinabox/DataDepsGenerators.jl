@@ -1,0 +1,2 @@
+immutable KnowledgeNetworkforBiocomplexity <: KNB
+end

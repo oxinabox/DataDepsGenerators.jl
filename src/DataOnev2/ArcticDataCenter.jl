@@ -1,0 +1,2 @@
+immutable ArcticDataCenter <: KNB
+end

@@ -2,7 +2,7 @@ module DataDepsGenerators
 using Gumbo, Cascadia, AbstractTrees
 using Suppressor
 
-export generate, UCI, GitHub, DataDryadWeb, DataDryadAPI, DataOnev2
+export generate, UCI, GitHub, DataDryadWeb, DataDryadAPI, DataOneV2
 
 abstract type DataRepo end
 
@@ -42,7 +42,7 @@ include("UCI.jl")
 include("GitHub.jl")
 include("DataDryadWeb.jl")
 include("DataDryadAPI.jl")
-include("DataOnev2/DataOnev2.jl")
+include("DataOneV2/DataOneV2.jl")
 
 
 
@@ -105,6 +105,7 @@ function format_authors(authors::Vector)
     elseif length(authors) >2
         authors[1] * " et al."
     else
+        warn("Not able to retrieve any authors")
         "Unknown Author"
     end
 end

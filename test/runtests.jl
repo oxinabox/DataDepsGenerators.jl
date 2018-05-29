@@ -6,7 +6,7 @@ tests = [
     "GitHub",
     "DataDryadWeb",
     "DataDryadAPI",
-    "DataOnev2/KNB",
+    "DataOneV2/KNB",
     "format_checksum"
 ]
 

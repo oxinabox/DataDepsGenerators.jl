@@ -3,6 +3,7 @@ RegisterDataDep(
     """
 	Dataset: Review of existing GeneBank data and analysis of 50 publications
 	Website: http://dx.doi.org/doi:10.5063%2FF1HT2M7Q
+	Paper Title: Summary of influenza A subtypes in wild birds from GenBank and 50 studies
 	Author: Sarah Olson
 	License: no restrictions
 	Date: July 7, 2013

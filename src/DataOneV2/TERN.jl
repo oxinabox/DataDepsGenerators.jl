@@ -1,12 +1,10 @@
-immutable TERN <: DataOneV2 end
+struct TERN <: DataOneV2 end
 
 base_url(::TERN) = "https://dataone.tern.org.au/mn/v2/object/aekos.org.au/collection/nsw.gov.au/nsw_atlas/"
 
 function get_urls(repo::TERN, page)
-    urls = []
-    links = matchall(sel"distribution online url", page.root)
-    push!(urls, text_only(links))
-    urls
+     links = matchall(sel"distribution online url", page.root)
+     [text_only(links)]
 end
 
 function desc_(repo::TERN, mainpage)
@@ -25,6 +23,6 @@ function pub_date(repo::TERN, mainpage)
     Dates.year(rawdate), Dates.format(rawdate, "U d, yyyy")
 end
 
-function data_fullname(::DataOneV2, mainpage)
+function data_fullname(::TERN, mainpage)
     text_only(first(matchall(sel"project title", mainpage.root)))
 end

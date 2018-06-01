@@ -6,7 +6,8 @@ tests = [
     "GitHub",
     "DataDryadWeb",
     "DataDryadAPI",
-    "format_checksum"
+    "format_checksum",
+    "IntegrationTests"    
 ]
 
 for filename in tests

@@ -1,15 +1,17 @@
 using DataDeps
+using DataDepsGenerators
 using Base.Test
+using MD5
 
 ENV["DATADEPS_ALWAY_ACCEPT"]=true
 
-@testset "Testing DataDyrad DataDeps" begin
-    include("references/DataDryad Drought.txt")
-    include("references/DataDryad Plasticity.txt")
+# @testset "Testing DataDyrad DataDeps" begin
+#     include("references/DataDryadAPI Drought.txt")
+#     include("references/DataDryadAPI Plasticity.txt")
 
-    @test length(collect(readdir(datadep"Data from Drought intensification drives turnover of structure and function in stream invertebrate communities"))) > 0
-    @test length(collect(readdir(datadep"Data from Plasticity of plant defense and its evolutionary implications in wild populations of Boechera stricta"))) > 0
-end
+#     @test length(collect(readdir(datadep"Data from Drought intensification drives turnover of structure and function in stream invertebrate communities"))) > 0
+#     @test length(collect(readdir(datadep"Data from Plasticity of plant defense and its evolutionary implications in wild populations of Boechera stricta"))) > 0
+# end
 
 @testset "Testing GitHub DataDeps" begin
     include("references/538 college.txt")
@@ -27,4 +29,9 @@ end
     include("references/UCI Forest Fires.txt")
 
     @test length(collect(readdir(datadep"Forest Fires Data Set (UCI ML Repository)"))) > 0
+
+    ############################################
+
+    # eval(parse(UCI(), "https://archive.ics.uci.edu/ml/datasets/Air+quality", "UCI"))
+    # @test length(collect(readdir(@datadep_str("UCI")))) > 0
 end

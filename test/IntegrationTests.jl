@@ -1,7 +1,6 @@
 using DataDeps
 using DataDepsGenerators
 using Base.Test
-using MD5
 
 ENV["DATADEPS_ALWAY_ACCEPT"]=true
 

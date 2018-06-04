@@ -47,4 +47,4 @@ test_script:
   - C:\projects\julia\bin\julia -e "Pkg.test(\"DataDepsGenerators\")"
 
 environment:
-  DATADEPS_ALWAY_ACCEPT: true
+  - DATADEPS_ALWAY_ACCEPT: True

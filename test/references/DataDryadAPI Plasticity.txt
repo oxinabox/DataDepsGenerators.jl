@@ -1,4 +1,4 @@
-RegisterDataDep(
+register(DataDep(
     "Data from Plasticity of plant defense and its evolutionary implications in wild populations of Boechera stricta",
     """
 	Dataset: Data from: Plasticity of plant defense and its evolutionary implications in wild populations of Boechera stricta
@@ -18,4 +18,4 @@ RegisterDataDep(
 	""",
     Any["/bitstream/handle/10255/dryad.173251/raw_data.zip?sequence=1", "/bitstream/handle/10255/dryad.173251/README.txt?sequence=2", "/bitstream/handle/10255/dryad.173252/GSplasticity_code.R?sequence=1"],
     [(md5, "aea52e9cdb6c4069720bc709415e479f"), (md5, "2abd4c62b7263eba8c74ce2bcb25790f"), (md5, "783d619e042bfe516b6ffd34dc97b5df")]
-)
+))

@@ -1,4 +1,4 @@
-RegisterDataDep(
+register(DataDep(
     "Model forage fish supply (ecological supply)",
     """
 	Dataset: Model forage fish supply (ecological supply)
@@ -16,4 +16,4 @@ RegisterDataDep(
 	""",
     Any[String["https://knb.ecoinformatics.org/knb/d1/mn/v2/object/msleckman.40.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/msleckman.41.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/msleckman.42.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/msleckman.43.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/msleckman.44.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/msleckman.45.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/msleckman.46.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/msleckman.47.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/msleckman.61.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/msleckman.64.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/msleckman.65.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/msleckman.66.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/msleckman.67.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/msleckman.68.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/msleckman.69.1"]],
     
-)
+))

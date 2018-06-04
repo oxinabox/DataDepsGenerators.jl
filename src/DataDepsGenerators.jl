@@ -70,13 +70,13 @@ function generate(repo::DataRepo,
         shortname = data_shortnamename(repo, meta)
     end
     """
-    RegisterDataDep(
+    register(DataDep(
         \"$shortname\",
         \"\"\"
     $(indent(message(meta)))\"\"\",
         $(meta.dataurls),
         $(format_checksums(meta.datachecksums))
-    )
+    ))
     """
 end
 

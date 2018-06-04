@@ -1,4 +1,4 @@
-RegisterDataDep(
+register(DataDep(
     "Data from Ecology and genomics of an important crop wild relative as a prelude to agricultural innovation",
     """
 	Dataset: Data from: Ecology and genomics of an important crop wild relative as a prelude to agricultural innovation
@@ -18,4 +18,4 @@ RegisterDataDep(
 	""",
     Any["/bitstream/handle/10255/dryad.166590/draft_dryad_upload_dec2017.xls?sequence=1"],
     [(md5, "3c837a0a41e01966a0f037beb7db43b8")]
-)
+))

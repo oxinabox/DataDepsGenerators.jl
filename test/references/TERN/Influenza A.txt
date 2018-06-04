@@ -1,4 +1,4 @@
-RegisterDataDep(
+register(DataDep(
     "KAHDRAIN Vegetation Survey, Data from the Atlas of NSW database VIS flora survey module",
     """
 	Dataset: KAHDRAIN Vegetation Survey, Data from the Atlas of NSW database: VIS flora survey module
@@ -15,4 +15,4 @@ RegisterDataDep(
 	""",
     String["http://aekos.org.au/collection/nsw.gov.au/nsw_atlas/vis_flora_module/KAHDRAIN"],
     
-)
+))

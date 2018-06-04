@@ -1,4 +1,4 @@
-RegisterDataDep(
+register(DataDep(
     "Burst Header Packet (UCI)",
     """
 	Dataset: Burst Header Packet (BHP) flooding attack on Optical Burst Switching (OBS) Network Data Set (UCI ML Repository)
@@ -10,4 +10,4 @@ RegisterDataDep(
 	""",
     String["https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/00404/OBS-Network-DataSet_2_Aug27.arff"],
     
-)
+))

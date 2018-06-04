@@ -1,9 +1,20 @@
+using DataDeps
 using DataDepsGenerators
 using Base.Test
 
 using ReferenceTests
 
-@test_reference "references/UCI Air+Quality.txt" generate(UCI(), "Air+Quality")
+@testset "UCI Air Quality" begin
+    registration_code = generate(UCI(), "Air+Quality")
+
+    @testset "Integration Test" begin
+        eval(parse(registration_code))
+        @test length(collect(readdir(datadep"Air Quality Data Set (UCI ML Repository)"))) > 0
+    end
+
+    @test_reference "references/UCI Air+Quality.txt" registration_code
+end
+
 @test_reference "references/UCI auto mpg.txt" generate(UCI(), "https://archive.ics.uci.edu/ml/datasets/auto+mpg")
 @test_reference "references/UCI banking marketting.txt" generate(UCI(), "bank+marketing")
 @test_reference "references/UCI BHP.txt" generate(UCI(), "Burst+Header+Packet+%28BHP%29+flooding+attack+on+Optical+Burst+Switching+%28OBS%29+Network", "Burst Header Packet (UCI)")

@@ -1,4 +1,4 @@
-RegisterDataDep(
+register(DataDep(
     "Air Quality Data Set (UCI ML Repository)",
     """
 	Dataset: Air Quality Data Set (UCI ML Repository)
@@ -11,4 +11,4 @@ RegisterDataDep(
 	""",
     String["https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/00360/AirQualityUCI.zip"],
     
-)
+))

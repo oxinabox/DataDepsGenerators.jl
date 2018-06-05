@@ -1,4 +1,4 @@
-RegisterDataDep(
+register(DataDep(
     "Adult Data Set (UCI ML Repository)",
     """
 	Dataset: Adult Data Set (UCI ML Repository)
@@ -11,4 +11,4 @@ RegisterDataDep(
 	""",
     String["https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/adult/Index", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/adult/adult.data", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/adult/adult.names", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/adult/adult.test", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/adult/old.adult.names"],
     
-)
+))

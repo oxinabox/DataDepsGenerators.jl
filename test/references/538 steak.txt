@@ -1,4 +1,4 @@
-RegisterDataDep(
+register(DataDep(
     "Steak Survey",
     """
 	Dataset: Steak Survey

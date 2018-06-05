@@ -1,4 +1,4 @@
-RegisterDataDep(
+register(DataDep(
     "Bank Marketing Data Set (UCI ML Repository)",
     """
 	Dataset: Bank Marketing Data Set (UCI ML Repository)
@@ -10,4 +10,4 @@ RegisterDataDep(
 	""",
     String["https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/00222/bank-additional.zip", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/00222/bank.zip"],
     
-)
+))

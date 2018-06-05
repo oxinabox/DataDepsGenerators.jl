@@ -1,4 +1,4 @@
-RegisterDataDep(
+register(DataDep(
     "College Majors",
     """
 	Dataset: College Majors
@@ -455,4 +455,4 @@ RegisterDataDep(
 	""",
     Any["https://cdn.rawgit.com/fivethirtyeight/data/de2dfac210b1d63c8a1c160a1e6acbf8dc0b7e6f/college-majors/all-ages.csv", "https://cdn.rawgit.com/fivethirtyeight/data/de2dfac210b1d63c8a1c160a1e6acbf8dc0b7e6f/college-majors/college-majors-rscript.R", "https://cdn.rawgit.com/fivethirtyeight/data/de2dfac210b1d63c8a1c160a1e6acbf8dc0b7e6f/college-majors/grad-students.csv", "https://cdn.rawgit.com/fivethirtyeight/data/de2dfac210b1d63c8a1c160a1e6acbf8dc0b7e6f/college-majors/majors-list.csv", "https://cdn.rawgit.com/fivethirtyeight/data/de2dfac210b1d63c8a1c160a1e6acbf8dc0b7e6f/college-majors/readme.md", "https://cdn.rawgit.com/fivethirtyeight/data/de2dfac210b1d63c8a1c160a1e6acbf8dc0b7e6f/college-majors/recent-grads.csv", "https://cdn.rawgit.com/fivethirtyeight/data/de2dfac210b1d63c8a1c160a1e6acbf8dc0b7e6f/college-majors/women-stem.csv"],
     
-)
+))

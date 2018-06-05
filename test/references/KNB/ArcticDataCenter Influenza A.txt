@@ -1,4 +1,4 @@
-RegisterDataDep(
+register(DataDep(
     "Review of existing GeneBank data and analysis of 50 publications",
     """
 	Dataset: Review of existing GeneBank data and analysis of 50 publications
@@ -15,4 +15,4 @@ RegisterDataDep(
 	""",
     Any[String["https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.5.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.8.2", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.9.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.13.7", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.17.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.18.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.20.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.21.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.22.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.23.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.24.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.25.5"]],
     
-)
+))

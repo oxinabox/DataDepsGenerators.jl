@@ -1,4 +1,4 @@
-RegisterDataDep(
+register(DataDep(
     "Forest Fires Data Set (UCI ML Repository)",
     """
 	Dataset: Forest Fires Data Set (UCI ML Repository)
@@ -12,4 +12,4 @@ RegisterDataDep(
 	""",
     String["https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/forest-fires/forestfires.csv", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/forest-fires/forestfires.names"],
     
-)
+))

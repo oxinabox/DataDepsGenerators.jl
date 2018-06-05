@@ -1,4 +1,4 @@
-RegisterDataDep(
+register(DataDep(
     "Primates in biodefense research Data and analysis",
     """
 	Dataset: Primates in biodefense research: Data and analysis
@@ -21,4 +21,4 @@ RegisterDataDep(
 	""",
     Any["https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/7758abdf4425dcee6cb358fb5c23c0f8ef032cb4/README.md", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/7758abdf4425dcee6cb358fb5c23c0f8ef032cb4/facility.json", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/7758abdf4425dcee6cb358fb5c23c0f8ef032cb4/facility.tsv", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/7758abdf4425dcee6cb358fb5c23c0f8ef032cb4/facility.txt", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/7758abdf4425dcee6cb358fb5c23c0f8ef032cb4/primates.r", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/7758abdf4425dcee6cb358fb5c23c0f8ef032cb4/report.json", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/7758abdf4425dcee6cb358fb5c23c0f8ef032cb4/report.tsv", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/7758abdf4425dcee6cb358fb5c23c0f8ef032cb4/report.txt"],
     
-)
+))

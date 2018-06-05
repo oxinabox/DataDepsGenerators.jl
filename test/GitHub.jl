@@ -1,11 +1,20 @@
+using DataDeps
 using DataDepsGenerators
 using Base.Test
 
 using ReferenceTests
 
 @testset "fivethirtyeight (folders in 1 repo)" begin
-    @test_reference "references/538 march.txt" generate(GitHub(), "https://github.com/fivethirtyeight/data/tree/master/march-madness-predictions-2015")
-    
+    @testset "538 March" begin
+        registration_code = generate(GitHub(), "https://github.com/fivethirtyeight/data/tree/master/march-madness-predictions-2015")
+
+        @testset "Integration Test" begin
+            eval(parse(registration_code))
+            @test length(collect(readdir(datadep"March Madness Predictions"))) > 0
+        end
+
+        @test_reference "references/538 march.txt" registration_code
+    end
     
     @test_reference "references/538 steak.txt" replace(
         generate(GitHub(), "https://github.com/fivethirtyeight/data/tree/master/steak-survey"),
@@ -17,7 +26,16 @@ end
 
 
 @testset "BuzzFeedNews (whole repos)" begin
-    @test_reference "references/buzzfeed pres-camp.txt" generate(GitHub(), "https://github.com/BuzzFeedNews/presidential-campaign-contributions")
+    @testset "Pres Camp" begin
+        registration_code = generate(GitHub(), "https://github.com/BuzzFeedNews/presidential-campaign-contributions")
+        
+		@testset "Integration Test" begin
+			eval(parse(registration_code)) # evaluate the new code
+			@test length(collect(readdir(datadep"Presidential Campaign Contributions"))) > 0
+		end
+		
+		@test_reference "references/buzzfeed pres-camp.txt" registration_code # See if new code is same as old
+	end
     
     @test_reference "references/buzzfeed primates.txt" generate(GitHub(), "BuzzFeedNews/2015-07-primates")
 end

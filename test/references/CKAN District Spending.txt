@@ -3,9 +3,7 @@ register(DataDep(
     """
 	Dataset: UK: Adur District Council Spending Data
 	Website: https://demo.ckan.org/dataset/adur_district_spending
-	Author: From Spikes Cavell, Spotlight on Spend.\\r
-	\\r
-	For Ardur, records from April 2009-March 2010 are currently available (2011-008-04) 
+	Author: Lucy Chambers,  (Maintainer)
 	License: Creative Commons Attribution Share-Alike
 	Date: July 18, 2017
 	
@@ -13,7 +11,7 @@ register(DataDep(
 	\\r
 	For Ardur, records from April 2009-March 2010 are currently available (2011-008-04) 
 	
-	Please cite this paper:
+	Please cite this dataset:
 	adur_district_spending
 	if you use this in your research.
 	

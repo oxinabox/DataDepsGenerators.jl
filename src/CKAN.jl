@@ -1,19 +1,16 @@
-using JSON
-
-immutable CKAN <: DataRepo
+struct CKAN <: DataRepo
 end
 
-base_url(::CKAN) = "https://datadryad.org/mn/object/http://dx.doi.org/"
+base_url(::CKAN) = "https://demo.ckan.org/api/3/action/package_show?id="
 
 function description(repo::CKAN, mainpage)
-    j = JSON.parse(text_only(mainpage.root))
-    desc = j["result"]["notes"]
-    authors = [j["result"]["notes"]]
+    desc = mainpage["notes"]
+    authors = [mainpage["author"], mainpage["maintainer"] * " (Maintainer)"]
     author = format_authors(authors)
-    license = j["result"]["license_title"]
-    rawdate = Dates.Date(j["result"]["metadata_created"][1:10], "yyyy-mm-dd")
+    license = mainpage["license_title"]
+    rawdate = Dates.Date(mainpage["metadata_created"][1:10], "yyyy-mm-dd")
     date = Dates.format(rawdate, "U d, yyyy")
-    dataset = j["result"]["name"]
+    dataset = mainpage["name"]
     
     final = escape_multiline_string("""
     Author: $(author)
@@ -22,35 +19,42 @@ function description(repo::CKAN, mainpage)
 
     $(desc)
 
-    Please cite this paper:
+    Please cite this dataset:
     $(dataset)
     if you use this in your research.
     """, "\$")
 end
 
 function get_urls(repo::CKAN, page)
-    j = JSON.parse(text_only(page.root))
     urls = []
-    for i = 1:j["result"]["num_resources"]
-        push!(urls, j["result"]["resources"][i]["url"])
+    for i = 1:page["num_resources"]
+        push!(urls, page["resources"][i]["url"])
     end
     urls
 end
 
 function get_checksums(repo::CKAN, page)
-    j = JSON.parse(text_only(page.root))
     checksums = []
-    for i = 1:j["result"]["num_resources"]
-        if j["result"]["resources"][i]["hash"] != "" push!(checksums, j["result"]["resources"][i]["hash"]) end
+    for i = 1:page["num_resources"]
+        if page["resources"][i]["hash"] != "" push!(checksums, page["resources"][i]["hash"]) end
     end
     checksums
 end
 
 function data_fullname(::CKAN, mainpage)
-    j = JSON.parse(text_only(mainpage.root))
-    j["result"]["title"]
+    mainpage["title"]
 end
 
 function website(::CKAN, mainpage_url)
     replace(mainpage_url, "/api/3/action/package_show?id=", "/dataset/")
+end
+
+function mainpage_url(repo::CKAN, dataname)
+    if startswith(dataname, "http")
+        url = replace(dataname, "/dataset/", "/api/3/action/package_show?id=")
+    else # not a URL
+        url = base_url(repo) * dataname
+        dataname = "https://demo.ckan.org/dataset/" * dataname
+    end
+    JSON.parse(text_only(getpage(url).root))["result"], dataname
 end

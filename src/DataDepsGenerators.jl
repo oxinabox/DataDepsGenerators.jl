@@ -2,7 +2,7 @@ module DataDepsGenerators
 using Gumbo, Cascadia, AbstractTrees
 using Suppressor
 
-export generate, UCI, GitHub, DataDryadWeb, DataDryadAPI, DataOneV2
+export generate, UCI, GitHub, DataDryadWeb, DataDryadAPI, DataOneV2, CKAN
 
 abstract type DataRepo end
 
@@ -43,7 +43,7 @@ include("GitHub.jl")
 include("DataDryadWeb.jl")
 include("DataDryadAPI.jl")
 include("DataOneV2/DataOneV2.jl")
-
+include("CKAN.jl")
 
 
 function message(meta)

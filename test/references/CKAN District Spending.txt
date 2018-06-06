@@ -1,0 +1,23 @@
+register(DataDep(
+    "UK Adur District Council Spending Data",
+    """
+	Dataset: UK: Adur District Council Spending Data
+	Website: https://demo.ckan.org/dataset/adur_district_spending
+	Author: From Spikes Cavell, Spotlight on Spend.\\r
+	\\r
+	For Ardur, records from April 2009-March 2010 are currently available (2011-008-04) 
+	License: Creative Commons Attribution Share-Alike
+	Date: July 18, 2017
+	
+	From Spikes Cavell, Spotlight on Spend.\\r
+	\\r
+	For Ardur, records from April 2009-March 2010 are currently available (2011-008-04) 
+	
+	Please cite this paper:
+	adur_district_spending
+	if you use this in your research.
+	
+	""",
+    Any["http://ckan.net/storage/f/file/3ffdcd42-5c63-4089-84dd-c23876259973", "http://ckan.net/storage/f/file/c8ce520c-c2e6-463a-99a3-ad24b023ccb4", "http://mk.ucant.org/info/data/adur.csv", "http://samplecsvs.s3.amazonaws.com/Sacramentorealestatetransactions.csv"],
+    []
+))

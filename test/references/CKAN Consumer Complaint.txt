@@ -1,0 +1,17 @@
+register(DataDep(
+    "Consumer Complaint Database",
+    """
+	Dataset: Consumer Complaint Database
+	Website: https://catalog.data.gov/dataset/consumer-complaint-database
+	Author: 
+	License: License not specified
+	Date: February 26, 2014
+	Maintainer: devops@cfpb.gov
+	
+	These are complaints we’ve received about financial products and services.
+	
+	
+	""",
+    Any["https://data.consumerfinance.gov/api/views/s6ew-h6mp/rows.csv?accessType=DOWNLOAD", "https://data.consumerfinance.gov/api/views/s6ew-h6mp/rows.csv?accessType=DOWNLOAD", "http://data.consumerfinance.gov/api/views.json", "http://data.consumerfinance.gov/api/views.xml", "http://data.consumerfinance.gov/api/views/s6ew-h6mp.json"],
+    []
+))

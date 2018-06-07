@@ -3,9 +3,10 @@ register(DataDep(
     """
 	Dataset: Gold Prices in London 1950-2008 (Monthly)
 	Website: https://demo.ckan.org/dataset/gold-prices
-	Author: Bundesbank, Rufus Pollock (Maintainer)
+	Author: Bundesbank
 	License: Open Data Commons Public Domain Dedication and License (PDDL)
 	Date: July 18, 2017
+	Maintainer: Rufus Pollock
 	
 	Monthly gold prices (USD) in London from Bundesbank.\\r
 	\\r
@@ -21,9 +22,6 @@ register(DataDep(
 	\\r
 	License: PDDL (Source indicates no restrictions on data).
 	
-	Please cite this dataset:
-	gold-prices
-	if you use this in your research.
 	
 	""",
     Any["https://raw.github.com/datasets/gold-prices/master/data/data.csv"],

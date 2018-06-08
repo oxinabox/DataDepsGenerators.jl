@@ -30,7 +30,7 @@ function get_urls(repo::CKAN, page)
 end
 
 function get_checksums(repo::CKAN, page)
-    []
+    nothing
 end
 
 function data_fullname(::CKAN, mainpage)

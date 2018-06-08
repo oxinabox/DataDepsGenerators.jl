@@ -91,6 +91,10 @@ function format_checksums(csum::AbstractString)
     if length(csum)>0 "\"$csum\"" else "" end
 end
 
+function format_checksums(::Void)
+    ""
+end
+
 function format_authors(authors::Vector)
     if length(authors) == 1
         authors[1]

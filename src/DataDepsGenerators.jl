@@ -1,8 +1,9 @@
 module DataDepsGenerators
 using Gumbo, Cascadia, AbstractTrees
 using Suppressor
+using JSON
 
-export generate, UCI, GitHub, DataDryadWeb, DataDryadAPI, DataOneV2
+export generate, UCI, GitHub, DataDryadWeb, DataDryadAPI, DataOneV2, CKAN
 
 abstract type DataRepo end
 
@@ -15,19 +16,12 @@ struct Metadata
 end
 
 function find_metadata(repo, dataname)
-    if startswith(dataname, "http")
-        mainpage_url = dataname
-        #TODO: This isn't going to take https/http differences.
-        dataname = first(split(replace(mainpage_url, base_url(repo), ""), "/"))
-    else # not a URL
-        mainpage_url = joinpath(base_url(repo), dataname)
-    end
 
-    mainpage = getpage(mainpage_url)
+    mainpage, url = mainpage_url(repo, dataname)
 
     Metadata(
         data_fullname(repo, mainpage),
-        website(repo, mainpage_url),
+        website(repo, url),
         description(repo, mainpage),
         get_urls(repo, mainpage),
         get_checksums(repo, mainpage)
@@ -43,7 +37,7 @@ include("GitHub.jl")
 include("DataDryadWeb.jl")
 include("DataDryadAPI.jl")
 include("DataOneV2/DataOneV2.jl")
-
+include("CKAN.jl")
 
 
 function message(meta)
@@ -97,6 +91,10 @@ function format_checksums(csum::AbstractString)
     if length(csum)>0 "\"$csum\"" else "" end
 end
 
+function format_checksums(::Void)
+    ""
+end
+
 function format_authors(authors::Vector)
     if length(authors) == 1
         authors[1]
@@ -111,5 +109,16 @@ function format_authors(authors::Vector)
 end
 
 website(::DataRepo, mainpage_url) = mainpage_url
+
+function mainpage_url(repo::DataRepo, dataname)
+    if startswith(dataname, "http")
+        url = dataname
+        #TODO: This isn't going to take https/http differences.
+        dataname = first(split(replace(url, base_url(repo), ""), "/"))
+    else # not a URL
+        url = joinpath(base_url(repo), dataname)
+    end
+    getpage(url), url
+end
 
 end # module

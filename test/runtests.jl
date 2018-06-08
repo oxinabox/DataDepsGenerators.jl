@@ -8,6 +8,7 @@ tests = [
     "DataDryadAPI",
     "DataOneV2/KNB",
     "DataOneV2/TERN",
+    "CKAN",
     "format_checksum"
 ]
 

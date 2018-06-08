@@ -30,14 +30,7 @@ function get_urls(repo::CKAN, page)
 end
 
 function get_checksums(repo::CKAN, page)
-    checksums = []
-    for i = 1:page["num_resources"]
-        if page["resources"][i]["hash"] != "" 
-            push!(checksums, page["resources"][i]["hash"])
-        end
-    end
-    info("Checksum was found, however CKAN checksums are of unknown type, we are assuming SHA256")
-    checksums
+    []
 end
 
 function data_fullname(::CKAN, mainpage)

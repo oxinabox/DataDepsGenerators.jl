@@ -25,5 +25,5 @@ register(DataDep(
 	
 	""",
     Any["https://raw.github.com/datasets/gold-prices/master/data/data.csv"],
-    ["9d599bcf3b8db2b5c6aea528bc37d728c856b09c"]
+    []
 ))

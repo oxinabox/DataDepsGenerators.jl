@@ -1,9 +1,9 @@
-immutable DataDryadWeb <: DataRepo
+immutable DataDryad <: DataRepo
 end
 
-base_url(::DataDryadWeb) = "https://datadryad.org/resource/doi:"
+base_url(::DataDryad) = "https://datadryad.org/resource/doi:"
 
-function description(::DataDryadWeb, mainpage)
+function description(::DataDryad, mainpage)
     desc = replace(text_only(first(matchall(sel".article-abstract", mainpage.root))), "Abstract ", "")
     author = ""
     try
@@ -32,7 +32,7 @@ function description(::DataDryadWeb, mainpage)
     """, "\$")
 end
 
-function get_urls(repo::DataDryadWeb, page)
+function get_urls(repo::DataDryad, page)
     urls = []
     links = matchall(sel".package-file-description tbody tr td a", page.root)
     for link in links
@@ -49,7 +49,7 @@ function get_urls(repo::DataDryadWeb, page)
     urls
 end
 
-function get_checksums(repo::DataDryadWeb, page)
+function get_checksums(repo::DataDryad, page)
     checksums = []
     links = matchall(sel"a", page.root)
     regex = r"\bresource\/doi:[0-9]*.[0-9]*\/dryad.[a-z, 0-9]*\/[0-9]+\b"
@@ -68,7 +68,7 @@ function get_checksums(repo::DataDryadWeb, page)
     checksums
 end
 
-function data_fullname(::DataDryadWeb, mainpage)
+function data_fullname(::DataDryad, mainpage)
     # mainpage = replace(mainpage, "resource", "mn/object")
     text_only(first(matchall(sel".pub-title", mainpage.root)))
 end

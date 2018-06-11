@@ -4,8 +4,8 @@ using TestSetExtensions
 tests = [
     "UCI",
     "GitHub",
-    "DataDryadWeb",
-    "DataDryadAPI",
+    "DataDryad",
+    "DataOneV1",
     "DataOneV2/KNB",
     "DataOneV2/TERN",
     "CKAN",

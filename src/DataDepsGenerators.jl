@@ -118,6 +118,11 @@ function format_papers(authors::Vector, year::String, name::String, link::String
     join(authors, ", ") * " ($year). " * name * " " * link
 end
 
+function check_dois(uri::String)
+    identifier = match(r"\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?![\"&\'<>])\S)+)\b", uri).match
+    return identifier
+end
+
 website(::DataRepo, mainpage_url) = mainpage_url
 
 function mainpage_url(repo::DataRepo, dataname)

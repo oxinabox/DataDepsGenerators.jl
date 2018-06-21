@@ -10,7 +10,8 @@ function description(repo::DataCite, mainpage)
     author = format_authors(authors)
     license = attributes["license"]
     date = attributes["published"]
-    paper = format_papers(authors, date, attributes["title"] * " [Data set]. " * attributes["container-title"] * ".", mainpage["id"])
+    paper = format_papers(authors, date, attributes["title"] * 
+    " [Data set]. " * attributes["container-title"] * ".", mainpage["id"])
     
     escape_multiline_string("""
     Author: $(author)
@@ -22,12 +23,12 @@ function description(repo::DataCite, mainpage)
     Please cite this paper:
     $(paper)
     if you use this in your research.
-    
     """, "\$")
 end
 
 function get_urls(repo::DataCite, page)
-    urls = []
+    urls = ["PUT DOWNLOAD URL HERE"]
+    info("DataCite based generation can only generate partial registration blocks, as DataCite metadata does not (currently) include the URL to the resource. You will have to edit in the URL after generation.")
     urls
 end
 

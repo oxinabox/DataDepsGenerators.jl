@@ -3,11 +3,7 @@ using Gumbo, Cascadia, AbstractTrees
 using Suppressor
 using JSON
 
-<<<<<<< HEAD
-export generate, UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN
-=======
-export generate, UCI, GitHub, DataDryadWeb, DataDryadAPI, DataOneV2, CKAN, DataCite
->>>>>>> Add DataCite API
+export generate, UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN, DataCite
 
 abstract type DataRepo end
 
@@ -118,7 +114,7 @@ function format_papers(authors::Vector, year::String, name::String, link::String
     join(authors, ", ") * " ($year). " * name * " " * link
 end
 
-function check_dois(uri::String)
+function match_doi(uri::String)
     identifier = match(r"\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?![\"&\'<>])\S)+)\b", uri).match
     return identifier
 end

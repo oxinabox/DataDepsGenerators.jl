@@ -45,7 +45,7 @@ end
 
 function mainpage_url(repo::DataCite, dataname)
     try
-        identifier = check_dois(dataname)
+        identifier = match_doi(dataname)
         url = base_url(repo) * identifier
         JSON.parse(text_only(getpage(url).root))["data"], url
     catch ErrorException

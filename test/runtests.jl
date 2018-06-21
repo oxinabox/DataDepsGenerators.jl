@@ -9,6 +9,7 @@ tests = [
     "DataOneV2/KNB",
     "DataOneV2/TERN",
     "CKAN",
+    "DataCite",
     "format_checksum"
 ]
 

@@ -3,7 +3,7 @@ using Gumbo, Cascadia, AbstractTrees
 using Suppressor
 using JSON
 
-export generate, UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN
+export generate, UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN, DataCite
 
 abstract type DataRepo end
 
@@ -38,6 +38,7 @@ include("DataDryad.jl")
 include("DataOneV1.jl")
 include("DataOneV2/DataOneV2.jl")
 include("CKAN.jl")
+include("DataCite.jl")
 
 
 function message(meta)
@@ -106,6 +107,16 @@ function format_authors(authors::Vector)
         warn("Not able to retrieve any authors")
         "Unknown Author"
     end
+end
+
+function format_papers(authors::Vector, year::String, name::String, link::String)
+    #APA format. Other formats can be included here later.
+    join(authors, ", ") * " ($year). " * name * " " * link
+end
+
+function match_doi(uri::String)
+    identifier = match(r"\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?![\"&\'<>])\S)+)\b", uri).match
+    return identifier
 end
 
 website(::DataRepo, mainpage_url) = mainpage_url

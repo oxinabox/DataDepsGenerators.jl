@@ -39,8 +39,7 @@ end
 
 
 function get_cdn_url_converter(mainpage)
-    commit_ele = matchall(sel".commit-tease", mainpage.root)[1]
-    commit = match(r"\b[0-9a-f]{5,40}\b", commit_ele.attributes["src"])
+    commit = match(r"\b(?<=(commit\/))[0-9a-f]{5,40}\b", string(mainpage.root))
     function(urlsub)
         ret = "https://cdn.rawgit.com"*urlsub
         if commit === nothing

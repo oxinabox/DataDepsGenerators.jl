@@ -3,7 +3,7 @@ using Gumbo, Cascadia, AbstractTrees
 using Suppressor
 using JSON
 
-export generate, UCI, GitHub, DataDryadWeb, DataDryadAPI, DataOneV2, CKAN
+export generate, UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN
 
 abstract type DataRepo end
 
@@ -34,8 +34,8 @@ include("utils.jl")
 include("generic_extractors.jl")
 include("UCI.jl")
 include("GitHub.jl")
-include("DataDryadWeb.jl")
-include("DataDryadAPI.jl")
+include("DataDryad.jl")
+include("DataOneV1.jl")
 include("DataOneV2/DataOneV2.jl")
 include("CKAN.jl")
 

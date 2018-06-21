@@ -1,9 +1,12 @@
-immutable DataDryadAPI <: DataRepo
+immutable DataOneV1 <: DataRepo
 end
 
-base_url(::DataDryadAPI) = "https://datadryad.org/mn/object/http://dx.doi.org/"
+#The only APIs known to be supported by DataOne Version 1 is DataDryad
+#As and when we come to know of other APIs supported by DataOne, more abstraction layers will be introduced.
+#Named as DataOneV1 to make new contributors to the package aware that DataOneV1 exists.
+base_url(::DataOneV1) = "https://datadryad.org/mn/object/http://dx.doi.org/"
 
-function description(repo::DataDryadAPI, mainpage)
+function description(repo::DataOneV1, mainpage)
     desc = text_only(first(matchall(sel"dcterms\:description", mainpage.root)))
     authors = matchall(sel"dcterms\:creator", mainpage.root)
     author = format_authors([text_only(i) for i in authors])
@@ -30,7 +33,7 @@ function description(repo::DataDryadAPI, mainpage)
     """, "\$")
 end
 
-function get_urls(repo::DataDryadAPI, page)
+function get_urls(repo::DataOneV1, page)
     urls = []
     links = matchall(sel"dcterms\:hasPart", page.root)
     for link in links
@@ -42,7 +45,7 @@ function get_urls(repo::DataDryadAPI, page)
     urls
 end
 
-function get_checksums(repo::DataDryadAPI, page)
+function get_checksums(repo::DataOneV1, page)
     checksums = []
     links = matchall(sel"dcterms\:hasPart", page.root)
     for link in links
@@ -60,10 +63,10 @@ function get_checksums(repo::DataDryadAPI, page)
     checksums
 end
 
-function data_fullname(::DataDryadAPI, mainpage)
+function data_fullname(::DataOneV1, mainpage)
     text_only(first(matchall(sel"dcterms\:title", mainpage.root)))
 end
 
-function website(::DataDryadAPI, mainpage_url)
+function website(::DataOneV1, mainpage_url)
     replace(mainpage_url, "https://datadryad.org/mn/object/", "")
 end

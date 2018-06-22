@@ -15,5 +15,5 @@ register(DataDep(
 	
 	""",
     Any["https://ndownloader.figshare.com/files/11960399", "https://ndownloader.figshare.com/files/11960405", "https://ndownloader.figshare.com/files/11960411", "https://ndownloader.figshare.com/files/11960414"],
-    ["5b82eb513b794371a77b7c738ef24443", "c1ba6354972849e73b10adea69df2c9f", "1a7924b6cb539b955357bcebad108ca5", "0b4e0eebea74024ee0b84b9a2ec26b44"]
+    [(md5, "5b82eb513b794371a77b7c738ef24443"), (md5, "c1ba6354972849e73b10adea69df2c9f"), (md5, "1a7924b6cb539b955357bcebad108ca5"), (md5, "0b4e0eebea74024ee0b84b9a2ec26b44")]
 ))

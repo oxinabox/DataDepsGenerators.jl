@@ -35,7 +35,7 @@ end
 function get_checksums(repo::Figshare, page)
     checksums = []
     for i in page["files"]
-        push!(checksums, i["computed_md5"])
+        push!(checksums, (:md5, i["computed_md5"]))
     end
     checksums
 end
@@ -68,7 +68,7 @@ function mainpage_url(repo::Figshare, dataname)
         identifier = match_figshare(dataname)[2]
         url = base_url(repo) * "/" *identifier   
     else
-        error("Please use a valid url")
+        error("Please use a valid url, DOI, or Figshare ID")
     end
     JSON.parse(text_only(getpage(url).root)), url
 end

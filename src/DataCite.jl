@@ -54,11 +54,11 @@ function website(repo::DataCite, mainpage_url, mainpage)
 end
 
 function mainpage_url(repo::DataCite, dataname)
-    try
-        identifier = match_doi(dataname)
+    if match_doi(dataname)[1]
+        identifier = match_doi(dataname)[2]
         url = base_url(repo) * identifier
         JSON.parse(text_only(getpage(url).root))["data"], url
-    catch ErrorException
+    else
         error("Please use a valid url")
     end
 end

@@ -1,6 +1,7 @@
 using DataDeps
 using DataDepsGenerators
 using Base.Test
+using MD5
 
 using ReferenceTests
 

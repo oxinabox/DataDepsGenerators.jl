@@ -49,7 +49,7 @@ function data_fullname(::DataCite, mainpage)
     mainpage["attributes"]["title"]
 end
 
-function website(repo::DataCite, mainpage_url)
+function website(repo::DataCite, mainpage_url, mainpage)
     replace(mainpage_url, base_url(repo), "https://doi.org/")
 end
 

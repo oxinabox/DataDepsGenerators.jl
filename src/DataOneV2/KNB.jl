@@ -14,7 +14,7 @@ function get_urls(repo::KNB, page)
     urls
 end
 
-function website(repo::KNB, mainpage_url)
+function website(repo::KNB, mainpage_url, mainpage)
     replace(mainpage_url, base_url(repo), "http://dx.doi.org/")
 end
 

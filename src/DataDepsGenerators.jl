@@ -5,7 +5,7 @@ using JSON
 using HTTP
 
 export generate, citation_text
-export UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN, DataCite
+export UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN, DataCite, Figshare
 
 abstract type DataRepo end
 
@@ -23,7 +23,7 @@ function find_metadata(repo, dataname)
 
     Metadata(
         data_fullname(repo, mainpage),
-        website(repo, url),
+        website(repo, url, mainpage),
         description(repo, mainpage),
         get_urls(repo, mainpage),
         get_checksums(repo, mainpage)
@@ -40,6 +40,7 @@ include("DataOneV1.jl")
 include("DataOneV2/DataOneV2.jl")
 include("CKAN.jl")
 include("DataCite.jl")
+include("Figshare.jl")
 
 
 function message(meta)
@@ -116,11 +117,15 @@ function format_papers(authors::Vector, year::String, name::String, link::String
 end
 
 function match_doi(uri::String)
-    identifier = match(r"\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?![\"&\'<>])\S)+)\b", uri).match
-    return identifier
+    try
+        identifier = match(r"\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?![\"&\'<>])\S)+)\b", uri).match
+        return true, identifier
+    catch ErrorException
+        return false
+    end
 end
 
-website(::DataRepo, mainpage_url) = mainpage_url
+website(::DataRepo, mainpage_url, mainpage) = mainpage_url
 
 function mainpage_url(repo::DataRepo, dataname)
     if startswith(dataname, "http")

@@ -119,9 +119,9 @@ end
 function match_doi(uri::String)
     try
         identifier = match(r"\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?![\"&\'<>])\S)+)\b", uri).match
-        return true, identifier
+        return identifier
     catch ErrorException
-        return false
+        return nothing
     end
 end
 

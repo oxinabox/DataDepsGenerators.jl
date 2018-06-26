@@ -26,18 +26,14 @@ end
 
 function get_urls(repo::Figshare, page)
     urls = []
-    for i in page["files"]
-        push!(urls, i["download_url"])
+    for ii in page["files"]
+        push!(urls, ii["download_url"])
     end
     urls
 end
 
 function get_checksums(repo::Figshare, page)
-    checksums = []
-    for i in page["files"]
-        push!(checksums, (:md5, i["computed_md5"]))
-    end
-    checksums
+    [(:md5, ii["computed_md5"]) for ii in page["files"]]
 end
 
 function data_fullname(::Figshare, mainpage)
@@ -51,21 +47,21 @@ end
 function match_figshare(uri::String)
     try
         identifier = match(r"\d{7}", uri).match
-        return true, identifier
+        return identifier
     catch ErrorException
-        return false
+        return nothing
     end
 end
 
 function mainpage_url(repo::Figshare, dataname)
     #We are making it work for both figshare id or doi
-    if match_doi(dataname)[1]
-        identifier = match_doi(dataname)[2]
+    if match_doi(dataname) != nothing
+        identifier = match_doi(dataname)
         down_url = base_url(repo) * "?doi=" * identifier
         doi_page = JSON.parse(text_only(getpage(down_url).root))
         url = doi_page[1]["url_public_api"]
-    elseif match_figshare(dataname)[1]
-        identifier = match_figshare(dataname)[2]
+    elseif match_figshare(dataname)!= nothing
+        identifier = match_figshare(dataname)
         url = base_url(repo) * "/" *identifier   
     else
         error("Please use a valid url, DOI, or Figshare ID")

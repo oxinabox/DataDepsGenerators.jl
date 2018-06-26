@@ -54,8 +54,8 @@ function website(repo::DataCite, mainpage_url, mainpage)
 end
 
 function mainpage_url(repo::DataCite, dataname)
-    if match_doi(dataname)[1]
-        identifier = match_doi(dataname)[2]
+    if match_doi(dataname) != nothing
+        identifier = match_doi(dataname)
         url = base_url(repo) * identifier
         JSON.parse(text_only(getpage(url).root))["data"], url
     else

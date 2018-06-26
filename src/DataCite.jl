@@ -20,7 +20,7 @@ function description(repo::DataCite, mainpage)
 
     $(desc)
 
-    Please cite this paper:
+    Please cite this work:
     $(paper)
     if you use this in your research.
     """, "\$")

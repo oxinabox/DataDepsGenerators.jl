@@ -2,6 +2,8 @@ using Base.Test
 using TestSetExtensions
 
 tests = [
+    "format_checksum",
+    "citation_generation",
     "UCI",
     "GitHub",
     "DataDryad",
@@ -10,11 +12,12 @@ tests = [
     "DataOneV2/TERN",
     "CKAN",
     "DataCite",
-    "format_checksum"
 ]
 
-for filename in tests
-    @testset ExtendedTestSet "$filename" begin
-        include(filename * ".jl")
+@testset "DataDepGenerators" begin
+    for filename in tests
+        @testset ExtendedTestSet "$filename" begin
+            include(filename * ".jl")
+        end
     end
 end

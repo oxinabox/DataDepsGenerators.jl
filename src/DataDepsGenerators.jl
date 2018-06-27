@@ -2,8 +2,10 @@ module DataDepsGenerators
 using Gumbo, Cascadia, AbstractTrees
 using Suppressor
 using JSON
+using HTTP
 
-export generate, UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN, DataCite
+export generate, citation_text
+export UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN, DataCite
 
 abstract type DataRepo end
 
@@ -27,7 +29,6 @@ function find_metadata(repo, dataname)
         get_checksums(repo, mainpage)
     )
 end
-
 
 
 include("utils.jl")

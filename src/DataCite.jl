@@ -10,18 +10,27 @@ function description(repo::DataCite, mainpage)
     author = format_authors(authors)
     license = attributes["license"]
     date = attributes["published"]
-    paper = format_papers(authors, date, attributes["title"] * 
-    " [Data set]. " * attributes["container-title"] * ".", mainpage["id"])
+    dataset_cite = citation_text(mainpage["id"])
     
+    paper_cite = nothing
+    for related in attributes["related-identifiers"]
+        if related["relation-type-id"] == "IsSupplementTo"
+            paper_cite = citation_text(related["related-identifier"])
+            break
+        end
+    end
+    
+
     escape_multiline_string("""
     Author: $(author)
     License: $(license)
     Date: $(date)
 
-    $(desc)
+    $(desc != nothing ? desc : "" )
 
-    Please cite this paper:
-    $(paper)
+    Please cite this dataset:
+    $(dataset_cite)
+    $(paper_cite != nothing ? "and this paper: " * paper_cite : "")
     if you use this in your research.
     """, "\$")
 end

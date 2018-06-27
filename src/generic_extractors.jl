@@ -26,7 +26,8 @@ See https://citation.crosscite.org/docs.html#sec-4-1
 """
 function citation_text(doi)
     # GOLDPLATE: this could support so much more for different styles, but we don't need it
-    url = joinpath("https://doi.org/", doi)
+    url = startswith(doi, "http") ? doi : joinpath("https://doi.org/", doi)
     resp = HTTP.get(url, ["Accept"=>"text/x-bibliography"]; forwardheaders=true)
     resp.body |> String |> strip
 end
+

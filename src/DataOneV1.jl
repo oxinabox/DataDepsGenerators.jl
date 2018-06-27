@@ -1,9 +1,9 @@
 immutable DataOneV1 <: DataRepo
 end
 
-#The only APIs known to be supported by DataOne Version 1 is DataDryad
-#As and when we come to know of other APIs supported by DataOne, more abstraction layers will be introduced.
-#Named as DataOneV1 to make new contributors to the package aware that DataOneV1 exists.
+# The only APIs known to be supported by DataOne Version 1 is DataDryad
+# As and when we come to know of other APIs supported by DataOne, more abstraction layers will be introduced.
+# Named as DataOneV1 to make new contributors to the package aware that DataOneV1 exists.
 base_url(::DataOneV1) = "https://datadryad.org/mn/object/http://dx.doi.org/"
 
 function description(repo::DataOneV1, mainpage)
@@ -14,9 +14,10 @@ function description(repo::DataOneV1, mainpage)
     rawdate = Dates.DateTime(chop(text_only(first(matchall(sel"dcterms\:dateSubmitted", mainpage.root)))))
     year = Dates.year(rawdate)
     date = Dates.format(rawdate, "U d, yyyy")
-    references = text_only(first(matchall(sel"dcterms\:references", mainpage.root)))
-    paper = text_only(authors) * " ($(year)) " * data_fullname(repo, mainpage) * " " * references
-    dataset = text_only(first(matchall(sel"dcterms\:identifier", mainpage.root)))
+    references_ref = text_only(first(matchall(sel"dcterms\:references", mainpage.root)))
+    paper_cite = citation_text(references_ref)
+    dataset_ref = text_only(first(matchall(sel"dcterms\:identifier", mainpage.root)))
+    dataset_cite = citation_text(dataset_ref)
 
     final = escape_multiline_string("""
     Author: $(author)
@@ -26,9 +27,9 @@ function description(repo::DataOneV1, mainpage)
     $(desc)
 
     Please cite this paper:
-    $(paper)
+    $(paper_cite)
     as well as this dataset:
-    $(dataset)
+    $(dataset_cite)
     if you use this in your research.
     """, "\$")
 end

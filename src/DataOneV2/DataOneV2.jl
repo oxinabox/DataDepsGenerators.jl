@@ -22,7 +22,7 @@ function description(repo::DataOneV2, mainpage)
 
     $(desc)
 
-    Please cite the website (and DOI) noted above if you use this in your research.
+    Please cite this work appropriately if you use it in your research.
     """, "\$")
 end
 

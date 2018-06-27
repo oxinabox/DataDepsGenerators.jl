@@ -14,3 +14,20 @@ function get_dataurls_from_webserver_index(datapage_url)
     data_hrefs = getindex.(attrs.(data_links[2:end]), "href")
     data_urls = joinpath.(datapage_url, data_hrefs)
 end
+
+
+"""
+    citation_text(doi)
+
+Uses the DOI formatted citation service to generate citation text for a given DOI.
+This works for DOI's issued by: CrossRef, DataCite, and mEDRA.
+
+See https://citation.crosscite.org/docs.html#sec-4-1
+"""
+function citation_text(doi)
+    # GOLDPLATE: this could support so much more for different styles, but we don't need it
+    url = startswith(doi, "http") ? doi : joinpath("https://doi.org/", doi)
+    resp = HTTP.get(url, ["Accept"=>"text/x-bibliography"]; forwardheaders=true)
+    resp.body |> String |> strip
+end
+

@@ -19,7 +19,7 @@ function description(repo::DataOneV1, mainpage)
     dataset_ref = text_only(first(matchall(sel"dcterms\:identifier", mainpage.root)))
     dataset_cite = citation_text(dataset_ref)
 
-    final = escape_multiline_string("""
+    """
     Author: $(author)
     License: $(license)
     Date: $(date)
@@ -31,7 +31,7 @@ function description(repo::DataOneV1, mainpage)
     as well as this dataset:
     $(dataset_cite)
     if you use this in your research.
-    """, "\$")
+    """
 end
 
 function get_urls(repo::DataOneV1, page)

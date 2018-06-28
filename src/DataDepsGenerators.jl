@@ -48,7 +48,7 @@ function message(meta)
     Dataset: $(meta.fullname)
     Website: $(meta.website)
     $(meta.description)
-    """, "\$") |> strip
+    """) |> strip
 end
 
 

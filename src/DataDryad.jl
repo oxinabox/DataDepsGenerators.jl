@@ -17,7 +17,7 @@ function description(::DataDryad, mainpage)
     paper = text_only(first(matchall(sel".citation-sample", mainpage.root)))
     dataset = replace(text_only(last(matchall(sel".publication-header p", mainpage.root))), "DOI: ", "")
 
-    final = escape_multiline_string("""
+    """
     Author: $(author) et. al.
     License: $(license)
     Date: $(date)
@@ -29,7 +29,7 @@ function description(::DataDryad, mainpage)
     as well as this dataset:
     $(dataset)
     if you use this in your research.
-    """, "\$")
+    """
 end
 
 function get_urls(repo::DataDryad, page)

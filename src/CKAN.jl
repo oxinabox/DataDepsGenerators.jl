@@ -10,15 +10,14 @@ function description(repo::CKAN, mainpage)
     rawdate = Dates.Date(mainpage["metadata_created"][1:10], "yyyy-mm-dd")
     date = Dates.format(rawdate, "U d, yyyy")
     
-    final = escape_multiline_string("""
+    """
     Author: $(author)
     License: $(license)
     Date: $(date)
     Maintainer: $(maintainer)
 
     $(desc)
-
-    """, "\$")
+    """
 end
 
 function get_urls(repo::CKAN, page)

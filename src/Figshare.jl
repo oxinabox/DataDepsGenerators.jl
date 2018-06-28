@@ -11,7 +11,7 @@ function description(repo::Figshare, mainpage)
     date = mainpage["published_date"]
     dataset_cite = mainpage["citation"]
     
-    escape_multiline_string("""
+    """
     Author: $(author)
     License: $(license)
     Date: $(date)
@@ -21,7 +21,7 @@ function description(repo::Figshare, mainpage)
     Please cite this work:
     $(dataset_cite)
     if you use this in your research.
-    """, "\$")
+    """
 end
 
 function get_urls(repo::Figshare, page)

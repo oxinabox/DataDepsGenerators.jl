@@ -12,6 +12,7 @@ tests = [
     "DataOneV2/TERN",
     "CKAN",
     "DataCite",
+    "Figshare",
 ]
 
 @testset "DataDepGenerators" begin

@@ -37,7 +37,7 @@ function data_fullname(::CKAN, mainpage)
     mainpage["title"]
 end
 
-function website(repo::CKAN, mainpage_url)
+function website(repo::CKAN, mainpage_url, mainpage)
     replace(mainpage_url, "/api/3/action/package_show?id=", "/dataset/")
 end
 

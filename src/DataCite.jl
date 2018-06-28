@@ -49,16 +49,16 @@ function data_fullname(::DataCite, mainpage)
     mainpage["attributes"]["title"]
 end
 
-function website(repo::DataCite, mainpage_url)
+function website(repo::DataCite, mainpage_url, mainpage)
     replace(mainpage_url, base_url(repo), "https://doi.org/")
 end
 
 function mainpage_url(repo::DataCite, dataname)
-    try
+    if match_doi(dataname) != nothing
         identifier = match_doi(dataname)
         url = base_url(repo) * identifier
         JSON.parse(text_only(getpage(url).root))["data"], url
-    catch ErrorException
+    else
         error("Please use a valid url")
     end
 end

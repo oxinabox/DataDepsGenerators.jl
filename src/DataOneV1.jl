@@ -68,6 +68,6 @@ function data_fullname(::DataOneV1, mainpage)
     text_only(first(matchall(sel"dcterms\:title", mainpage.root)))
 end
 
-function website(::DataOneV1, mainpage_url)
+function website(::DataOneV1, mainpage_url, mainpage)
     replace(mainpage_url, "https://datadryad.org/mn/object/", "")
 end

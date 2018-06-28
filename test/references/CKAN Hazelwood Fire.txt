@@ -8,8 +8,8 @@ register(DataDep(
 	Date: August 29, 2016
 	Maintainer: soe
 	
-	This data is based on Reisen. F, Gillet R., Torre P, Fisher G and Choi J (2016) Characteristics of an open-cut coal mine fire pollution event. Atmospheric Environment in press.\\r
-	\\r
+	This data is based on Reisen. F, Gillet R., Torre P, Fisher G and Choi J (2016) Characteristics of an open-cut coal mine fire pollution event. Atmospheric Environment in press.
+	
 	Data used to produce Figure ATM40 in the 2016 SoE. See; https://soe.environment.gov.au/theme/ambient-air-quality/topic/2016/management-sources-pollution#ambient-air-quality-figure-ATM40
     """,
     Any["https://data.gov.au/dataset/45338ce5-4544-485d-983d-1a8b9bc8b77e/resource/e6d29769-f636-4b2f-abb4-4b61ffae5ff5/download/2016-soe-atmosphere-24-hour-pm2.5-concentrations-during-the-hazelwood-mine-fire.csv", "https://data.gov.au/dataset/45338ce5-4544-485d-983d-1a8b9bc8b77e/resource/ef2bbd6b-222a-4b31-a657-70dde934b748/download/2016-soe-atmosphere-hourly-co-concentrations-during-the-hazelwood-mine-fire.csv"],

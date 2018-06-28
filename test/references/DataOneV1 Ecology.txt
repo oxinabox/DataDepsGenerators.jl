@@ -1,7 +1,7 @@
 register(DataDep(
     "Data from Ecology and genomics of an important crop wild relative as a prelude to agricultural innovation",
     """
-	Dataset: Data from: Ecology and genomics of an important crop wild relative as a prelude to agricultural innovation
+    	Dataset: Data from: Ecology and genomics of an important crop wild relative as a prelude to agricultural innovation
 	Website: http://dx.doi.org/10.5061/dryad.74699
 	Author: von Wettberg, Eric J. B. et al.
 	License: http://creativecommons.org/publicdomain/zero/1.0/
@@ -14,8 +14,7 @@ register(DataDep(
 	as well as this dataset:
 	Von Wettberg, E. J. B., Chang, P. L., Başdemir, F., Carrasquila-Garcia, N., Korbu, L., Moenga, S. M., … Cook, D. R. (2018). Data from: Ecology and genomics of an important crop wild relative as a prelude to agricultural innovation [Data set]. Dryad Digital Repository. https://doi.org/10.5061/dryad.74699
 	if you use this in your research.
-	
-	""",
+    """,
     Any["/bitstream/handle/10255/dryad.166590/draft_dryad_upload_dec2017.xls?sequence=1"],
     [(md5, "3c837a0a41e01966a0f037beb7db43b8")]
 ))

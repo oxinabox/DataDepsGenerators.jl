@@ -14,7 +14,7 @@ function description(repo::DataOneV2, mainpage)
     # references = ""
     # paper = join(authors, ", ") * " ($(year)) " * data_fullname(repo, mainpage) * " " * references
 
-    final = escape_multiline_string("""
+    """
     Paper Title: $(paper_title)
     Author: $(author)
     License: $(license)
@@ -23,7 +23,7 @@ function description(repo::DataOneV2, mainpage)
     $(desc)
 
     Please cite this work appropriately if you use it in your research.
-    """, "\$")
+    """
 end
 
 get_urls(repo::DataOneV2, page) = []

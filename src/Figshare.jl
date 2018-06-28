@@ -9,19 +9,19 @@ function description(repo::Figshare, mainpage)
     author = format_authors(authors)
     license = mainpage["license"]["name"] * " (" *mainpage["license"]["url"] * ")"
     date = mainpage["published_date"]
-    paper = mainpage["citation"]
+    dataset_cite = mainpage["citation"]
     
-    escape_multiline_string("""
+    """
     Author: $(author)
     License: $(license)
     Date: $(date)
 
     $(desc)
 
-    Please cite this paper:
-    $(paper)
+    Please cite this work:
+    $(dataset_cite)
     if you use this in your research.
-    """, "\$")
+    """
 end
 
 function get_urls(repo::Figshare, page)
@@ -33,6 +33,7 @@ function get_urls(repo::Figshare, page)
 end
 
 function get_checksums(repo::Figshare, page)
+    warn("Generated registration block uses MD5 hashes, the MD5.jl package will be required.")
     [(:md5, ii["computed_md5"]) for ii in page["files"]]
 end
 
@@ -58,7 +59,7 @@ function mainpage_url(repo::Figshare, dataname)
         url = doi_page[1]["url_public_api"]
     elseif match_figshare(dataname)!= nothing
         identifier = match_figshare(dataname)
-        url = base_url(repo) * "/" *identifier   
+        url = base_url(repo) * "/" *identifier
     else
         error("Please use a valid url, DOI, or Figshare ID")
     end

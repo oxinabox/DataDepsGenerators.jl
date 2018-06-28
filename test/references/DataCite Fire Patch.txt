@@ -1,30 +1,29 @@
 register(DataDep(
     "List of fire patch properties computed and associated NetCDF maps from the MCD64A1 Collection 6 (2000-2016) and the MERIS fire_cci v4.1 (2005-2011) BA products",
     """
-	Dataset: List of fire patch properties computed and associated NetCDF maps from the MCD64A1 Collection 6 (2000-2016) and the MERIS fire_cci v4.1 (2005-2011) BA products
+    	Dataset: List of fire patch properties computed and associated NetCDF maps from the MCD64A1 Collection 6 (2000-2016) and the MERIS fire_cci v4.1 (2005-2011) BA products
 	Website: https://doi.org/10.15148/0e999ffc-e220-41ac-ac85-76e92ecd0320
 	Author: Pierre Laurent et al.
 	License: nothing
 	Date: 2018
 	
 	Fire patches computed from the MCD64A1 Collection 6 and the MERIS fire_cci v4.1 (2005-2011) burned area
-	            datasets. A flood-filling algorithm with a fixed cut-off parameter has been used to group burned pixels into
-	            fire patches. The listed morphological properties in the csv files are (in order of appearance) : ID, Fire
-	            ID, Minimum Burn Date, Maximum Burn Date, Mean Burn Date, Year, Number of Pixels, Number of Core Pixels,
-	            Area of the patch (ha), Core Area of the patch (ha), Perimeter, Perimeter to Area Ratio, Shape Index,
-	            Fractal Correlation Dimension, Core Area Index, Longitudinal coordinate of the center of the patch,
-	            Latitudinal coordinate of the center of the patch, Minor half-axis of the SDE (in degrees), Major and minor
-	            half-axes of the SDE (in degrees, in lonlat projection), major and minor half-axes of the SDE (in
-	            kilometers, in local flat projection), orientation of the SDE (with respect to North, clockwise, in
-	            degrees), orientation of the SDE in flat projection (with respect to North, clockwise, in degrees),
-	            eccentricity of the SDE, Ratio of SDE half axes. The NetCDF files are self-described.
+	datasets. A flood-filling algorithm with a fixed cut-off parameter has been used to group burned pixels into
+	fire patches. The listed morphological properties in the csv files are (in order of appearance) : ID, Fire
+	ID, Minimum Burn Date, Maximum Burn Date, Mean Burn Date, Year, Number of Pixels, Number of Core Pixels,
+	Area of the patch (ha), Core Area of the patch (ha), Perimeter, Perimeter to Area Ratio, Shape Index,
+	Fractal Correlation Dimension, Core Area Index, Longitudinal coordinate of the center of the patch,
+	Latitudinal coordinate of the center of the patch, Minor half-axis of the SDE (in degrees), Major and minor
+	half-axes of the SDE (in degrees, in lonlat projection), major and minor half-axes of the SDE (in
+	kilometers, in local flat projection), orientation of the SDE (with respect to North, clockwise, in
+	degrees), orientation of the SDE in flat projection (with respect to North, clockwise, in degrees),
+	eccentricity of the SDE, Ratio of SDE half axes. The NetCDF files are self-described.
 	
 	Please cite this dataset:
 	Laurent, P., Mouillot, F., Yue, C., Moreno Dominguez, M. V., Ciais, P., & Nogueira, J. M. P. (2018). List of fire patch properties computed and associated NetCDF maps from the MCD64A1 Collection 6 (2000-2016) and the MERIS fire_cci v4.1 (2005-2011) BA products [Data set]. OSU OREME. https://doi.org/10.15148/0e999ffc-e220-41ac-ac85-76e92ecd0320
 	
 	if you use this in your research.
-	
-	""",
+    """,
     String["PUT DOWNLOAD URL HERE"],
     
 ))

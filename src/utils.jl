@@ -24,7 +24,7 @@ text_only(frags::Vector) = join(text_only.(frags), " ")
 
 Indents each line in a string
 "
-indent(str, indentwith="\t") = join(indentwith.*split(str, "\n"),"\n")
+indent(str, indentwith="\t") = join(indentwith.*strip.(split(str, "\n")), "\n")
 
 
 Base.escape_string(s::AbstractString, esc::AbstractString) = sprint(endof(s), escape_string, s, esc*"\"")
@@ -36,5 +36,6 @@ like Escape string, but does not escape newlines
 """
 function escape_multiline_string(s::AbstractString, esc::AbstractString)
     escaped = escape_string(s, esc)
-    replace(escaped, "\\n", "\n")
+    escaped = replace(escaped, "\\n", "\n")
+    replace(escaped, "\\r", "\r")
 end

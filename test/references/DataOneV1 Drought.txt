@@ -1,7 +1,7 @@
 register(DataDep(
     "Data from Drought intensification drives turnover of structure and function in stream invertebrate communities",
     """
-	Dataset: Data from: Drought intensification drives turnover of structure and function in stream invertebrate communities
+    	Dataset: Data from: Drought intensification drives turnover of structure and function in stream invertebrate communities
 	Website: http://dx.doi.org/10.5061/dryad.cc8834s
 	Author: Aspin, Thomas W.H. et al.
 	License: http://creativecommons.org/publicdomain/zero/1.0/
@@ -14,8 +14,7 @@ register(DataDep(
 	as well as this dataset:
 	Aspin, T. W. H., Matthews, T. J., Khamis, K., Milner, A. M., Wang, Z., O’Callaghan, M. J., & Ledger, M. E. (2018). Data from: Drought intensification drives turnover of structure and function in stream invertebrate communities [Data set]. Dryad Digital Repository. https://doi.org/10.5061/dryad.cc8834s
 	if you use this in your research.
-	
-	""",
+    """,
     Any["/bitstream/handle/10255/dryad.173063/Drought%20intensities.csv?sequence=1", "/bitstream/handle/10255/dryad.173064/Presence-absence%20data.csv?sequence=1", "/bitstream/handle/10255/dryad.173075/Fuzzy%20coded%20trait%20data.xlsx?sequence=1"],
     [(md5, "5f38cf6a98643ba49987eb89b02bfcb2"), (md5, "d77ccc58576b4c8fdf9c5b381baaedaa"), (md5, "d3f5faaea7cf4e70efe39fd5c0fedd24")]
 ))

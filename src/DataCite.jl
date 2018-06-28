@@ -30,7 +30,7 @@ function description(repo::DataCite, mainpage)
 
     Please cite this dataset:
     $(dataset_cite)
-    $(paper_cite != nothing ? "and this paper: " * paper_cite : "")
+    $(paper_cite != nothing ? "and this paper:\n" * paper_cite : "")
     if you use this in your research.
     """, "\$")
 end

@@ -1,7 +1,7 @@
 register(DataDep(
     "Gold Prices in London 1950-2008 (Monthly)",
     """
-	Dataset: Gold Prices in London 1950-2008 (Monthly)
+    	Dataset: Gold Prices in London 1950-2008 (Monthly)
 	Website: https://demo.ckan.org/dataset/gold-prices
 	Author: Bundesbank
 	License: Open Data Commons Public Domain Dedication and License (PDDL)
@@ -21,9 +21,7 @@ register(DataDep(
 	* Comment on 1968-03: Average from 1 to 14 March 1968.\\r
 	\\r
 	License: PDDL (Source indicates no restrictions on data).
-	
-	
-	""",
+    """,
     Any["https://raw.github.com/datasets/gold-prices/master/data/data.csv"],
     
 ))

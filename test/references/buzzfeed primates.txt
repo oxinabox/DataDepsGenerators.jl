@@ -1,7 +1,7 @@
 register(DataDep(
     "Primates in biodefense research Data and analysis",
     """
-	Dataset: Primates in biodefense research: Data and analysis
+    	Dataset: Primates in biodefense research: Data and analysis
 	Website: https://github.com/BuzzFeedNews/2015-07-primates
 	# Primates in biodefense research: Data and analysis
 	
@@ -11,14 +11,7 @@ register(DataDep(
 	- `facility.json` `report.json` Files to process/clean the data above using [Open Refine](http://openrefine.org/). Load each `.txt` file as a new project, select the `Undo/Redo` tab, click the `Apply` button and then paste the content of the corresponding `.json` file into the `Apply Operation History` box. Click `Perform Operations` and the data will be processed to edit field headings, and ensure that entries for primates are labelled consistently as `NONHUMAN PRIMATES` in the field `col_a`. Then export the data from each project as a tab-separated text file.
 	- `facility.tsv` `report.tsv` Processed/cleaned versions of the data, exported from Open Refine.
 	- `primates.r` [R](http://www.r-project.org/) script to repeat the analysis reported in the article, using the processed/cleaned data. The script will generate a static version of the published interactive chart.
-	
-	
-	
-	
-	
-	
-	
-	""",
+    """,
     Any["https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/7758abdf4425dcee6cb358fb5c23c0f8ef032cb4/README.md", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/7758abdf4425dcee6cb358fb5c23c0f8ef032cb4/facility.json", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/7758abdf4425dcee6cb358fb5c23c0f8ef032cb4/facility.tsv", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/7758abdf4425dcee6cb358fb5c23c0f8ef032cb4/facility.txt", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/7758abdf4425dcee6cb358fb5c23c0f8ef032cb4/primates.r", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/7758abdf4425dcee6cb358fb5c23c0f8ef032cb4/report.json", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/7758abdf4425dcee6cb358fb5c23c0f8ef032cb4/report.tsv", "https://cdn.rawgit.com/BuzzFeedNews/2015-07-primates/7758abdf4425dcee6cb358fb5c23c0f8ef032cb4/report.txt"],
     
 ))

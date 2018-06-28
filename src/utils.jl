@@ -36,11 +36,5 @@ like Escape string, but does not escape newlines
 """
 function escape_multiline_string(s::AbstractString, esc::AbstractString)
     escaped = escape_string(s, esc)
-    # Newlines and quotes do not need escaping in multiline strings
-    escaped = replace(escaped, "\\n", "\n")
-    escaped = replace(escaped, "\\r", "\r")
-    escaped = replace(escaped, "\\\"", "\"")
-    # tabs never need to be escaped in strings
-    escaped = replace(escaped, "\\t", "\t")
-    escaped
+    replace(escaped, "\\n", "\n")
 end

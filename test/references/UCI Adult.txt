@@ -3,7 +3,7 @@ register(DataDep(
     """
 	Dataset: Adult Data Set (UCI ML Repository)
 	Website: https://archive.ics.uci.edu/ml/datasets/Adult
-	Abstract : Predict whether income exceeds \$50K/yr based on census data.  Also known as "Census Income" dataset.
+	Abstract : Predict whether income exceeds \$50K/yr based on census data.  Also known as \"Census Income\" dataset.
 	
 	Please refer to the Machine Learning
 	Repository's  citation policy

@@ -8,8 +8,8 @@ register(DataDep(
 	Date: August 29, 2016
 	Maintainer: soe
 	
-	This data is based on Reisen. F, Gillet R., Torre P, Fisher G and Choi J (2016) Characteristics of an open-cut coal mine fire pollution event. Atmospheric Environment in press.
-	
+	This data is based on Reisen. F, Gillet R., Torre P, Fisher G and Choi J (2016) Characteristics of an open-cut coal mine fire pollution event. Atmospheric Environment in press.\\r
+	\\r
 	Data used to produce Figure ATM40 in the 2016 SoE. See; https://soe.environment.gov.au/theme/ambient-air-quality/topic/2016/management-sources-pollution#ambient-air-quality-figure-ATM40
 	
 	

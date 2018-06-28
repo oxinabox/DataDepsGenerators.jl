@@ -19,7 +19,7 @@ register(DataDep(
 	
 	`majors-list.csv`
 	- List of majors with their FOD1P codes and major categories.
-	- Major categories are from Carnevale et al, "What's It Worth?: The Economic Value of College Majors." Georgetown University Center on Education and the Workforce, 2011. http://cew.georgetown.edu/whatsitworth
+	- Major categories are from Carnevale et al, \"What's It Worth?: The Economic Value of College Majors.\" Georgetown University Center on Education and the Workforce, 2011. http://cew.georgetown.edu/whatsitworth
 	
 	Three main data files:
 	- `all-ages.csv`
@@ -60,11 +60,11 @@ register(DataDep(
 	
 	=======================================================================
 	
-	Creative Commons Corporation ("Creative Commons") is not a law firm and
+	Creative Commons Corporation (\"Creative Commons\") is not a law firm and
 	does not provide legal services or legal advice. Distribution of
 	Creative Commons public licenses does not create a lawyer-client or
 	other relationship. Creative Commons makes its licenses and related
-	information available on an "as-is" basis. Creative Commons gives no
+	information available on an \"as-is\" basis. Creative Commons gives no
 	warranties regarding its licenses, any material licensed under their
 	terms and conditions, or any related information. Creative Commons
 	disclaims all liability for damages resulting from their use to the
@@ -91,7 +91,7 @@ register(DataDep(
 	     material not subject to the license. This includes other CC-
 	     licensed material, or material used under an exception or
 	     limitation to copyright. More considerations for licensors:
-		wiki.creativecommons.org/Considerations_for_licensors
+	\twiki.creativecommons.org/Considerations_for_licensors
 	
 	     Considerations for the public: By using one of our public
 	     licenses, a licensor grants the public permission to use the
@@ -108,7 +108,7 @@ register(DataDep(
 	     Although not required by our licenses, you are encouraged to
 	     respect those requests where reasonable. More_considerations
 	     for the public:
-		wiki.creativecommons.org/Considerations_for_licensees
+	\twiki.creativecommons.org/Considerations_for_licensees
 	
 	=======================================================================
 	
@@ -116,7 +116,7 @@ register(DataDep(
 	
 	By exercising the Licensed Rights (defined below), You accept and agree
 	to be bound by the terms and conditions of this Creative Commons
-	Attribution 4.0 International Public License ("Public License"). To the
+	Attribution 4.0 International Public License (\"Public License\"). To the
 	extent this Public License may be interpreted as a contract, You are
 	granted the Licensed Rights in consideration of Your acceptance of
 	these terms and conditions, and the Licensor grants You such rights in
@@ -442,7 +442,7 @@ register(DataDep(
 	material is shared under a Creative Commons public license or as
 	otherwise permitted by the Creative Commons policies published at
 	creativecommons.org/policies, Creative Commons does not authorize the
-	use of the trademark "Creative Commons" or any other trademark or logo
+	use of the trademark \"Creative Commons\" or any other trademark or logo
 	of Creative Commons without its prior written consent including,
 	without limitation, in connection with any unauthorized modifications
 	to any of its public licenses or any other arrangements,

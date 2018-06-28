@@ -1,4 +1,4 @@
-immutable DataDryad <: DataRepo
+struct DataDryad <: DataRepo
 end
 
 base_url(::DataDryad) = "https://datadryad.org/resource/doi:"

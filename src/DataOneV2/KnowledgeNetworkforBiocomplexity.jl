@@ -1,4 +1,4 @@
-immutable KnowledgeNetworkforBiocomplexity <: KNB
+struct KnowledgeNetworkforBiocomplexity <: KNB
 end
 
 function pub_date(repo::KnowledgeNetworkforBiocomplexity, mainpage)

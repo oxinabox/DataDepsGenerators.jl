@@ -1,6 +1,6 @@
 
 
-immutable UCI <: DataRepo
+struct UCI <: DataRepo
 end
 
 

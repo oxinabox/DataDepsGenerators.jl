@@ -1,4 +1,4 @@
-immutable DataOneV1 <: DataRepo
+struct DataOneV1 <: DataRepo
 end
 
 # The only APIs known to be supported by DataOne Version 1 is DataDryad

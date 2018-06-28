@@ -45,12 +45,8 @@ function website(repo::Figshare, mainpage_url, mainpage)
 end
 
 function match_figshare(uri::String)
-    try
-        identifier = match(r"\d{7}", uri).match
-        return identifier
-    catch ErrorException
-        return nothing
-    end
+    identifier_match = match(r"\d{7}", uri)
+    identifier_match === nothing ? nothing : identifier_match.match
 end
 
 function mainpage_url(repo::Figshare, dataname)

@@ -117,12 +117,8 @@ function format_papers(authors::Vector, year::String, name::String, link::String
 end
 
 function match_doi(uri::String)
-    try
-        identifier = match(r"\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?![\"&\'<>])\S)+)\b", uri).match
-        return identifier
-    catch ErrorException
-        return nothing
-    end
+    identifier_match = match(r"\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?![\"&\'<>])\S)+)\b", uri)
+    identifier_match === nothing ? nothing : identifier_match.match
 end
 
 website(::DataRepo, mainpage_url, mainpage) = mainpage_url

@@ -1,4 +1,4 @@
-immutable GitHub <: DataRepo
+struct GitHub <: DataRepo
 end
 
 base_url(::GitHub) = "https://github.com"

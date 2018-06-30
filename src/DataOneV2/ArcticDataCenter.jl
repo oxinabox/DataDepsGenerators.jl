@@ -1,4 +1,4 @@
-immutable ArcticDataCenter <: KNB
+struct ArcticDataCenter <: KNB
 end
 
 function pub_date(repo::ArcticDataCenter, mainpage)

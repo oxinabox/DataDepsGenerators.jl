@@ -13,6 +13,7 @@ tests = [
     "CKAN",
     "DataCite",
     "Figshare",
+    "DOI",
 ]
 
 @testset "DataDepGenerators" begin

@@ -5,7 +5,7 @@ using JSON
 using HTTP
 
 export generate, citation_text
-export UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN, DataCite, Figshare
+export UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN, DataCite, Figshare, DOI
 
 abstract type DataRepo end
 
@@ -41,6 +41,7 @@ include("DataOneV2/DataOneV2.jl")
 include("CKAN.jl")
 include("DataCite.jl")
 include("Figshare.jl")
+include("DOI.jl")
 
 
 function message(meta)

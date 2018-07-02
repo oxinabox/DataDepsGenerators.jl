@@ -7,9 +7,15 @@ git_repo_page_url(page) = base_url(GitHub()) * getattr(first(matchall(sel"strong
 
 function description(::GitHub, mainpage)
     # Just load the readme -- it is all that we can do as this level of generic
-    get_docfile(GitHub(), mainpage, "README", 12) *
-    "\n\nLICENSE\n --------\n" *
-    get_docfile(GitHub(), mainpage, "LICENSE", 4)
+    desc = get_docfile(GitHub(), mainpage, "README", 12)
+
+    license_text = get_docfile(GitHub(), mainpage, "LICENSE", 4)
+    if license_text == ""
+        desc = "License: Unknown\n\n" * desc
+    else
+        desc *= "\n\nLICENSE\n --------\n" * license_text
+    end
+    desc
 end
 
 function get_docfile(::GitHub, page, docname, max_lines=typemax(Int))

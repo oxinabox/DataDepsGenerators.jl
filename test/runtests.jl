@@ -1,5 +1,4 @@
 using Base.Test
-using TestSetExtensions
 
 tests = [
     "format_checksum",
@@ -17,7 +16,7 @@ tests = [
 
 @testset "DataDepGenerators" begin
     for filename in tests
-        @testset ExtendedTestSet "$filename" begin
+        @testset "$filename" begin
             include(filename * ".jl")
         end
     end

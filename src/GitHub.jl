@@ -7,18 +7,31 @@ git_repo_page_url(page) = base_url(GitHub()) * getattr(first(matchall(sel"strong
 
 function description(::GitHub, mainpage)
     # Just load the readme -- it is all that we can do as this level of generic
-    get_docfile(GitHub(), mainpage, "README") * "\n\n" *
-    get_docfile(GitHub(), mainpage, "LICENSE")    
+    desc = get_docfile(GitHub(), mainpage, "README", 12)
+
+    license_text = get_docfile(GitHub(), mainpage, "LICENSE", 4)
+    if license_text == ""
+        desc = "License: Unknown\n\n" * desc
+    else
+        desc *= "\n\nLICENSE\n --------\n" * license_text
+    end
+    desc
 end
 
-function get_docfile(::GitHub, page, docname)
+function get_docfile(::GitHub, page, docname, max_lines=typemax(Int))
     function inner(page)
         nodes = matchall(Selector(".content span a :contains($(docname))"), page.root)
         if length(nodes)>0
             node = first(nodes)
             url = "https://rawgit.com" * getattr(node.parent, "href")
             url = replace(url, "blob/", "")
-            String(read(quiet_download(url)))
+            text = String(read(quiet_download(url)))
+            lines = split(text, "\n")
+            if length(lines) > max_lines
+                text = join(lines[1:max_lines], "\n")
+                text *= "...\n (Read more at $(url))"
+            end
+            text
         else
             ""
         end
@@ -29,12 +42,6 @@ function get_docfile(::GitHub, page, docname)
         doc = inner(getpage(git_repo_page_url(page))) # Try the base dir of the repository
     end
     doc
-end
-
-function get_readme(::GitHub, mainpage)
-end
-
-function get_license(::GitHub, mainpage)
 end
 
 

@@ -40,17 +40,11 @@ function get_license(mainpage)
 end
 
 function handle_keys(key1::String, key2::String, json)
-    info = ""
-    try
-        info = json[key1]
-    catch error
-        try
-            info = json[key2]
-        catch KeyError
-            info = nothing
-        end
+    if get(json, key1, nothing) == nothing
+        return get(json, key2, nothing)
+    else
+        return get(json, key1, nothing)
     end
-    info
 end
 
 function get_urls(repo::JSONLD, page)

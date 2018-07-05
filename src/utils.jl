@@ -8,6 +8,11 @@ downloads and parses the page from the URL
 """
 getpage(url) = parsehtml(String(read(quiet_download(url))))
 
+# function parsehtml(junk::String)
+#     println(junk)
+#     ""
+# end
+
 """
     text_only(doc)
 
@@ -18,6 +23,15 @@ text_only(doc::HTMLDocument) = text_only(doc.root)
 text_only(frag) = join([replace(text(leaf), "\r","") for leaf in Leaves(frag) if leaf isa HTMLText], " ")
 text_only(frags::Vector) = join(text_only.(frags), " ")
 
+function filter_html(random)
+    if random isa Void
+        return ""
+    end
+    if ismatch(r"<(\"[^\"]*\"|'[^']*'|[^'\">])*>", random)
+        return text_only(parsehtml(random))
+    end
+    return random
+end
 
 "
     indent(str)

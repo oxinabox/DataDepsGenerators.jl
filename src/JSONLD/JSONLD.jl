@@ -7,17 +7,11 @@ include("JSONLD_Web.jl")
 include("JSONLD_DOI.jl")
 
 function description(repo::JSONLD, mainpage)
-    desc = handle_keys("description", "", mainpage)
-    authors = handle_keys("author", "creator", mainpage)
-    if authors != nothing
-        stripauthors = [handle_keys("name", "", ii) for ii in authors if handle_keys("name", "", ii) != nothing]
-        author = format_authors(stripauthors)
-    else
-        author = "Unknown Author"
-    end
+    desc = filter_html(handle_keys(mainpage, "description"))
+    authors = get_authors(repo, mainpage)
+    author = format_authors(authors)
     license = get_license(mainpage)
-    rawdate = Dates.DateTime(handle_keys("datePublished", "dateModified", mainpage))
-    date = Dates.format(rawdate, "U d, yyyy")
+    date = get_dates(repo, mainpage)
 
     """
     Author: $(author)
@@ -28,39 +22,53 @@ function description(repo::JSONLD, mainpage)
     """
 end
 
-function get_license(mainpage)
-    license = handle_keys("license", "", mainpage)
-    if license != nothing
-        if isa(license, String)
-            return license
-        elseif isa(license, Dict)
-            return handle_keys("url", "text", license)
+function get_authors(repo::JSONLD, mainpage)
+    authors = handle_keys(mainpage, "author", "creator")
+    if authors isa Vector
+        return collect(skipmissing(handle_keys.(authors, "name")))
+    elseif authors isa Dict
+        return [handle_keys(authors, "name")]
+    else
+        return []
+    end
+    
+end
+
+function get_dates(repo::JSONLD, mainpage)
+    rawdate = handle_keys(mainpage, "datePublished", "dateCreated", "dateModified")
+    try
+        return Dates.format(Dates.DateTime(rawdate), "U d, yyyy")
+    catch error
+        if error isa MethodError
+            return rawdate
         end
     end
 end
 
-function handle_keys(key1::String, key2::String, json)
-    if get(json, key1, nothing) == nothing
-        return get(json, key2, nothing)
-    else
-        return get(json, key1, nothing)
+function get_license(mainpage)
+    license = handle_keys(mainpage, "license")
+    if license isa String
+        return license
+    elseif license isa Dict
+        return handle_keys(license, "url", "text")
     end
 end
 
+handle_keys(json, key, otherkeys...) = get(json,  key) do
+    handle_keys(json, otherkeys...)
+end
+
+handle_keys(json) = nothing
+
 function get_urls(repo::JSONLD, page)
     urls = []
-    url_list = handle_keys("distribution", "", page)
+    url_list = handle_keys(page, "distribution")
     if url_list != nothing
-        urls = [handle_keys("contentUrl", "", ii) for ii in url_list if handle_keys("contentUrl", "", ii) != nothing]
+        urls = [handle_keys(ii, "contentUrl") for ii in url_list if handle_keys(ii, "contentUrl") != nothing]
     else
         urls = []
     end
     urls
-end
-
-function get_checksums(repo::JSONLD, page)
-    checksums = []
-    checksums
 end
 
 function data_fullname(::JSONLD, mainpage)
@@ -69,18 +77,4 @@ end
 
 function website(::JSONLD, mainpage_url, mainpage)
     mainpage_url
-end
-
-function mainpage_url(repo::JSONLD, dataname)
-    #We are making it work for both figshare id or doi
-    page=getpage(dataname)
-    pattern = sel"script[type=\"application/ld+json\"]"
-    jsonld_blocks = matchall(pattern, page.root)
-    if length(jsonld_blocks)==0
-        error("No JSON-LD Linked Data Found")
-    end
-    @assert length(jsonld_blocks)==1
-    script_block = text_only(first(jsonld_blocks))
-    json = JSON.parse(script_block)
-    json, dataname
 end

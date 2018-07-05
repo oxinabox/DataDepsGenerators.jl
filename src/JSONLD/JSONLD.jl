@@ -64,7 +64,7 @@ function get_urls(repo::JSONLD, page)
     urls = []
     url_list = handle_keys(page, "distribution")
     if url_list != nothing
-        urls = collect(skipmissing(handle_keys.(authors, "contentUrl")))
+        urls = collect(skipmissing(handle_keys.(url_list, "contentUrl")))
     else
         urls = []
     end

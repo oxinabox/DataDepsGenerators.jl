@@ -3,9 +3,10 @@ using Gumbo, Cascadia, AbstractTrees
 using Suppressor
 using JSON
 using HTTP
+using Missings
 
 export generate, citation_text
-export UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN, DataCite, Figshare
+export UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN, DataCite, Figshare, JSONLD
 
 abstract type DataRepo end
 
@@ -41,7 +42,7 @@ include("DataOneV2/DataOneV2.jl")
 include("CKAN.jl")
 include("DataCite.jl")
 include("Figshare.jl")
-
+include("JSONLD/JSONLD.jl")
 
 function message(meta)
     escape_multiline_string("""
@@ -78,7 +79,7 @@ function generate(repo::DataRepo,
     """
 end
 
-get_checksums(repo::DataRepo, page) = ""
+get_checksums(repo::DataRepo, page) = nothing
 
 function format_checksums(csums::Vector)
     csumvec = join(format_checksums.(csums), ", ")

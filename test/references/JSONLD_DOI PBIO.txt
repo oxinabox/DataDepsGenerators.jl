@@ -1,0 +1,14 @@
+register(DataDep(
+    "Identifiers for the 21st century How to design, provision, and reuse persistent identifiers to maximize utility and impact of life science data",
+    """
+    	Dataset: Identifiers for the 21st century: How to design, provision, and reuse persistent identifiers to maximize utility and impact of life science data
+	Website: https://data.datacite.org/10.1371/journal.pbio.2001414
+	Author: Julie A. McMurry et al.
+	Date: June 29, 2017
+	License: http://creativecommons.org/licenses/by/4.0
+	
+	nothing
+    """,
+    Any[],
+    
+))

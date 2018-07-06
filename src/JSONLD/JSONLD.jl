@@ -10,13 +10,13 @@ function description(repo::JSONLD, mainpage)
     desc = filter_html(handle_keys(mainpage, "description"))
     authors = get_authors(repo, mainpage)
     author = format_authors(authors)
-    license = get_license(mainpage)
+    license = filter_html(get_license(mainpage))
     date = get_dates(repo, mainpage)
 
     """
     Author: $(author)
-    License: $(license)
     Date: $(date)
+    License: $(license)
 
     $(desc)
     """

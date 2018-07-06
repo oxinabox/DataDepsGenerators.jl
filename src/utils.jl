@@ -18,7 +18,7 @@ text_only(doc::HTMLDocument) = text_only(doc.root)
 text_only(frag) = join([replace(text(leaf), "\r","") for leaf in Leaves(frag) if leaf isa HTMLText], " ")
 text_only(frags::Vector) = join(text_only.(frags), " ")
 
-filter_html(::Void) = ""
+filter_html(::Void) = nothing
 
 function filter_html(content)
     #Check if the incoming content is a HTML or not

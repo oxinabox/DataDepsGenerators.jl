@@ -40,7 +40,10 @@ function get_dates(repo::JSONLD, mainpage)
     try
         return Dates.format(Dates.DateTime(rawdate), "U d, yyyy")
     catch err
-        if err isa MethodError
+        if err isa MethodError ||  err isa ArgumentError
+            # Method error occurs if rawdate==missing
+            # Argument error can occur if it is a weirdly formatted string
+            # Either way, it is probably alright
             return rawdate
         else
             rethrow()

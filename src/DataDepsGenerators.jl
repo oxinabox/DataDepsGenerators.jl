@@ -10,11 +10,12 @@ export UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN, DataCite, Figshare, J
 
 abstract type DataRepo end
 
+const Opt{T} = Union{Missing, T}
 struct Metadata
-    fullname::String
-    website::String
-    description::String
-    dataurls::Vector
+    fullname::Opt{String}
+    website::Opt{String}
+    description::Opt{String}
+    dataurls::Opt{Vector}
     datachecksums::Any
 end
 

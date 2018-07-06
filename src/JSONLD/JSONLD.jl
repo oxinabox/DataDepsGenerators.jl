@@ -29,6 +29,7 @@ function get_authors(repo::JSONLD, mainpage)
     elseif authors isa Dict
         return [handle_keys(authors, "name")]
     else
+        @assert(authors==nothing)
         return []
     end
     
@@ -36,6 +37,7 @@ end
 
 function get_dates(repo::JSONLD, mainpage)
     rawdate = handle_keys(mainpage, "datePublished", "dateCreated", "dateModified")
+    # Dates can be like '2007' or '2016-12-20'. Need to account for all.
     try
         return Dates.format(Dates.DateTime(rawdate), "U d, yyyy")
     catch error

@@ -12,26 +12,60 @@ abstract type DataRepo end
 
 const Opt{T} = Union{Missing, T}
 struct Metadata
+    shortname::Opt{String}
     fullname::Opt{String}
     website::Opt{String}
     description::Opt{String}
+    author::Opt{String}
+    maintainer::Opt{String}
+    license::Opt{String}
+    publishedDate::Opt{String}
+    createDate::Opt{String}
+    modifiedDate::Opt{String}
+    paperCite::Opt{String}
+    datasetCite::Opt{String}
     dataurls::Opt{Vector}
     datachecksums::Any
 end
 
-function find_metadata(repo, dataname)
+function find_metadata(repo, dataname, shortname)
 
     mainpage, url = mainpage_url(repo, dataname)
+    fullname = data_fullname(repo, mainpage)
+    if shortname == nothing
+        shortname = reduce((s,r)->replace(s, r, ""), fullname, ['\\', '/', ':', '*', '?', '<', '>', '|'])
+    end
 
     Metadata(
-        data_fullname(repo, mainpage),
+        fullname,
+        shortname,
         website(repo, url, mainpage),
         description(repo, mainpage),
+        author(repo, mainpage),
+        maintainer(repo, mainpage),
+        license(repo, mainpage),
+        publishedDate(repo, mainpage),
+        createDate(repo, mainpage),
+        modifiedDate(repo, mainpage),
+        paperCite(repo, mainpage),
+        datasetCite(repo, mainpage),
         get_urls(repo, mainpage),
         get_checksums(repo, mainpage)
     )
 end
 
+website(::DataRepo, url, mainpage) = url
+description(::DataRepo, mainpage) = missing
+author(::DataRepo, mainpage) = missing
+maintainer(::DataRepo, mainpage) = missing
+license(::DataRepo, mainpage) = missing
+publishedDate(::DataRepo, mainpage) = missing
+createDate(::DataRepo, mainpage) = missing
+modifiedDate(::DataRepo, mainpage) = missing
+paperCite(::DataRepo, mainpage) = missing
+datasetCite(::DataRepo, mainpage) = missing
+get_checksums(::DataRepo, mainpage) = missing
+get_urls(::DataRepo, mainpage) = missing
 
 include("utils.jl")
 include("generic_extractors.jl")
@@ -46,17 +80,40 @@ include("Figshare.jl")
 include("JSONLD/JSONLD.jl")
 
 function message(meta)
-    escape_multiline_string("""
-    Dataset: $(meta.fullname)
-    Website: $(meta.website)
-    $(meta.description)
-    """) |> strip
+    netString =  """
+    register(DataDep(
+        \"$(meta.shortname)\",
+        \"\"\""""
+    netString = format_meta(meta.website, netString, "Website")
+    netString = format_meta(format_authors(meta.author), netString, "Author", true)
+    netString = format_meta(meta.maintainer, netString, "Maintainer", true)
+    netString = format_meta(meta.license, netString, "License", true)
+    netString = format_meta(meta.publishedDate, netString, "Date of Publication", true)
+    netString = format_meta(meta.createDate, netString, "Date of Creation", true)
+    netString = format_meta(meta.modifiedDate, netString, "Date of Modification", true)
+    netString = format_meta(meta.description, netString, missing,  true)
+    netString = format_meta(meta.paperCite, netString, "Please cite this paper", true)
+    netString = format_meta(meta.datasetCite, netString, "Please cite this dataset", true)
+    netString = strip(netString * "\n\"\"\",")
+    netString = format_meta(meta.dataurls, netString)
+    netString = netString * ","
+    netString = format_meta(format_checksums(meta.datachecksums), netString)
+    netString = strip(netString * "\n))")
+
+    netString
 end
 
-
-function data_shortnamename(repo::DataRepo, meta)
-    short_name = meta.fullname
-    reduce((s,r)->replace(s, r, ""), short_name, ['\\', '/', ':', '*', '?', '<', '>', '|'])
+function format_meta(data::Any, netString, label=missing, indentbool=false)
+    if ismissing(data)
+        return netString
+    else
+        new_data = (indentbool? indent(string(data)) : string(data))
+        if ismissing(label)
+            return netString * "\n" * new_data
+        else
+            return netString * "\n" * label * ": " * new_data
+        end
+    end
 end
 
 function generate(repo::DataRepo,
@@ -64,23 +121,10 @@ function generate(repo::DataRepo,
                   shortname = nothing
     )
 
-    meta = find_metadata(repo, dataname)
-    if shortname == nothing
-        shortname = data_shortnamename(repo, meta)
-    end
-    """
-    register(DataDep(
-        \"$shortname\",
-        \"\"\"
-        $(indent(message(meta)))
-        \"\"\",
-        $(meta.dataurls),
-        $(format_checksums(meta.datachecksums))
-    ))
-    """
-end
+    meta = find_metadata(repo, dataname, shortname)
 
-get_checksums(repo::DataRepo, page) = nothing
+    message(meta)
+end
 
 function format_checksums(csums::Vector)
     csumvec = join(format_checksums.(csums), ", ")
@@ -97,9 +141,9 @@ function format_checksums(csum::AbstractString)
     if length(csum)>0 "\"$csum\"" else "" end
 end
 
-function format_checksums(::Void)
-    ""
-end
+format_checksums(::Void) = missing
+
+format_checksums(::Missing) = missing
 
 function format_authors(authors::Vector)
     if length(authors) == 1
@@ -110,7 +154,7 @@ function format_authors(authors::Vector)
         authors[1] * " et al."
     else
         warn("Not able to retrieve any authors")
-        "Unknown Author"
+        missing
     end
 end
 
@@ -123,8 +167,6 @@ function match_doi(uri::String)
     identifier_match = match(r"\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?![\"&\'<>])\S)+)\b", uri)
     identifier_match === nothing ? nothing : identifier_match.match
 end
-
-website(::DataRepo, mainpage_url, mainpage) = mainpage_url
 
 function mainpage_url(repo::DataRepo, dataname)
     if startswith(dataname, "http")

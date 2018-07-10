@@ -3,35 +3,27 @@ end
 
 base_url(::DataCite) = "https://api.datacite.org/works/"
 
-function description(repo::DataCite, mainpage)
-    attributes = mainpage["attributes"]
-    desc = attributes["description"]
-    authors = join.([[names[2] for names in value] for value in attributes["author"]], " ")
-    author = format_authors(authors)
-    license = attributes["license"]
-    date = attributes["published"]
-    dataset_cite = citation_text(mainpage["id"])
-    
+description(repo::DataCite, mainpage) = (mainpage["attributes"]["description"] != nothing? mainpage["attributes"]["description"] : missing)
+
+function author(::DataCite, mainpage)
+    join.([[names[2] for names in value] for value in  mainpage["attributes"]["author"]], " ")
+end
+
+license(::DataCite, mainpage) = mainpage["attributes"]["license"]
+
+publishedDate(::DataCite, mainpage) = mainpage["attributes"]["published"]
+
+datasetCite(::DataCite, mainpage) = citation_text(mainpage["id"])
+
+function paperCite(::DataCite, mainpage)
     paper_cite = nothing
-    for related in attributes["related-identifiers"]
+    for related in mainpage["attributes"]["related-identifiers"]
         if related["relation-type-id"] == "IsSupplementTo"
             paper_cite = citation_text(related["related-identifier"])
             break
         end
     end
-    
-    """
-    Author: $(author)
-    License: $(license)
-    Date: $(date)
-
-    $(desc != nothing ? desc : "" )
-
-    Please cite this dataset:
-    $(dataset_cite)
-    $(paper_cite != nothing ? "and this paper:\n" * paper_cite : "")
-    if you use this in your research.
-    """
+    paper_cite
 end
 
 function get_urls(repo::DataCite, page)

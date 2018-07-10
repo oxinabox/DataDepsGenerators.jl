@@ -1,23 +1,20 @@
 struct CKAN <: DataRepo
 end
 
-function description(repo::CKAN, mainpage)
-    desc = mainpage["notes"]
-    authors = [mainpage["author"]]
-    author = format_authors(authors)
-    maintainer = mainpage["maintainer"]
-    license = mainpage["license_title"]
-    rawdate = Dates.Date(mainpage["metadata_created"][1:10], "yyyy-mm-dd")
-    date = Dates.format(rawdate, "U d, yyyy")
-    
-    """
-    Author: $(author)
-    License: $(license)
-    Date: $(date)
-    Maintainer: $(maintainer)
+description(repo::CKAN, mainpage) = mainpage["notes"]
 
-    $(desc)
-    """
+function author(repo::CKAN, mainpage)
+    authors = [mainpage["author"]]
+    format_authors(authors)
+end
+
+maintainer(repo::CKAN, mainpage) = mainpage["maintainer"]
+
+license(repo::CKAN, mainpage) = mainpage["license_title"]
+
+function createDate(repo::CKAN, mainpage)
+    rawdate = Dates.Date(mainpage["metadata_created"][1:10], "yyyy-mm-dd")
+    Dates.format(rawdate, "U d, yyyy")
 end
 
 function get_urls(repo::CKAN, page)

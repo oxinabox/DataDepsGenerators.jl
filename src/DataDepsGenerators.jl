@@ -19,11 +19,11 @@ struct Metadata
     author::Opt{Vector{String}}
     maintainer::Opt{String}
     license::Opt{String}
-    publishedDate::Opt{Union{Date, DateTime,String}}
-    createDate::Opt{Union{Date, DateTime,String}}
-    modifiedDate::Opt{Union{Date, DateTime,String}}
-    paperCite::Opt{String}
-    datasetCite::Opt{String}
+    published_date::Opt{Union{Date, DateTime,String}}
+    create_date::Opt{Union{Date, DateTime,String}}
+    modified_date::Opt{Union{Date, DateTime,String}}
+    paper_cite::Opt{String}
+    dataset_cite::Opt{String}
     dataurls::Opt{Vector}
     datachecksums::Any
 end
@@ -42,11 +42,11 @@ function find_metadata(repo, dataname, shortname)
         author(repo, mainpage),
         maintainer(repo, mainpage),
         license(repo, mainpage),
-        publishedDate(repo, mainpage),
-        createDate(repo, mainpage),
-        modifiedDate(repo, mainpage),
-        paperCite(repo, mainpage),
-        datasetCite(repo, mainpage),
+        published_date(repo, mainpage),
+        create_date(repo, mainpage),
+        modified_date(repo, mainpage),
+        paper_cite(repo, mainpage),
+        dataset_cite(repo, mainpage),
         get_urls(repo, mainpage),
         get_checksums(repo, mainpage)
     )
@@ -67,11 +67,11 @@ description(::DataRepo, mainpage) = missing
 author(::DataRepo, mainpage) = missing
 maintainer(::DataRepo, mainpage) = missing
 license(::DataRepo, mainpage) = missing
-publishedDate(::DataRepo, mainpage) = missing
-createDate(::DataRepo, mainpage) = missing
-modifiedDate(::DataRepo, mainpage) = missing
-paperCite(::DataRepo, mainpage) = missing
-datasetCite(::DataRepo, mainpage) = missing
+published_date(::DataRepo, mainpage) = missing
+create_date(::DataRepo, mainpage) = missing
+modified_date(::DataRepo, mainpage) = missing
+paper_cite(::DataRepo, mainpage) = missing
+dataset_cite(::DataRepo, mainpage) = missing
 get_checksums(::DataRepo, mainpage) = missing
 get_urls(::DataRepo, mainpage) = missing
 
@@ -95,14 +95,14 @@ function message(meta)
     netString *= format_meta(meta.website, "Website")
     netString *= format_meta(format_authors(meta.author), "Author")
     netString *= format_meta(meta.maintainer, "Maintainer")
-    netString *= format_meta(format_dates(meta.publishedDate), "Date of Publication")
-    netString *= format_meta(format_dates(meta.createDate), "Date of Creation")
-    netString *= format_meta(format_dates(meta.modifiedDate), "Date of Last Modification")
+    netString *= format_meta(format_dates(meta.published_date), "Date of Publication")
+    netString *= format_meta(format_dates(meta.create_date), "Date of Creation")
+    netString *= format_meta(format_dates(meta.modified_date), "Date of Last Modification")
     netString *= format_meta(meta.license, "License")
     netString *= "\n"
     netString *= format_meta(meta.description)
-    netString *= format_meta(meta.paperCite, "\nPlease cite this paper")
-    netString *= format_meta(meta.datasetCite, "\nPlease cite this dataset")
+    netString *= format_meta(meta.paper_cite, "\nPlease cite this paper")
+    netString *= format_meta(meta.dataset_cite, "\nPlease cite this dataset")
     netString *= "\n\"\"\","
     netString = netString |> strip
     netString *= format_meta(meta.dataurls, indent_field=false)

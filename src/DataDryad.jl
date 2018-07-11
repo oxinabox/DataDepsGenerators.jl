@@ -17,14 +17,14 @@ end
 
 license(::DataDryad, mainpage) = getattr(first(matchall(sel".single-image-link", mainpage.root)), "href")
 
-function publishedDate(::DataDryad, mainpage)
+function published_date(::DataDryad, mainpage)
     dateelem = matchall(sel".publication-header p", mainpage.root)
     replace(text_only(dateelem[length(dateelem)-1]), "Date Published: ", "")
 end
 
-paperCite(::DataDryad, mainpage) = text_only(first(matchall(sel".citation-sample", mainpage.root)))
+paper_cite(::DataDryad, mainpage) = text_only(first(matchall(sel".citation-sample", mainpage.root)))
 
-datasetCite(::DataDryad, mainpage) = replace(text_only(last(matchall(sel".publication-header p", mainpage.root))), "DOI: ", "")
+dataset_cite(::DataDryad, mainpage) = replace(text_only(last(matchall(sel".publication-header p", mainpage.root))), "DOI: ", "")
 
 function get_urls(repo::DataDryad, page)
     urls = []

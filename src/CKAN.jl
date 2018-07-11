@@ -11,7 +11,7 @@ maintainer(repo::CKAN, mainpage) = mainpage["maintainer"]
 
 license(repo::CKAN, mainpage) = mainpage["license_title"]
 
-function createDate(repo::CKAN, mainpage)
+function create_date(repo::CKAN, mainpage)
     rawdate = Dates.Date(mainpage["metadata_created"][1:10], "yyyy-mm-dd")
     Dates.format(rawdate, "U d, yyyy")
 end

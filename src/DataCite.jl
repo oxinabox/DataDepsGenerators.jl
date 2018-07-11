@@ -9,11 +9,11 @@ author(::DataCite, mainpage) = join.([[names[2] for names in value] for value in
 
 license(::DataCite, mainpage) = miss_null(mainpage["attributes"]["license"])
 
-publishedDate(::DataCite, mainpage) = mainpage["attributes"]["published"]
+published_date(::DataCite, mainpage) = mainpage["attributes"]["published"]
 
-datasetCite(::DataCite, mainpage) = citation_text(mainpage["id"])
+dataset_cite(::DataCite, mainpage) = citation_text(mainpage["id"])
 
-function paperCite(::DataCite, mainpage)
+function paper_cite(::DataCite, mainpage)
     paper_cite = missing
     for related in mainpage["attributes"]["related-identifiers"]
         if related["relation-type-id"] == "IsSupplementTo"

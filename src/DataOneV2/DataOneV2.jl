@@ -10,7 +10,7 @@ author(repo::DataOneV2, mainpage) = authors_(repo, mainpage)
 
 license(repo::DataOneV2, mainpage) = license_(repo, mainpage)
 
-publishedDate(repo::DataOneV2, mainpage) = pub_date(repo, mainpage)
+published_date(repo::DataOneV2, mainpage) = pub_date(repo, mainpage)
 
 get_urls(repo::DataOneV2, page) = []
 

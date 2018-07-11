@@ -12,7 +12,7 @@ author(repo::JSONLD, mainpage) = get_authors(repo, mainpage)
 
 license(::JSONLD, mainpage) = filter_html(get_license(mainpage))
 
-publishedDate(repo::JSONLD, mainpage) = get_dates(repo, mainpage)
+published_date(repo::JSONLD, mainpage) = get_dates(repo, mainpage)
 
 
 function get_authors(repo::JSONLD, mainpage)

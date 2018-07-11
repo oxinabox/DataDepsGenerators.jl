@@ -9,9 +9,9 @@ author(::Figshare, mainpage) = [value["full_name"] for value in mainpage["author
 
 license(::Figshare, mainpage) = mainpage["license"]["name"] * " (" *mainpage["license"]["url"] * ")"
 
-publishedDate(::Figshare, mainpage) = mainpage["published_date"]
+published_date(::Figshare, mainpage) = mainpage["published_date"]
 
-datasetCite(::Figshare, mainpage) = mainpage["citation"]
+dataset_cite(::Figshare, mainpage) = mainpage["citation"]
 
 function get_urls(repo::Figshare, page)
     urls = []

@@ -12,11 +12,11 @@ author(::DataOneV1, mainpage) = [text_only(i) for i in matchall(sel"dcterms\:cre
 
 license(::DataOneV1, mainpage) = "http://creativecommons.org/publicdomain/zero/1.0/"
 
-publishedDate(::DataOneV1, mainpage) = Dates.DateTime(chop(text_only(first(matchall(sel"dcterms\:dateSubmitted", mainpage.root)))))
+published_date(::DataOneV1, mainpage) = Dates.DateTime(chop(text_only(first(matchall(sel"dcterms\:dateSubmitted", mainpage.root)))))
 
-paperCite(::DataOneV1, mainpage) = citation_text(text_only(first(matchall(sel"dcterms\:references", mainpage.root))))
+paper_cite(::DataOneV1, mainpage) = citation_text(text_only(first(matchall(sel"dcterms\:references", mainpage.root))))
 
-datasetCite(::DataOneV1, mainpage) = citation_text(text_only(first(matchall(sel"dcterms\:identifier", mainpage.root))))
+dataset_cite(::DataOneV1, mainpage) = citation_text(text_only(first(matchall(sel"dcterms\:identifier", mainpage.root))))
 
 function get_urls(repo::DataOneV1, page)
     urls = []

@@ -1,12 +1,12 @@
 register(DataDep(
     "Gold Prices in London 1950-2008 (Monthly)",
     """
-    
-Website: https://demo.ckan.org/dataset/gold-prices
-Author: 	Bundesbank
-Maintainer: 	Rufus Pollock
-License: 	Open Data Commons Public Domain Dedication and License (PDDL)
-Date of Creation: 	July 18, 2017
+Website:	https://demo.ckan.org/dataset/gold-prices
+Author:	Bundesbank
+Maintainer:	Rufus Pollock
+Date of Creation:	July 18, 2017
+License:	Open Data Commons Public Domain Dedication and License (PDDL)
+
 	Monthly gold prices (USD) in London from Bundesbank.
 	
 	General: 1 ounce of fine gold = 31.1034768g. Method of calculation:

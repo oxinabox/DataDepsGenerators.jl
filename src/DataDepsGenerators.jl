@@ -19,9 +19,9 @@ struct Metadata
     author::Opt{String}
     maintainer::Opt{String}
     license::Opt{String}
-    publishedDate::Opt{String}
-    createDate::Opt{String}
-    modifiedDate::Opt{String}
+    publishedDate::Union{DateTime, Opt{String}}
+    createDate::Union{DateTime, Opt{String}}
+    modifiedDate::Union{DateTime, Opt{String}}
     paperCite::Opt{String}
     datasetCite::Opt{String}
     dataurls::Opt{Vector}
@@ -32,16 +32,14 @@ function find_metadata(repo, dataname, shortname)
 
     mainpage, url = mainpage_url(repo, dataname)
     fullname = data_fullname(repo, mainpage)
-    if shortname == nothing
-        shortname = reduce((s,r)->replace(s, r, ""), fullname, ['\\', '/', ':', '*', '?', '<', '>', '|'])
-    end
+    shortname = data_shortname(repo, shortname, fullname)
 
     Metadata(
         fullname,
         shortname,
         website(repo, url, mainpage),
         description(repo, mainpage),
-        author(repo, mainpage),
+        format_authors(author(repo, mainpage)),
         maintainer(repo, mainpage),
         license(repo, mainpage),
         publishedDate(repo, mainpage),
@@ -53,6 +51,16 @@ function find_metadata(repo, dataname, shortname)
         get_checksums(repo, mainpage)
     )
 end
+
+function data_shortname(repo, shortname::Void, fullname)
+    # Remove any characters not allowed in a file path
+    reduce((s,r)->replace(s, r, ""), fullname, ['\\', '/', ':', '*', '?', '<', '>', '|'])
+end
+
+data_shortname(repo, shortname, fullname) = shortname
+
+format_dates(rawdate) = rawdate #Catches the missing and the string
+format_dates(rawdate::Dates.Date) = Dates.format(rawdate, "U d, yyyy")
 
 website(::DataRepo, url, mainpage) = url
 description(::DataRepo, mainpage) = missing
@@ -84,37 +92,38 @@ function message(meta)
     register(DataDep(
         \"$(meta.shortname)\",
         \"\"\""""
-    netString = format_meta(meta.website, netString, "Website")
-    netString = format_meta(format_authors(meta.author), netString, "Author", true)
-    netString = format_meta(meta.maintainer, netString, "Maintainer", true)
-    netString = format_meta(meta.license, netString, "License", true)
-    netString = format_meta(meta.publishedDate, netString, "Date of Publication", true)
-    netString = format_meta(meta.createDate, netString, "Date of Creation", true)
-    netString = format_meta(meta.modifiedDate, netString, "Date of Modification", true)
-    netString = format_meta(meta.description, netString, missing,  true)
-    netString = format_meta(meta.paperCite, netString, "Please cite this paper", true)
-    netString = format_meta(meta.datasetCite, netString, "Please cite this dataset", true)
-    netString = strip(netString * "\n\"\"\",")
-    netString = format_meta(meta.dataurls, netString)
-    netString = netString * ","
-    netString = format_meta(format_checksums(meta.datachecksums), netString)
-    netString = strip(netString * "\n))")
+    netString *= format_meta(meta.website, "Website")
+    netString *= format_meta(meta.author, "Author")
+    netString *= format_meta(meta.maintainer, "Maintainer")
+    netString *= format_meta(format_dates(meta.publishedDate), "Date of Publication")
+    netString *= format_meta(format_dates(meta.createDate), "Date of Creation")
+    netString *= format_meta(format_dates(meta.modifiedDate), "Date of Last Modification")
+    netString *= format_meta(meta.license, "License")
+    netString *= "\n"
+    netString *= format_meta(meta.description)
+    netString *= format_meta(meta.paperCite, "\nPlease cite this paper")
+    netString *= format_meta(meta.datasetCite, "\nPlease cite this dataset")
+    netString *= "\n\"\"\","
+    netString = netString |> strip
+    netString *= format_meta(meta.dataurls, indent_field=false)
+    netString *= ","
+    netString *= format_meta(format_checksums(meta.datachecksums), indent_field=false)
+    netString *= "\n))"
 
     netString
 end
 
-function format_meta(data::Any, netString, label=missing, indentbool=false)
-    if ismissing(data)
-        return netString
-    else
-        new_data = (indentbool? indent(string(data)) : string(data))
-        if ismissing(label)
-            return netString * "\n" * new_data
-        else
-            return netString * "\n" * label * ": " * new_data
-        end
+format_meta(::Missing, args...; kwargs...) = ""
+
+function format_meta(data::Any, label=""; indent_field=true)
+    if label != ""
+        label*=":"
     end
+    field = (indent_field ? indent(string(data)) : string(data))
+    return "\n" * label * field
 end
+
+format_authors(authors::Missing) = "Authors not specified"
 
 function generate(repo::DataRepo,
                   dataname,
@@ -141,9 +150,9 @@ function format_checksums(csum::AbstractString)
     if length(csum)>0 "\"$csum\"" else "" end
 end
 
-format_checksums(::Void) = missing
-
 format_checksums(::Missing) = missing
+
+format_authors(authors::AbstractString) = authors
 
 function format_authors(authors::Vector)
     if length(authors) == 1
@@ -156,6 +165,10 @@ function format_authors(authors::Vector)
         warn("Not able to retrieve any authors")
         missing
     end
+end
+
+function handle_null(attr::Any)
+    attr != nothing? attr : missing
 end
 
 function format_papers(authors::Vector, year::String, name::String, link::String)

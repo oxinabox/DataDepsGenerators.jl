@@ -3,20 +3,18 @@ end
 
 base_url(::DataCite) = "https://api.datacite.org/works/"
 
-description(repo::DataCite, mainpage) = (mainpage["attributes"]["description"] != nothing? mainpage["attributes"]["description"] : missing)
+description(repo::DataCite, mainpage) = handle_null(mainpage["attributes"]["description"])
 
-function author(::DataCite, mainpage)
-    join.([[names[2] for names in value] for value in  mainpage["attributes"]["author"]], " ")
-end
+author(::DataCite, mainpage) = join.([[names[2] for names in value] for value in  mainpage["attributes"]["author"]], " ")
 
-license(::DataCite, mainpage) = mainpage["attributes"]["license"]
+license(::DataCite, mainpage) = handle_null(mainpage["attributes"]["license"])
 
 publishedDate(::DataCite, mainpage) = mainpage["attributes"]["published"]
 
 datasetCite(::DataCite, mainpage) = citation_text(mainpage["id"])
 
 function paperCite(::DataCite, mainpage)
-    paper_cite = nothing
+    paper_cite = missing
     for related in mainpage["attributes"]["related-identifiers"]
         if related["relation-type-id"] == "IsSupplementTo"
             paper_cite = citation_text(related["related-identifier"])
@@ -33,7 +31,7 @@ function get_urls(repo::DataCite, page)
 end
 
 function get_checksums(repo::DataCite, page)
-    nothing
+    missing
 end
 
 function data_fullname(::DataCite, mainpage)

@@ -5,7 +5,6 @@ description(repo::CKAN, mainpage) = mainpage["notes"]
 
 function author(repo::CKAN, mainpage)
     authors = [mainpage["author"]]
-    format_authors(authors)
 end
 
 maintainer(repo::CKAN, mainpage) = mainpage["maintainer"]
@@ -26,7 +25,7 @@ function get_urls(repo::CKAN, page)
 end
 
 function get_checksums(repo::CKAN, page)
-    nothing
+    missing
 end
 
 function data_fullname(::CKAN, mainpage)

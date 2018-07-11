@@ -1,12 +1,10 @@
 register(DataDep(
     "List of fire patch properties computed and associated NetCDF maps from the MCD64A1 Collection 6 (2000-2016) and the MERIS fire_cci v4.1 (2005-2011) BA products",
     """
-    	Dataset: List of fire patch properties computed and associated NetCDF maps from the MCD64A1 Collection 6 (2000-2016) and the MERIS fire_cci v4.1 (2005-2011) BA products
-	Website: https://doi.org/10.15148/0e999ffc-e220-41ac-ac85-76e92ecd0320
-	Author: Pierre Laurent et al.
-	License: nothing
-	Date: 2018
-	
+Website:	https://doi.org/10.15148/0e999ffc-e220-41ac-ac85-76e92ecd0320
+Author:	Pierre Laurent et al.
+Date of Publication:	2018
+
 	Fire patches computed from the MCD64A1 Collection 6 and the MERIS fire_cci v4.1 (2005-2011) burned area
 	datasets. A flood-filling algorithm with a fixed cut-off parameter has been used to group burned pixels into
 	fire patches. The listed morphological properties in the csv files are (in order of appearance) : ID, Fire
@@ -18,12 +16,8 @@ register(DataDep(
 	kilometers, in local flat projection), orientation of the SDE (with respect to North, clockwise, in
 	degrees), orientation of the SDE in flat projection (with respect to North, clockwise, in degrees),
 	eccentricity of the SDE, Ratio of SDE half axes. The NetCDF files are self-described.
-	
-	Please cite this dataset:
-	Laurent, P., Mouillot, F., Yue, C., Moreno Dominguez, M. V., Ciais, P., & Nogueira, J. M. P. (2018). List of fire patch properties computed and associated NetCDF maps from the MCD64A1 Collection 6 (2000-2016) and the MERIS fire_cci v4.1 (2005-2011) BA products [Data set]. OSU OREME. https://doi.org/10.15148/0e999ffc-e220-41ac-ac85-76e92ecd0320
-	
-	if you use this in your research.
-    """,
-    String["PUT DOWNLOAD URL HERE"],
-    
+
+Please cite this dataset:	Laurent, P., Mouillot, F., Yue, C., Moreno Dominguez, M. V., Ciais, P., & Nogueira, J. M. P. (2018). List of fire patch properties computed and associated NetCDF maps from the MCD64A1 Collection 6 (2000-2016) and the MERIS fire_cci v4.1 (2005-2011) BA products [Data set]. OSU OREME. https://doi.org/10.15148/0e999ffc-e220-41ac-ac85-76e92ecd0320
+""",
+String["PUT DOWNLOAD URL HERE"],
 ))

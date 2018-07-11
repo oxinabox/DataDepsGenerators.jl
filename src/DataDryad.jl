@@ -3,34 +3,29 @@ end
 
 base_url(::DataDryad) = "https://datadryad.org/resource/doi:"
 
-function description(::DataDryad, mainpage)
-    desc = replace(text_only(first(matchall(sel".article-abstract", mainpage.root))), "Abstract ", "")
-    author = ""
+description(repo::DataDryad, mainpage) = replace(text_only(first(matchall(sel".article-abstract", mainpage.root))), "Abstract ", "")
+
+function author(::DataDryad, mainpage)
+    author = missing
     try
         author = text_only(first(matchall(sel".pub-authors a", mainpage.root)))
     catch
         author = string(split(text_only(first(matchall(sel".pub-authors", mainpage.root))), ", ")[1])
     end
-    license = getattr(first(matchall(sel".single-image-link", mainpage.root)), "href")
-    dateelem = matchall(sel".publication-header p", mainpage.root)
-    date = replace(text_only(dateelem[length(dateelem)-1]), "Date Published: ", "")
-    paper = text_only(first(matchall(sel".citation-sample", mainpage.root)))
-    dataset = replace(text_only(last(matchall(sel".publication-header p", mainpage.root))), "DOI: ", "")
-
-    """
-    Author: $(author) et. al.
-    License: $(license)
-    Date: $(date)
-
-    $(desc)
-
-    Please cite this paper:
-    $(paper)
-    as well as this dataset:
-    $(dataset)
-    if you use this in your research.
-    """
+    println(author)
+    author
 end
+
+license(::DataDryad, mainpage) = getattr(first(matchall(sel".single-image-link", mainpage.root)), "href")
+
+function publishedDate(::DataDryad, mainpage)
+    dateelem = matchall(sel".publication-header p", mainpage.root)
+    replace(text_only(dateelem[length(dateelem)-1]), "Date Published: ", "")
+end
+
+paperCite(::DataDryad, mainpage) = text_only(first(matchall(sel".citation-sample", mainpage.root)))
+
+datasetCite(::DataDryad, mainpage) = replace(text_only(last(matchall(sel".publication-header p", mainpage.root))), "DOI: ", "")
 
 function get_urls(repo::DataDryad, page)
     urls = []

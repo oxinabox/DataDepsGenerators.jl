@@ -3,26 +3,15 @@ end
 
 base_url(::Figshare) = "https://api.figshare.com/v2/articles"
 
-function description(repo::Figshare, mainpage)
-    desc = mainpage["description"]
-    authors = [value["full_name"] for value in mainpage["authors"]]
-    author = format_authors(authors)
-    license = mainpage["license"]["name"] * " (" *mainpage["license"]["url"] * ")"
-    date = mainpage["published_date"]
-    dataset_cite = mainpage["citation"]
-    
-    """
-    Author: $(author)
-    License: $(license)
-    Date: $(date)
+description(repo::Figshare, mainpage) = mainpage["description"]
 
-    $(desc)
+author(::Figshare, mainpage) = [value["full_name"] for value in mainpage["authors"]]
 
-    Please cite this work:
-    $(dataset_cite)
-    if you use this in your research.
-    """
-end
+license(::Figshare, mainpage) = mainpage["license"]["name"] * " (" *mainpage["license"]["url"] * ")"
+
+publishedDate(::Figshare, mainpage) = mainpage["published_date"]
+
+datasetCite(::Figshare, mainpage) = mainpage["citation"]
 
 function get_urls(repo::Figshare, page)
     urls = []

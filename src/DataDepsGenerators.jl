@@ -16,12 +16,12 @@ struct Metadata
     fullname::Opt{String}
     website::Opt{String}
     description::Opt{String}
-    author::Opt{String}
+    author::Opt{Vector{String}}
     maintainer::Opt{String}
     license::Opt{String}
-    publishedDate::Union{DateTime, Opt{String}}
-    createDate::Union{DateTime, Opt{String}}
-    modifiedDate::Union{DateTime, Opt{String}}
+    publishedDate::Opt{Union{Date, DateTime,String}}
+    createDate::Opt{Union{Date, DateTime,String}}
+    modifiedDate::Opt{Union{Date, DateTime,String}}
     paperCite::Opt{String}
     datasetCite::Opt{String}
     dataurls::Opt{Vector}
@@ -35,11 +35,11 @@ function find_metadata(repo, dataname, shortname)
     shortname = data_shortname(repo, shortname, fullname)
 
     Metadata(
-        fullname,
         shortname,
+        fullname,
         website(repo, url, mainpage),
         description(repo, mainpage),
-        format_authors(author(repo, mainpage)),
+        author(repo, mainpage),
         maintainer(repo, mainpage),
         license(repo, mainpage),
         publishedDate(repo, mainpage),
@@ -93,7 +93,7 @@ function message(meta)
         \"$(meta.shortname)\",
         \"\"\""""
     netString *= format_meta(meta.website, "Website")
-    netString *= format_meta(meta.author, "Author")
+    netString *= format_meta(format_authors(meta.author), "Author")
     netString *= format_meta(meta.maintainer, "Maintainer")
     netString *= format_meta(format_dates(meta.publishedDate), "Date of Publication")
     netString *= format_meta(format_dates(meta.createDate), "Date of Creation")
@@ -117,13 +117,11 @@ format_meta(::Missing, args...; kwargs...) = ""
 
 function format_meta(data::Any, label=""; indent_field=true)
     if label != ""
-        label*=":"
+        label*=": "
     end
-    field = (indent_field ? indent(string(data)) : string(data))
-    return "\n" * label * field
+    field = (indent_field ? indent(label * string(data)) : label * string(data))
+    return "\n" * field
 end
-
-format_authors(authors::Missing) = "Authors not specified"
 
 function generate(repo::DataRepo,
                   dataname,
@@ -146,11 +144,13 @@ function format_checksums(csum::Tuple{T,<:AbstractString}) where T<:Symbol
     "($func, $hashstring)"
 end
 
+format_checksums(::Missing) = missing
+
 function format_checksums(csum::AbstractString)
     if length(csum)>0 "\"$csum\"" else "" end
 end
 
-format_checksums(::Missing) = missing
+format_authors(authors::Missing) = "Authors not specified"
 
 format_authors(authors::AbstractString) = authors
 
@@ -163,12 +163,8 @@ function format_authors(authors::Vector)
         authors[1] * " et al."
     else
         warn("Not able to retrieve any authors")
-        missing
+        format_authors(missing)
     end
-end
-
-function handle_null(attr::Any)
-    attr != nothing? attr : missing
 end
 
 function format_papers(authors::Vector, year::String, name::String, link::String)

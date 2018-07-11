@@ -1,14 +1,11 @@
 register(DataDep(
     "Practices and documentation in the Open Source community",
     """
-    	Dataset: Practices and documentation in the Open Source community
 	Website: http://doi.org/10.6084/m9.figshare.5557801.v1
 	Author: Chris Holdgraf, 0000-0002-8748-6546
-	Date: 2017
+	Date of Publication: 2017
 	License: https://creativecommons.org/licenses/by/4.0
-	
+
 	Responses and analysis code to a questionnaire asking open source developers about their practices in open source software, and their beliefs about documentation's role in the community.
-    """,
-    missing,
-    
+""",,
 ))

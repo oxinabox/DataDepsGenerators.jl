@@ -6,21 +6,14 @@ export JSONLD_Web, JSONLD_DOI
 include("JSONLD_Web.jl")
 include("JSONLD_DOI.jl")
 
-function description(repo::JSONLD, mainpage)
-    desc = filter_html(handle_keys(mainpage, "description"))
-    authors = get_authors(repo, mainpage)
-    author = format_authors(authors)
-    license = filter_html(get_license(mainpage))
-    date = get_dates(repo, mainpage)
+description(repo::JSONLD, mainpage) = filter_html(handle_keys(mainpage, "description"))
 
-    """
-    Author: $(author)
-    Date: $(date)
-    License: $(license)
+author(repo::JSONLD, mainpage) = get_authors(repo, mainpage)
 
-    $(desc)
-    """
-end
+license(::JSONLD, mainpage) = filter_html(get_license(mainpage))
+
+publishedDate(repo::JSONLD, mainpage) = get_dates(repo, mainpage)
+
 
 function get_authors(repo::JSONLD, mainpage)
     inner(authors::Vector) = map(inner, authors)

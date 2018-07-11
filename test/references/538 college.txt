@@ -1,8 +1,9 @@
 register(DataDep(
     "College Majors",
     """
-    	Dataset: College Majors
 	Website: <URL>
+	Author: Authors not specified
+
 	# College Majors
 	
 	This folder contains the data and code behind the story [The Economic Guide To Picking A College Major](<URL>).
@@ -24,7 +25,6 @@ register(DataDep(
 	=======================================================================
 	...
 	(Read more at <URL>)
-    """,
-    Any["<URL>", "<URL>", "<URL>", "<URL>", "<URL>", "<URL>", "<URL>"],
-    
+""",
+Any["<URL>", "<URL>", "<URL>", "<URL>", "<URL>", "<URL>", "<URL>"],
 ))

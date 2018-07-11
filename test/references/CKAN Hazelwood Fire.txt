@@ -1,11 +1,11 @@
 register(DataDep(
     "2016 SoE Atmosphere Hourly CO and 24 hour PM2.5 concentrations measured during the Hazelwood mine fire, 2014",
     """
-Website:	https://data.gov.au/dataset/2016-soe-atmosphere-hourly-co-and-24h-pm2-5-concentrations-measured-during-the-hazelwood-mine-fire
-Author:	State of the Environment
-Maintainer:	soe
-Date of Creation:	August 29, 2016
-License:	Creative Commons Attribution 4.0 International
+	Website: https://data.gov.au/dataset/2016-soe-atmosphere-hourly-co-and-24h-pm2-5-concentrations-measured-during-the-hazelwood-mine-fire
+	Author: State of the Environment
+	Maintainer: soe
+	Date of Creation: August 29, 2016
+	License: Creative Commons Attribution 4.0 International
 
 	This data is based on Reisen. F, Gillet R., Torre P, Fisher G and Choi J (2016) Characteristics of an open-cut coal mine fire pollution event. Atmospheric Environment in press.
 	

@@ -3,11 +3,11 @@ end
 
 base_url(::DataCite) = "https://api.datacite.org/works/"
 
-description(repo::DataCite, mainpage) = handle_null(mainpage["attributes"]["description"])
+description(repo::DataCite, mainpage) = miss_null(mainpage["attributes"]["description"])
 
 author(::DataCite, mainpage) = join.([[names[2] for names in value] for value in  mainpage["attributes"]["author"]], " ")
 
-license(::DataCite, mainpage) = handle_null(mainpage["attributes"]["license"])
+license(::DataCite, mainpage) = miss_null(mainpage["attributes"]["license"])
 
 publishedDate(::DataCite, mainpage) = mainpage["attributes"]["published"]
 
@@ -28,10 +28,6 @@ function get_urls(repo::DataCite, page)
     urls = ["PUT DOWNLOAD URL HERE"]
     info("DataCite based generation can only generate partial registration blocks, as DataCite metadata does not (currently) include the URL to the resource. You will have to edit in the URL after generation.")
     urls
-end
-
-function get_checksums(repo::DataCite, page)
-    missing
 end
 
 function data_fullname(::DataCite, mainpage)

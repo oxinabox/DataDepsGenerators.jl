@@ -1,14 +1,11 @@
 register(DataDep(
     "shows examples of coordinated and uncoordinated motion for dangerous and non-dangerous crowd behavior.",
     """
-    	Dataset: shows examples of coordinated and uncoordinated motion for dangerous and non-dangerous crowd behavior.
 	Website: https://figshare.com/articles/_shows_examples_of_coordinated_and_uncoordinated_motion_for_dangerous_and_non_dangerous_crowd_behavior_/186003
 	Author: Florian Raudies, Heiko Neumann
-	Date: missing
-	License: missing
-	
+
 	shows examples of coordinated and uncoordinated motion for dangerous and non-dangerous crowd behavior.
-    """,
-    String["https://ndownloader.figshare.com/files/515509"],
-    
+	
+""",
+String["https://ndownloader.figshare.com/files/515509"],
 ))

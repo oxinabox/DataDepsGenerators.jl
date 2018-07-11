@@ -1,17 +1,17 @@
 register(DataDep(
-    "Data from: Plasticity of plant defense and its evolutionary implications in wild populations of Boechera stricta",
+    "Data from Plasticity of plant defense and its evolutionary implications in wild populations of Boechera stricta",
     """
-Website:	http://dx.doi.org/10.5061/dryad.f9s4424
-Author:	Wagner, Maggie R., Mitchell-Olds, Thomas
-Date of Publication:	2018-03-02T20:35:36
-License:	http://creativecommons.org/publicdomain/zero/1.0/
+	Website: http://dx.doi.org/10.5061/dryad.f9s4424
+	Author: Wagner, Maggie R., Mitchell-Olds, Thomas
+	Date of Publication: 2018-03-02T20:35:36
+	License: http://creativecommons.org/publicdomain/zero/1.0/
 
 	Phenotypic plasticity is thought to impact evolutionary trajectories by shifting trait values in a direction that is either favored by natural selection (“adaptive plasticity”) or disfavored (“nonadaptive” plasticity). However, it is unclear how commonly each of these types of plasticity occurs in natural populations. To answer this question, we measured glucosinolate defensive chemistry and reproductive fitness in over 1,500 individuals of the wild perennial mustard Boechera stricta, planted in four common gardens across central Idaho, USA. Glucosinolate profiles—including total glucosinolate concentration as well as the relative abundances and overall diversity of different compounds—were strongly plastic both among habitats and within habitats. Patterns of glucosinolate plasticity varied greatly among genotypes. Plasticity among sites was predicted to affect fitness in 27.1% of cases; more often than expected by chance, glucosinolate plasticity increased rather than decreased relative fitness. In contrast, we found no evidence for within-habitat selection on glucosinolate reaction norm slopes (i.e., plasticity along a continuous environmental gradient). Together, our results indicate that glucosinolate plasticity may improve the ability of B. stricta populations to persist after migration to new habitats.
-
-Please cite this paper:	Wagner, M. R., & Mitchell-Olds, T. (2018). Plasticity of plant defense and its evolutionary implications in wild populations of Boechera stricta
+	
+	Please cite this paper: Wagner, M. R., & Mitchell-Olds, T. (2018). Plasticity of plant defense and its evolutionary implications in wild populations of Boechera stricta
 	. Evolution, 72(5), 1034–1049. doi:10.1111/evo.13469
-
-Please cite this dataset:	Wagner, M. R., & Mitchell-Olds, T. (2018). Data from: Plasticity of plant defense and its evolutionary implications in wild populations of Boechera stricta [Data set]. Dryad Digital Repository. https://doi.org/10.5061/dryad.f9s4424
+	
+	Please cite this dataset: Wagner, M. R., & Mitchell-Olds, T. (2018). Data from: Plasticity of plant defense and its evolutionary implications in wild populations of Boechera stricta [Data set]. Dryad Digital Repository. https://doi.org/10.5061/dryad.f9s4424
 """,
 Any["/bitstream/handle/10255/dryad.173251/raw_data.zip?sequence=1", "/bitstream/handle/10255/dryad.173251/README.txt?sequence=2", "/bitstream/handle/10255/dryad.173252/GSplasticity_code.R?sequence=1"],
 [(md5, "aea52e9cdb6c4069720bc709415e479f"), (md5, "2abd4c62b7263eba8c74ce2bcb25790f"), (md5, "783d619e042bfe516b6ffd34dc97b5df")]

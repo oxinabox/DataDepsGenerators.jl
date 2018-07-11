@@ -6,6 +6,9 @@ Calls `func(arg)`, propagating `missing` values
 lift(func, ::Missing)=missing
 lift(func, arg) = func(arg)
 
+function miss_null(attr::Any)
+    attr != nothing? attr : missing
+end
 
 quiet_download(url) = @suppress(download(url))
 

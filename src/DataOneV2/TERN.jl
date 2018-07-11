@@ -19,8 +19,7 @@ end
 
 function pub_date(repo::TERN, mainpage)
     date_ele = matchall(sel"temporalCoverage rangeOfDates endDate", mainpage.root)
-    rawdate = Dates.Date(text_only(first(date_ele)), "yyyy-mm-dd")
-    Dates.year(rawdate), Dates.format(rawdate, "U d, yyyy")
+    Dates.Date(text_only(first(date_ele)), "yyyy-mm-dd")
 end
 
 function data_fullname(::TERN, mainpage)

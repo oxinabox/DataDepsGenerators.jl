@@ -1,13 +1,13 @@
 register(DataDep(
     "Burst Header Packet (UCI)",
     """
-    	Dataset: Burst Header Packet (BHP) flooding attack on Optical Burst Switching (OBS) Network Data Set (UCI ML Repository)
 	Website: https://archive.ics.uci.edu/ml/datasets/Burst+Header+Packet+%28BHP%29+flooding+attack+on+Optical+Burst+Switching+%28OBS%29+Network
+	Author: Authors not specified
+
 	Abstract : One of the primary challenges in identifying the risks of the Burst Header Packet (BHP) flood attacks in Optical Burst Switching networks (OBS) is the scarcity of reliable historical data.
 	
 	Please refer to the Machine Learning Repository's citation policy
 	Lichman, M. (2013). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
-    """,
-    String["https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/00404/OBS-Network-DataSet_2_Aug27.arff"],
-    
+""",
+String["https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/00404/OBS-Network-DataSet_2_Aug27.arff"],
 ))

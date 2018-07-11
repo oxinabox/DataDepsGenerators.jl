@@ -1,17 +1,12 @@
 register(DataDep(
     "Review of existing GeneBank data and analysis of 50 publications",
     """
-    	Dataset: Review of existing GeneBank data and analysis of 50 publications
 	Website: http://dx.doi.org/doi:10.5063%2FF1HT2M7Q
-	Paper Title: Summary of influenza A subtypes in wild birds from GenBank and 50 studies
 	Author: Sarah Olson
+	Date of Publication: July 7, 2013
 	License: no restrictions
-	Date: July 7, 2013
-	
+
 	On 25 September 2012, we downloaded 11,870 distinct avian records with subtype data (HA and NA gene segments) from the Influenza Virus Database in GenBank [5], date collected from 1902 through 2012. Records were classified into wild (including migratory birds), domestic (including poultry and farmed), feral, captive (zoos, exotic pets, and birds in trade) or unknown, based on a variety of resources including GenBank records, GenBank linked publications, sampling location, and species distributions. Flyways were defined according to the North American Flyway Directory [6] and a country-based division into North America (USA and Canada only), Latin America, Europe, Africa, Asia, and Australasia. Because many samples are never sequenced and sequence data are not structured to incorporate sampling effort, we collected published and non-published surveillance efforts that non-discriminately tested for AIV subtype; surveillance programs and studies that screened samples by real-time reverse-transcriptase PCR (RT-PCR) and only subtyped those samples that tested positive for specific subtypes (e.g. H5 or H7) were excluded. Studies that met these criteria were reported in the literature or shared by researchers, including extended or unpublished new data.
-	
-	Please cite this work appropriately if you use it in your research.
-    """,
-    Any[String["https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.5.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.8.2", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.9.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.13.7", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.17.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.18.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.20.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.21.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.22.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.23.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.24.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.25.5"]],
-    
+""",
+Any[String["https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.5.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.8.2", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.9.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.13.7", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.17.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.18.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.20.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.21.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.22.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.23.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.24.1", "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/solson.25.5"]],
 ))

@@ -1,11 +1,11 @@
 register(DataDep(
     "Consumer Complaint Database",
     """
-Website:	https://catalog.data.gov/dataset/consumer-complaint-database
-Author:	
-Maintainer:	devops@cfpb.gov
-Date of Creation:	February 26, 2014
-License:	License not specified
+	Website: https://catalog.data.gov/dataset/consumer-complaint-database
+	Author:
+	Maintainer: devops@cfpb.gov
+	Date of Creation: February 26, 2014
+	License: License not specified
 
 	These are complaints we’ve received about financial products and services.
 """,

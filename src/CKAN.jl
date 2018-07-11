@@ -24,10 +24,6 @@ function get_urls(repo::CKAN, page)
     urls
 end
 
-function get_checksums(repo::CKAN, page)
-    missing
-end
-
 function data_fullname(::CKAN, mainpage)
     mainpage["title"]
 end

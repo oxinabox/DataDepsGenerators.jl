@@ -1,12 +1,11 @@
 register(DataDep(
     "Stack Overflow 2018 Developer Survey",
     """
-    	Dataset: Stack Overflow 2018 Developer Survey
 	Website: https://www.kaggle.com/stackoverflow/stack-overflow-2018-developer-survey
 	Author: Stack Overflow
-	Date: May 15, 2018
+	Date of Publication: May 15, 2018
 	License: http://opendatacommons.org/licenses/dbcl/1.0/
-	
+
 	### Context
 	
 	Each year, we at [Stack Overflow](https://stackoverflow.com/) ask the developer community about everything from their favorite technologies to their job preferences. This year marks the eighth year we’ve published our Annual Developer Survey results—with the largest number of respondents yet. Over 100,000 developers took the 30-minute survey in January 2018.
@@ -30,7 +29,6 @@ register(DataDep(
 	### Inspiration
 	
 	At Stack Overflow, we put developers first and want [all developers to feel welcome and included on our site](https://stackoverflow.blog/2018/04/26/stack-overflow-isnt-very-welcoming-its-time-for-that-to-change/). Can we use our annual survey to understand what kinds of users are less likely to identify as part of our community, participate, or feel kinship with fellow developers? Check out [our blog post](https://stackoverflow.blog/2018/05/30/public-data-release-of-stack-overflows-2018-developer-survey) for more details.
-    """,
-    String["https://www.kaggle.com/stackoverflow/stack-overflow-2018-developer-survey/downloads/stack-overflow-2018-developer-survey.zip/2", "https://www.kaggle.com/stackoverflow/stack-overflow-2018-developer-survey/downloads/survey_results_public.csv/2", "https://www.kaggle.com/stackoverflow/stack-overflow-2018-developer-survey/downloads/survey_results_schema.csv/2"],
-    
+""",
+String["https://www.kaggle.com/stackoverflow/stack-overflow-2018-developer-survey/downloads/stack-overflow-2018-developer-survey.zip/2", "https://www.kaggle.com/stackoverflow/stack-overflow-2018-developer-survey/downloads/survey_results_public.csv/2", "https://www.kaggle.com/stackoverflow/stack-overflow-2018-developer-survey/downloads/survey_results_schema.csv/2"],
 ))

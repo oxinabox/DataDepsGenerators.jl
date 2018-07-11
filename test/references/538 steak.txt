@@ -1,8 +1,9 @@
 register(DataDep(
     "Steak Survey",
     """
-    	Dataset: Steak Survey
 	Website: <URL>
+	Author: Authors not specified
+
 	# Steak Survey
 	
 	This folder contains data behind the stories:
@@ -18,7 +19,6 @@ register(DataDep(
 	=======================================================================
 	...
 	(Read more at <URL>)
-    """,
-    Any["<URL>", "<URL>"],
-    
+""",
+Any["<URL>", "<URL>"],
 ))

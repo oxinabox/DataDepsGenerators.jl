@@ -12,8 +12,7 @@ function author(::DataDryad, mainpage)
     catch
         author = string(split(text_only(first(matchall(sel".pub-authors", mainpage.root))), ", ")[1])
     end
-    println(author)
-    author
+    [author]
 end
 
 license(::DataDryad, mainpage) = getattr(first(matchall(sel".single-image-link", mainpage.root)), "href")

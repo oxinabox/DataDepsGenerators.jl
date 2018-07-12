@@ -9,7 +9,7 @@ register(DataDep(
 	Supplemental materials to the manuscript.
 	
 	Please cite this dataset: Veeckman, Elisabeth (2019): Supplemental Material for "Overcoming challenges in variant calling: exploring sequence diversity in candidate genes for plant development in perennial ryegrass (Lolium perenne)". Zenodo. Fileset.
-""",
-Any["https://ndownloader.figshare.com/files/10703311", "https://ndownloader.figshare.com/files/10703314"],
-[(md5, "a167841695f0349fe3ce0c8858eaf452"), (md5, "b951ef090d8bd8a037df7d466da1f848")]
+	""",
+	Any["https://ndownloader.figshare.com/files/10703311", "https://ndownloader.figshare.com/files/10703314"],
+	[(md5, "a167841695f0349fe3ce0c8858eaf452"), (md5, "b951ef090d8bd8a037df7d466da1f848")]
 ))

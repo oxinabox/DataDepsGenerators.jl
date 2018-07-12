@@ -8,6 +8,6 @@ register(DataDep(
 	License: License not specified
 
 	These are complaints we’ve received about financial products and services.
-""",
-Any["https://data.consumerfinance.gov/api/views/s6ew-h6mp/rows.csv?accessType=DOWNLOAD", "https://data.consumerfinance.gov/api/views/s6ew-h6mp/rows.csv?accessType=DOWNLOAD", "http://data.consumerfinance.gov/api/views.json", "http://data.consumerfinance.gov/api/views.xml", "http://data.consumerfinance.gov/api/views/s6ew-h6mp.json"],
+	""",
+	Any["https://data.consumerfinance.gov/api/views/s6ew-h6mp/rows.csv?accessType=DOWNLOAD", "https://data.consumerfinance.gov/api/views/s6ew-h6mp/rows.csv?accessType=DOWNLOAD", "http://data.consumerfinance.gov/api/views.json", "http://data.consumerfinance.gov/api/views.xml", "http://data.consumerfinance.gov/api/views/s6ew-h6mp.json"],
 ))

@@ -87,12 +87,13 @@ include("DataCite.jl")
 include("Figshare.jl")
 include("JSONLD/JSONLD.jl")
 
-function message(meta)
+function body(meta)
     netString =  """
     register(DataDep(
         \"$(meta.shortname)\",
         \"\"\""""
     netString *= format_meta(meta.website, "Website")
+    ## Start of the message
     netString *= format_meta(format_authors(meta.author), "Author")
     netString *= format_meta(meta.maintainer, "Maintainer")
     netString *= format_meta(format_dates(meta.published_date), "Date of Publication")
@@ -103,11 +104,12 @@ function message(meta)
     netString *= format_meta(meta.description)
     netString *= format_meta(meta.paper_cite, "\nPlease cite this paper")
     netString *= format_meta(meta.dataset_cite, "\nPlease cite this dataset")
-    netString *= "\n\"\"\","
+    netString *= "\n\t\"\"\","
     netString = netString |> strip
-    netString *= format_meta(meta.dataurls, indent_field=false)
+    ## End of the message
+    netString *= format_meta(meta.dataurls)
     netString *= ","
-    netString *= format_meta(format_checksums(meta.datachecksums), indent_field=false)
+    netString *= format_meta(format_checksums(meta.datachecksums))
     netString *= "\n))"
 
     netString
@@ -115,12 +117,11 @@ end
 
 format_meta(::Missing, args...; kwargs...) = ""
 
-function format_meta(data::Any, label=""; indent_field=true)
+function format_meta(data::Any, label="")
     if label != ""
         label*=": "
     end
-    field = (indent_field ? indent(label * string(data)) : label * string(data))
-    return "\n" * field
+    return "\n" * indent(label * string(data))
 end
 
 function generate(repo::DataRepo,
@@ -130,7 +131,7 @@ function generate(repo::DataRepo,
 
     meta = find_metadata(repo, dataname, shortname)
 
-    message(meta)
+    body(meta)
 end
 
 function format_checksums(csums::Vector)

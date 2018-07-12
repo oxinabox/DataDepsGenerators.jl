@@ -11,7 +11,7 @@ register(DataDep(
 	Please cite this paper: Von Wettberg, E. J. B., Chang, P. L., Başdemir, F., Carrasquila-Garcia, N., Korbu, L. B., Moenga, S. M., … Cook, D. R. (2018). Ecology and genomics of an important crop wild relative as a prelude to agricultural innovation. Nature Communications, 9(1). doi:10.1038/s41467-018-02867-z
 	
 	Please cite this dataset: Von Wettberg, E. J. B., Chang, P. L., Başdemir, F., Carrasquila-Garcia, N., Korbu, L., Moenga, S. M., … Cook, D. R. (2018). Data from: Ecology and genomics of an important crop wild relative as a prelude to agricultural innovation [Data set]. Dryad Digital Repository. https://doi.org/10.5061/dryad.74699
-""",
-Any["/bitstream/handle/10255/dryad.166590/draft_dryad_upload_dec2017.xls?sequence=1"],
-[(md5, "3c837a0a41e01966a0f037beb7db43b8")]
+	""",
+	Any["/bitstream/handle/10255/dryad.166590/draft_dryad_upload_dec2017.xls?sequence=1"],
+	[(md5, "3c837a0a41e01966a0f037beb7db43b8")]
 ))

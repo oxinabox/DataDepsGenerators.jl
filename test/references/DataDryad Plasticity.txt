@@ -11,7 +11,7 @@ register(DataDep(
 	Please cite this paper: Wagner MR, Mitchell-Olds T (2018) Plasticity of plant defense and its evolutionary implications in wild populations of Boechera stricta. Evolution 72(5): 1034-1049.  https://doi.org/10.1111/evo.13469
 	
 	Please cite this dataset: https://doi.org/10.5061/dryad.f9s4424
-""",
-Any["https://datadryad.org/bitstream/handle/10255/dryad.173251/raw_data.zip?sequence=1", "https://datadryad.org/bitstream/handle/10255/dryad.173251/README.txt?sequence=2", "https://datadryad.org/bitstream/handle/10255/dryad.173252/GSplasticity_code.R?sequence=1"],
-[(md5, "898237b1dd8306be586ffc036ebda768"), (md5, "af502ff7111868c548cc7923a9193673")]
+	""",
+	Any["https://datadryad.org/bitstream/handle/10255/dryad.173251/raw_data.zip?sequence=1", "https://datadryad.org/bitstream/handle/10255/dryad.173251/README.txt?sequence=2", "https://datadryad.org/bitstream/handle/10255/dryad.173252/GSplasticity_code.R?sequence=1"],
+	[(md5, "898237b1dd8306be586ffc036ebda768"), (md5, "af502ff7111868c548cc7923a9193673")]
 ))

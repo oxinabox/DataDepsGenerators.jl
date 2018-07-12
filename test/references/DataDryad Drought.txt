@@ -11,7 +11,7 @@ register(DataDep(
 	Please cite this paper: Aspin TW, Matthews TJ, Khamis K, Milner AM, Wang Z, O'Callaghan MJ, Ledger ME (2018) Drought intensification drives turnover of structure and function in stream invertebrate communities. Ecography, online in advance of print.  https://doi.org/10.1111/ecog.03711
 	
 	Please cite this dataset: https://doi.org/10.5061/dryad.cc8834s
-""",
-Any["https://datadryad.org/bitstream/handle/10255/dryad.173063/Drought%20intensities.csv?sequence=1", "https://datadryad.org/bitstream/handle/10255/dryad.173064/Presence-absence%20data.csv?sequence=1", "https://datadryad.org/bitstream/handle/10255/dryad.173075/Fuzzy%20coded%20trait%20data.xlsx?sequence=1"],
-[(md5, "0c484b24ed9b8ba6cfd85e6035b1a9e9"), (md5, "8afefad6872124ceda8a2171465cf277"), (md5, "91cff120293ae639d599b9057313f107")]
+	""",
+	Any["https://datadryad.org/bitstream/handle/10255/dryad.173063/Drought%20intensities.csv?sequence=1", "https://datadryad.org/bitstream/handle/10255/dryad.173064/Presence-absence%20data.csv?sequence=1", "https://datadryad.org/bitstream/handle/10255/dryad.173075/Fuzzy%20coded%20trait%20data.xlsx?sequence=1"],
+	[(md5, "0c484b24ed9b8ba6cfd85e6035b1a9e9"), (md5, "8afefad6872124ceda8a2171465cf277"), (md5, "91cff120293ae639d599b9057313f107")]
 ))

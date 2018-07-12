@@ -20,6 +20,6 @@ register(DataDep(
 	* Comment on 1968-03: Average from 1 to 14 March 1968.
 	
 	License: PDDL (Source indicates no restrictions on data).
-""",
-Any["https://raw.github.com/datasets/gold-prices/master/data/data.csv"],
+	""",
+	Any["https://raw.github.com/datasets/gold-prices/master/data/data.csv"],
 ))

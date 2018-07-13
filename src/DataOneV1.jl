@@ -6,33 +6,17 @@ end
 # Named as DataOneV1 to make new contributors to the package aware that DataOneV1 exists.
 base_url(::DataOneV1) = "https://datadryad.org/mn/object/http://dx.doi.org/"
 
-function description(repo::DataOneV1, mainpage)
-    desc = text_only(first(matchall(sel"dcterms\:description", mainpage.root)))
-    authors = matchall(sel"dcterms\:creator", mainpage.root)
-    author = format_authors([text_only(i) for i in authors])
-    license = "http://creativecommons.org/publicdomain/zero/1.0/"
-    rawdate = Dates.DateTime(chop(text_only(first(matchall(sel"dcterms\:dateSubmitted", mainpage.root)))))
-    year = Dates.year(rawdate)
-    date = Dates.format(rawdate, "U d, yyyy")
-    references_ref = text_only(first(matchall(sel"dcterms\:references", mainpage.root)))
-    paper_cite = citation_text(references_ref)
-    dataset_ref = text_only(first(matchall(sel"dcterms\:identifier", mainpage.root)))
-    dataset_cite = citation_text(dataset_ref)
+description(repo::DataOneV1, mainpage) = text_only(first(matchall(sel"dcterms\:description", mainpage.root)))
 
-    """
-    Author: $(author)
-    License: $(license)
-    Date: $(date)
+author(::DataOneV1, mainpage) = [text_only(i) for i in matchall(sel"dcterms\:creator", mainpage.root)]
 
-    $(desc)
+license(::DataOneV1, mainpage) = "http://creativecommons.org/publicdomain/zero/1.0/"
 
-    Please cite this paper:
-    $(paper_cite)
-    as well as this dataset:
-    $(dataset_cite)
-    if you use this in your research.
-    """
-end
+published_date(::DataOneV1, mainpage) = Dates.DateTime(chop(text_only(first(matchall(sel"dcterms\:dateSubmitted", mainpage.root)))))
+
+paper_cite(::DataOneV1, mainpage) = citation_text(text_only(first(matchall(sel"dcterms\:references", mainpage.root))))
+
+dataset_cite(::DataOneV1, mainpage) = citation_text(text_only(first(matchall(sel"dcterms\:identifier", mainpage.root))))
 
 function get_urls(repo::DataOneV1, page)
     urls = []

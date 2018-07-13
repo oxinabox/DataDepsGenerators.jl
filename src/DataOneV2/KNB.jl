@@ -30,8 +30,7 @@ end
 
 function pub_date(repo::KNB, mainpage)
     date_ele = matchall(sel"pubDate", mainpage.root)
-    rawdate = Dates.Date(text_only(first(date_ele)), "yyyy-mm-dd")
-    Dates.year(rawdate), Dates.format(rawdate, "U d, yyyy")
+    Dates.Date(text_only(first(date_ele)), "yyyy-mm-dd")
 end
 
 function data_fullname(::KNB, mainpage)

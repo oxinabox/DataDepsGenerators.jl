@@ -4,27 +4,13 @@ export KNB, TERN
 include("KNB.jl")
 include("TERN.jl")
 
-function description(repo::DataOneV2, mainpage)
-    desc = desc_(repo, mainpage)
-    paper_title = paper_title_(repo, mainpage)
-    authors = authors_(repo, mainpage)
-    author = format_authors(authors)
-    license = license_(repo, mainpage)
-    year, date = pub_date(repo, mainpage)
-    # references = ""
-    # paper = join(authors, ", ") * " ($(year)) " * data_fullname(repo, mainpage) * " " * references
+description(repo::DataOneV2, mainpage) = desc_(repo, mainpage)
 
-    """
-    Paper Title: $(paper_title)
-    Author: $(author)
-    License: $(license)
-    Date: $(date)
+author(repo::DataOneV2, mainpage) = authors_(repo, mainpage)
 
-    $(desc)
+license(repo::DataOneV2, mainpage) = license_(repo, mainpage)
 
-    Please cite this work appropriately if you use it in your research.
-    """
-end
+published_date(repo::DataOneV2, mainpage) = pub_date(repo, mainpage)
 
 get_urls(repo::DataOneV2, page) = []
 

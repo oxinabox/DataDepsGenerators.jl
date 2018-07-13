@@ -1,19 +1,13 @@
 register(DataDep(
     "Summary of influenza A subtypes in wild birds from GenBank and 50 studies",
     """
-    	Dataset: Summary of influenza A subtypes in wild birds from GenBank and 50 studies
+	Dataset: Summary of influenza A subtypes in wild birds from GenBank and 50 studies
 	Website: https://doi.org/10.5063/F1HT2M7Q
 	Author: O=Unaffiliated Uid=Solson
-	License: nothing
-	Date: 2014
+	Date of Publication: 2014
+
 	
-	
-	
-	Please cite this dataset:
-	Uid=Solson, O. (2014). Summary of influenza A subtypes in wild birds from GenBank and 50 studies [Data set]. KNB Data Repository. https://doi.org/10.5063/f1ht2m7q
-	
-	if you use this in your research.
-    """,
-    String["PUT DOWNLOAD URL HERE"],
-    
+	Please cite this dataset: Uid=Solson, O. (2014). Summary of influenza A subtypes in wild birds from GenBank and 50 studies [Data set]. KNB Data Repository. https://doi.org/10.5063/f1ht2m7q
+	""",
+	String["PUT DOWNLOAD URL HERE"],
 ))

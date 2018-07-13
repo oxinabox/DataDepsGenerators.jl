@@ -1,6 +1,7 @@
 register(DataDep(
     "Consumer Complaint Database",
     """
+	Dataset: Consumer Complaint Database
 	Website: https://catalog.data.gov/dataset/consumer-complaint-database
 	Author:
 	Maintainer: devops@cfpb.gov

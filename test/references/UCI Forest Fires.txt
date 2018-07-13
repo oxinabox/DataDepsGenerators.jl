@@ -1,6 +1,7 @@
 register(DataDep(
     "Forest Fires Data Set (UCI ML Repository)",
     """
+	Dataset: Forest Fires Data Set (UCI ML Repository)
 	Website: https://archive.ics.uci.edu/ml/datasets/Forest+Fires
 	Author: Authors not specified
 

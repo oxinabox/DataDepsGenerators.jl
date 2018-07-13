@@ -1,6 +1,7 @@
 register(DataDep(
     "Primates in biodefense research Data and analysis",
     """
+	Dataset: Primates in biodefense research: Data and analysis
 	Website: <URL>
 	Author: Authors not specified
 

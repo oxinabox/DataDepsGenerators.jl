@@ -1,6 +1,7 @@
 register(DataDep(
     "Supplemental Material for "Overcoming challenges in variant calling exploring sequence diversity in candidate genes for plant development in perennial ryegrass (Lolium perenne)"",
     """
+	Dataset: Supplemental Material for "Overcoming challenges in variant calling: exploring sequence diversity in candidate genes for plant development in perennial ryegrass (Lolium perenne)"
 	Website: https://figshare.com/articles/Supplemental_Material_for_Overcoming_challenges_in_variant_calling_exploring_sequence_diversity_in_candidate_genes_for_plant_development_in_perennial_ryegrass_Lolium_perenne_/5969383
 	Author: Elisabeth Veeckman
 	Date of Publication: 2019-03-09T00:00:00Z

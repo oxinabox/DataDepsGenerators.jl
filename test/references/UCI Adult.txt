@@ -1,6 +1,7 @@
 register(DataDep(
     "Adult Data Set (UCI ML Repository)",
     """
+	Dataset: Adult Data Set (UCI ML Repository)
 	Website: https://archive.ics.uci.edu/ml/datasets/Adult
 	Author: Authors not specified
 

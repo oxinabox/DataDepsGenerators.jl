@@ -1,6 +1,7 @@
 register(DataDep(
     "Gold Prices in London 1950-2008 (Monthly)",
     """
+	Dataset: Gold Prices in London 1950-2008 (Monthly)
 	Website: https://demo.ckan.org/dataset/gold-prices
 	Author: Bundesbank
 	Maintainer: Rufus Pollock

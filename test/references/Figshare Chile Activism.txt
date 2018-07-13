@@ -1,6 +1,7 @@
 register(DataDep(
     "Youth Activism in Chile from urban educational inequalities to experiences of living together and solidarity",
     """
+	Dataset: Youth Activism in Chile: from urban educational inequalities to experiences of living together and solidarity
 	Website: https://figshare.com/articles/Youth_Activism_in_Chile_from_urban_educational_inequalities_to_experiences_of_living_together_and_solidarity/6504206
 	Author: Ivette Hernandez Santibañez
 	Date of Publication: 2018-09-01T03:04:44Z

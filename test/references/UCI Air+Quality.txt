@@ -1,6 +1,7 @@
 register(DataDep(
     "Air Quality Data Set (UCI ML Repository)",
     """
+	Dataset: Air Quality Data Set (UCI ML Repository)
 	Website: https://archive.ics.uci.edu/ml/datasets/Air+Quality
 	Author: Authors not specified
 

@@ -1,6 +1,7 @@
 register(DataDep(
     "2016 SoE Atmosphere Hourly CO and 24 hour PM2.5 concentrations measured during the Hazelwood mine fire, 2014",
     """
+	Dataset: 2016 SoE Atmosphere Hourly CO and 24 hour PM2.5 concentrations measured during the Hazelwood mine fire, 2014
 	Website: https://data.gov.au/dataset/2016-soe-atmosphere-hourly-co-and-24h-pm2-5-concentrations-measured-during-the-hazelwood-mine-fire
 	Author: State of the Environment
 	Maintainer: soe

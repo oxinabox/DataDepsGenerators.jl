@@ -1,6 +1,7 @@
 register(DataDep(
     "College Majors",
     """
+	Dataset: College Majors
 	Website: <URL>
 	Author: Authors not specified
 

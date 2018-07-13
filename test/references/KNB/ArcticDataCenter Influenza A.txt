@@ -1,6 +1,7 @@
 register(DataDep(
     "Review of existing GeneBank data and analysis of 50 publications",
     """
+	Dataset: Review of existing GeneBank data and analysis of 50 publications
 	Website: http://dx.doi.org/doi:10.5063%2FF1HT2M7Q
 	Author: Sarah Olson
 	Date of Publication: July 7, 2013

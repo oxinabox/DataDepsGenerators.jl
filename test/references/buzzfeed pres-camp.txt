@@ -1,6 +1,7 @@
 register(DataDep(
     "Presidential Campaign Contributions",
     """
+	Dataset: Presidential Campaign Contributions
 	Website: <URL>
 	Author: Authors not specified
 

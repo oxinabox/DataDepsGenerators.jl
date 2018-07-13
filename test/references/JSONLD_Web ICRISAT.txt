@@ -1,6 +1,7 @@
 register(DataDep(
     "Phenotypic evaluation data of medium duration Pigeonpea advanced varieties trial",
     """
+	Dataset: Phenotypic evaluation data of medium duration Pigeonpea advanced varieties trial
 	Website: http://dataverse.icrisat.org/dataset.xhtml?persistentId=doi:10.21421/D2/ZS6XX1
 	Author: Sameer Kumar, CV, Anupama Hingane
 	Date of Publication: December 30, 2017

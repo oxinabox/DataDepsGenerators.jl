@@ -1,6 +1,7 @@
 register(DataDep(
     "Data from Drought intensification drives turnover of structure and function in stream invertebrate communities",
     """
+	Dataset: Data from: Drought intensification drives turnover of structure and function in stream invertebrate communities
 	Website: http://dx.doi.org/10.5061/dryad.cc8834s
 	Author: Aspin, Thomas W.H. et al.
 	Date of Publication: 2018-03-01T14:43:44

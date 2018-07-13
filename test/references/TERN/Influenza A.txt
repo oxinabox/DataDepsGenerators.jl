@@ -1,6 +1,7 @@
 register(DataDep(
     "KAHDRAIN Vegetation Survey, Data from the Atlas of NSW database VIS flora survey module",
     """
+	Dataset: KAHDRAIN Vegetation Survey, Data from the Atlas of NSW database: VIS flora survey module
 	Website: https://dataone.tern.org.au/mn/v2/object/aekos.org.au/collection/nsw.gov.au/nsw_atlas/vis_flora_module/KAHDRAIN.20150515
 	Author: New South Wales Office of Environment and Heritage et al.
 	Date of Publication: March 6, 2006

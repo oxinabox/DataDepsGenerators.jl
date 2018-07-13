@@ -1,6 +1,7 @@
 register(DataDep(
     "Model forage fish supply (ecological supply)",
     """
+	Dataset: Model forage fish supply (ecological supply)
 	Website: http://dx.doi.org/doi:10.5063/F1T43R7N
 	Author: Halley E. Froehlich et al.
 	Date of Publication: No dates released

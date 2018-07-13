@@ -1,6 +1,7 @@
 register(DataDep(
     "Summary of influenza A subtypes in wild birds from GenBank and 50 studies",
     """
+	Dataset: Summary of influenza A subtypes in wild birds from GenBank and 50 studies
 	Website: https://doi.org/10.5063/F1HT2M7Q
 	Author: O=Unaffiliated Uid=Solson
 	Date of Publication: 2014

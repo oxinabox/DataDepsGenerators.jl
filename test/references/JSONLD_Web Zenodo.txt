@@ -1,6 +1,7 @@
 register(DataDep(
     "Map of Co-Seismic Landslides  for the M 7.8 Kaikoura, New Zealand Earthquake",
     """
+	Dataset: Map of Co-Seismic Landslides  for the M 7.8 Kaikoura, New Zealand Earthquake
 	Website: https://zenodo.org/record/1287281
 	Author: Valkaniotis Sotiris et al.
 	Date of Publication: December 20, 2016

@@ -1,6 +1,7 @@
 register(DataDep(
     "Data from Plasticity of plant defense and its evolutionary implications in wild populations of Boechera stricta",
     """
+	Dataset: Data from: Plasticity of plant defense and its evolutionary implications in wild populations of Boechera stricta
 	Website: http://dx.doi.org/10.5061/dryad.f9s4424
 	Author: Wagner, Maggie R., Mitchell-Olds, Thomas
 	Date of Publication: 2018-03-02T20:35:36

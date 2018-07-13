@@ -1,6 +1,7 @@
 register(DataDep(
     "Bank Marketing Data Set (UCI ML Repository)",
     """
+	Dataset: Bank Marketing Data Set (UCI ML Repository)
 	Website: https://archive.ics.uci.edu/ml/datasets/bank+marketing
 	Author: Authors not specified
 

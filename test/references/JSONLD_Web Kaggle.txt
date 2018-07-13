@@ -1,6 +1,7 @@
 register(DataDep(
     "Stack Overflow 2018 Developer Survey",
     """
+	Dataset: Stack Overflow 2018 Developer Survey
 	Website: https://www.kaggle.com/stackoverflow/stack-overflow-2018-developer-survey
 	Author: Stack Overflow
 	Date of Publication: May 15, 2018

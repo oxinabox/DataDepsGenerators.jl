@@ -92,6 +92,7 @@ function body(meta)
     register(DataDep(
         \"$(meta.shortname)\",
         \"\"\""""
+    netString *= format_meta(meta.fullname, "Dataset")
     netString *= format_meta(meta.website, "Website")
     ## Start of the message
     netString *= format_meta(format_authors(meta.author), "Author")

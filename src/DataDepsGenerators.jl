@@ -12,18 +12,18 @@ abstract type DataRepo end
 
 const Opt{T} = Union{Missing, T}
 struct Metadata
-    shortname::Opt{String}
-    fullname::Opt{String}
-    website::Opt{String}
-    description::Opt{String}
-    author::Opt{Vector{String}}
-    maintainer::Opt{String}
-    license::Opt{String}
-    published_date::Opt{Union{Date, DateTime,String}}
-    create_date::Opt{Union{Date, DateTime,String}}
-    modified_date::Opt{Union{Date, DateTime,String}}
-    paper_cite::Opt{String}
-    dataset_cite::Opt{String}
+    shortname::Opt{AbstractString}
+    fullname::Opt{AbstractString}
+    website::Opt{AbstractString}
+    description::Opt{AbstractString}
+    author::Opt{Vector{AbstractString}}
+    maintainer::Opt{AbstractString}
+    license::Opt{AbstractString}
+    published_date::Opt{Union{Date, DateTime,AbstractString}}
+    create_date::Opt{Union{Date, DateTime,AbstractString}}
+    modified_date::Opt{Union{Date, DateTime,AbstractString}}
+    paper_cite::Opt{AbstractString}
+    dataset_cite::Opt{AbstractString}
     dataurls::Opt{Vector}
     datachecksums::Any
 end
@@ -87,6 +87,36 @@ include("DataCite.jl")
 include("Figshare.jl")
 include("JSONLD/JSONLD.jl")
 
+function aggregate(generator_meta)
+
+    meta = Metadata(
+        reduct(generator_meta, :shortname),
+        reduct(generator_meta, :fullname),
+        reduct(generator_meta, :website),
+        reduct(generator_meta, :description),
+        reduct(generator_meta, :author),
+        reduct(generator_meta, :maintainer),
+        reduct(generator_meta, :published_date),
+        reduct(generator_meta, :modified_date),
+        reduct(generator_meta, :paper_cite),
+        reduct(generator_meta, :dataset_cite),
+        reduct(generator_meta, :dataurls),
+        reduct(generator_meta, :datachecksums),
+    )
+    body(meta)  
+end
+
+function reduct(generator_meta::Vector, sym::Symbol)
+    maxlenvalue = ""
+    for ii in generator_meta
+        if !ismissing(getfield(ii, sym)) && (length(getfield(ii, sym)) > length(maxlenvalue))
+            maxlenvalue = getfield(ii, sym)
+        end
+    end
+    println(typeof(maxlenvalue))
+    maxlenvalue
+end
+
 function body(meta)
     netString =  """
     register(DataDep(
@@ -125,14 +155,19 @@ function format_meta(data::Any, label="")
     return "\n" * indent(label * string(data))
 end
 
+generators = []
+generator_meta = []
+
 function generate(repo::DataRepo,
                   dataname,
                   shortname = nothing
     )
-
-    meta = find_metadata(repo, dataname, shortname)
-
-    body(meta)
+    push!(generators, repo)
+    for ii in generators
+        push!(generator_meta, find_metadata(ii, dataname, shortname))
+    end
+    @show generator_meta
+    aggregate(generator_meta)
 end
 
 function format_checksums(csums::Vector)

@@ -12,18 +12,18 @@ abstract type DataRepo end
 
 const Opt{T} = Union{Missing, T}
 struct Metadata
-    shortname::Opt{AbstractString}
-    fullname::Opt{AbstractString}
-    website::Opt{AbstractString}
-    description::Opt{AbstractString}
-    author::Opt{Vector{AbstractString}}
-    maintainer::Opt{AbstractString}
-    license::Opt{AbstractString}
-    published_date::Opt{Union{Date, DateTime,AbstractString}}
-    create_date::Opt{Union{Date, DateTime,AbstractString}}
-    modified_date::Opt{Union{Date, DateTime,AbstractString}}
-    paper_cite::Opt{AbstractString}
-    dataset_cite::Opt{AbstractString}
+    shortname::Opt{String}
+    fullname::Opt{String}
+    website::Opt{String}
+    description::Opt{String}
+    author::Opt{Vector{String}}
+    maintainer::Opt{String}
+    license::Opt{String}
+    published_date::Opt{Union{Date, DateTime,String}}
+    create_date::Opt{Union{Date, DateTime,String}}
+    modified_date::Opt{Union{Date, DateTime,String}}
+    paper_cite::Opt{String}
+    dataset_cite::Opt{String}
     dataurls::Opt{Vector}
     datachecksums::Any
 end
@@ -46,7 +46,7 @@ function find_metadata(repo, dataname, shortname)
         create_date(repo, mainpage),
         modified_date(repo, mainpage),
         paper_cite(repo, mainpage),
-        dataset_cite(repo, mainpage),
+        remove_cite_version(dataset_cite(repo, mainpage)),
         get_urls(repo, mainpage),
         get_checksums(repo, mainpage)
     )
@@ -96,7 +96,9 @@ function aggregate(generator_meta)
         reduct(generator_meta, :description),
         reduct(generator_meta, :author),
         reduct(generator_meta, :maintainer),
+        reduct(generator_meta, :license),
         reduct(generator_meta, :published_date),
+        reduct(generator_meta, :create_date),
         reduct(generator_meta, :modified_date),
         reduct(generator_meta, :paper_cite),
         reduct(generator_meta, :dataset_cite),
@@ -107,15 +109,41 @@ function aggregate(generator_meta)
 end
 
 function reduct(generator_meta::Vector, sym::Symbol)
-    maxlenvalue = ""
+    if !isdefined(:primval) && length(generator_meta) > 0
+        primval = getfield(generator_meta[1], sym)
+    end
     for ii in generator_meta
-        if !ismissing(getfield(ii, sym)) && (length(getfield(ii, sym)) > length(maxlenvalue))
-            maxlenvalue = getfield(ii, sym)
+        if !ismissing(getfield(ii, sym))
+            if ismissing(primval) || rule_dispatcher(getfield(ii, sym), primval, sym)
+                primval = getfield(ii, sym)
+            end
         end
     end
-    println(typeof(maxlenvalue))
-    maxlenvalue
+    primval
 end
+
+function rule_dispatcher(fieldvar::Vector, prevvar::Vector, sym::Symbol)
+    (length(fieldvar) > length(prevvar))
+end
+
+function rule_dispatcher(fieldvar::Union{Date,DateTime,String}, prevvar::Union{Date,DateTime,String}, sym::Symbol)
+    if (isa(fieldvar, Date) || isa(fieldvar, DateTime))
+        # For dates, Date formats are always preferred over Strings
+        return true
+    end
+    if sym == Symbol("license")
+        # Shorter (nonzero) license text is better
+        return (length(fieldvar) < length(prevvar)) ? length(fieldvar) !=0 : false
+    end
+    # General rule: Longer texts are better. More descript.
+    return (length(fieldvar) > length(prevvar))
+end
+
+function remove_cite_version(cite::String)
+    replace(cite, r"\(Version 1\) " => "")
+end
+
+remove_cite_version(cite::Missing) = missing
 
 function body(meta)
     netString =  """
@@ -155,24 +183,34 @@ function format_meta(data::Any, label="")
     return "\n" * indent(label * string(data))
 end
 
-generators = []
-generator_meta = []
 
 function generate(repo::DataRepo,
                   dataname,
                   shortname = nothing
     )
-    push!(generators, repo)
+    generators = create_generators(repo::DataRepo,dataname::Any)
+    generator_meta = []
     for ii in generators
         push!(generator_meta, find_metadata(ii, dataname, shortname))
     end
-    @show generator_meta
     aggregate(generator_meta)
 end
 
 function format_checksums(csums::Vector)
     csumvec = join(format_checksums.(csums), ", ")
     "[$csumvec]"
+end
+
+function create_generators(repo::DataRepo, dataname)
+    generators = []
+    if (match_doi(dataname)) != nothing
+        # generators = [DataCite(), Figshare()]
+        generators = []
+    end
+    if !any(x->x==repo, generators)
+        push!(generators, repo)
+    end
+    generators
 end
 
 function format_checksums(csum::Tuple{T,<:AbstractString}) where T<:Symbol

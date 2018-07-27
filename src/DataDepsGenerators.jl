@@ -5,7 +5,7 @@ using JSON
 using HTTP
 using Missings
 
-export generate, citation_text
+export generate, citation_text, remove_cite_version
 export UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN, DataCite, Figshare, JSONLD
 
 abstract type DataRepo end
@@ -46,7 +46,7 @@ function find_metadata(repo, dataname, shortname)
         create_date(repo, mainpage),
         modified_date(repo, mainpage),
         paper_cite(repo, mainpage),
-        remove_cite_version(dataset_cite(repo, mainpage)),
+        dataset_cite(repo, mainpage),
         get_urls(repo, mainpage),
         get_checksums(repo, mainpage)
     )
@@ -90,60 +90,44 @@ include("JSONLD/JSONLD.jl")
 function aggregate(generator_meta)
 
     meta = Metadata(
-        reduct(generator_meta, :shortname),
-        reduct(generator_meta, :fullname),
-        reduct(generator_meta, :website),
-        reduct(generator_meta, :description),
-        reduct(generator_meta, :author),
-        reduct(generator_meta, :maintainer),
-        reduct(generator_meta, :license),
-        reduct(generator_meta, :published_date),
-        reduct(generator_meta, :create_date),
-        reduct(generator_meta, :modified_date),
-        reduct(generator_meta, :paper_cite),
-        reduct(generator_meta, :dataset_cite),
-        reduct(generator_meta, :dataurls),
-        reduct(generator_meta, :datachecksums),
+        combine_all(generator_meta, :shortname),
+        combine_all(generator_meta, :fullname),
+        combine_all(generator_meta, :website),
+        combine_all(generator_meta, :description),
+        combine_all(generator_meta, :author),
+        combine_all(generator_meta, :maintainer),
+        combine_all(generator_meta, :license),
+        combine_all(generator_meta, :published_date),
+        combine_all(generator_meta, :create_date),
+        combine_all(generator_meta, :modified_date),
+        combine_all(generator_meta, :paper_cite),
+        combine_all(generator_meta, :dataset_cite),
+        combine_all(generator_meta, :dataurls),
+        combine_all(generator_meta, :datachecksums),
     )
     body(meta)  
 end
 
-function reduct(generator_meta::Vector, sym::Symbol)
-    if !isdefined(:primval) && length(generator_meta) > 0
-        primval = getfield(generator_meta[1], sym)
-    end
-    for ii in generator_meta
-        if !ismissing(getfield(ii, sym))
-            if ismissing(primval) || rule_dispatcher(getfield(ii, sym), primval, sym)
-                primval = getfield(ii, sym)
-            end
-        end
-    end
-    primval
+function getfieldlist(generator_meta::Vector, sym::Symbol)
+    return [getfield(i, sym) for i in generator_meta]
 end
 
-function rule_dispatcher(fieldvar::Vector, prevvar::Vector, sym::Symbol)
-    (length(fieldvar) > length(prevvar))
-end
-
-function rule_dispatcher(fieldvar::Union{Date,DateTime,String}, prevvar::Union{Date,DateTime,String}, sym::Symbol)
-    if (isa(fieldvar, Date) || isa(fieldvar, DateTime))
-        # For dates, Date formats are always preferred over Strings
-        return true
+function combine_all(values::Vector, sym::Symbol)
+    ret = missing
+    for value in getfieldlist(values, sym)
+        ret = combine(ret, value, sym)
     end
-    if sym == Symbol("license")
-        # Shorter (nonzero) license text is better
-        return (length(fieldvar) < length(prevvar)) ? length(fieldvar) !=0 : false
-    end
-    # General rule: Longer texts are better. More descript.
-    return (length(fieldvar) > length(prevvar))
+    ret
 end
 
-function remove_cite_version(cite::String)
-    replace(cite, r"\(Version 1\) " => "")
-end
-
-remove_cite_version(cite::Missing) = missing
+combine(::Missing, ::Missing, sym::Symbol) = missing
+combine(::Missing, x, sym::Symbol) = x
+combine(x, ::Missing, sym::Symbol) = x
+combine(x::Vector,y::Vector, sym::Symbol) = length(x) > length(y) ? x : y
+combine(x::String,y::String, ::Val{:license}) = length(x) < length(y) ? x : y
+combine(x::String,y::String, sym::Symbol) = length(x) > length(y) ? x : y
+combine(x::Union{DateTime, Date},y::String, sym::Symbol) = x
+combine(x::String,y::Union{DateTime, Date}, sym::Symbol) = y
 
 function body(meta)
     netString =  """
@@ -188,8 +172,9 @@ function generate(repo::DataRepo,
                   dataname,
                   shortname = nothing
     )
-    generators = create_generators(repo::DataRepo,dataname::Any)
+    generators = []
     generator_meta = []
+    push!(generators, repo)
     for ii in generators
         push!(generator_meta, find_metadata(ii, dataname, shortname))
     end
@@ -199,18 +184,6 @@ end
 function format_checksums(csums::Vector)
     csumvec = join(format_checksums.(csums), ", ")
     "[$csumvec]"
-end
-
-function create_generators(repo::DataRepo, dataname)
-    generators = []
-    if (match_doi(dataname)) != nothing
-        # generators = [DataCite(), Figshare()]
-        generators = []
-    end
-    if !any(x->x==repo, generators)
-        push!(generators, repo)
-    end
-    generators
 end
 
 function format_checksums(csum::Tuple{T,<:AbstractString}) where T<:Symbol
@@ -261,6 +234,10 @@ function mainpage_url(repo::DataRepo, dataname)
         url = joinpath(base_url(repo), dataname)
     end
     getpage(url), url
+end
+
+function remove_cite_version(code)
+    replace(code, r"\(Version 1\) " => "")
 end
 
 end # module

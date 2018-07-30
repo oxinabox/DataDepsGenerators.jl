@@ -30,26 +30,32 @@ end
 
 function find_metadata(repo, dataname, shortname)
 
-    mainpage, url = mainpage_url(repo, dataname)
-    fullname = data_fullname(repo, mainpage)
-    shortname = data_shortname(repo, shortname, fullname)
+    try
+        mainpage, url = mainpage_url(repo, dataname)
+        fullname = data_fullname(repo, mainpage)
+        shortname = data_shortname(repo, shortname, fullname)
 
-    Metadata(
-        shortname,
-        fullname,
-        website(repo, url, mainpage),
-        description(repo, mainpage),
-        author(repo, mainpage),
-        maintainer(repo, mainpage),
-        license(repo, mainpage),
-        published_date(repo, mainpage),
-        create_date(repo, mainpage),
-        modified_date(repo, mainpage),
-        paper_cite(repo, mainpage),
-        dataset_cite(repo, mainpage),
-        get_urls(repo, mainpage),
-        get_checksums(repo, mainpage)
-    )
+        Metadata(
+            shortname,
+            fullname,
+            website(repo, url, mainpage),
+            description(repo, mainpage),
+            author(repo, mainpage),
+            maintainer(repo, mainpage),
+            license(repo, mainpage),
+            published_date(repo, mainpage),
+            create_date(repo, mainpage),
+            modified_date(repo, mainpage),
+            paper_cite(repo, mainpage),
+            dataset_cite(repo, mainpage),
+            get_urls(repo, mainpage),
+            get_checksums(repo, mainpage)
+        )
+    catch err
+        if isa(err, GeneratorError)
+        end
+    end
+
 end
 
 function data_shortname(repo, shortname::Void, fullname)
@@ -87,29 +93,29 @@ include("DataCite.jl")
 include("Figshare.jl")
 include("JSONLD/JSONLD.jl")
 
-function aggregate(generator_meta)
+function aggregate(metadatas)
 
     meta = Metadata(
-        combine_all(generator_meta, :shortname),
-        combine_all(generator_meta, :fullname),
-        combine_all(generator_meta, :website),
-        combine_all(generator_meta, :description),
-        combine_all(generator_meta, :author),
-        combine_all(generator_meta, :maintainer),
-        combine_all(generator_meta, :license),
-        combine_all(generator_meta, :published_date),
-        combine_all(generator_meta, :create_date),
-        combine_all(generator_meta, :modified_date),
-        combine_all(generator_meta, :paper_cite),
-        combine_all(generator_meta, :dataset_cite),
-        combine_all(generator_meta, :dataurls),
-        combine_all(generator_meta, :datachecksums),
+        combine_all(metadatas, :shortname),
+        combine_all(metadatas, :fullname),
+        combine_all(metadatas, :website),
+        combine_all(metadatas, :description),
+        combine_all(metadatas, :author),
+        combine_all(metadatas, :maintainer),
+        combine_all(metadatas, :license),
+        combine_all(metadatas, :published_date),
+        combine_all(metadatas, :create_date),
+        combine_all(metadatas, :modified_date),
+        combine_all(metadatas, :paper_cite),
+        combine_all(metadatas, :dataset_cite),
+        combine_all(metadatas, :dataurls),
+        combine_all(metadatas, :datachecksums),
     )
     body(meta)  
 end
 
-function getfieldlist(generator_meta::Vector, sym::Symbol)
-    return [getfield(i, sym) for i in generator_meta]
+function getfieldlist(metadatas::Vector, sym::Symbol)
+    return [getfield(i, sym) for i in metadatas]
 end
 
 function combine_all(values::Vector, sym::Symbol)
@@ -120,14 +126,15 @@ function combine_all(values::Vector, sym::Symbol)
     ret
 end
 
-combine(::Missing, ::Missing, sym::Symbol) = missing
-combine(::Missing, x, sym::Symbol) = x
-combine(x, ::Missing, sym::Symbol) = x
-combine(x::Vector,y::Vector, sym::Symbol) = length(x) > length(y) ? x : y
+combine(::Missing, ::Missing, z) = missing
+combine(::Missing, x, z) = x
+combine(x, ::Missing, z) = x
+combine(x::Vector,y::Vector, z) = length(x) > length(y) ? x : y
+combine(x::String,y::String,s::Symbol) = combine(x,y,Val{s}())
 combine(x::String,y::String, ::Val{:license}) = length(x) < length(y) ? x : y
-combine(x::String,y::String, sym::Symbol) = length(x) > length(y) ? x : y
-combine(x::Union{DateTime, Date},y::String, sym::Symbol) = x
-combine(x::String,y::Union{DateTime, Date}, sym::Symbol) = y
+combine(x::String,y::String, z) = length(x) > length(y) ? x : y
+combine(x::Union{DateTime, Date},y::String, z) = x
+combine(x::String,y::Union{DateTime, Date}, z) = y
 
 function body(meta)
     netString =  """
@@ -172,13 +179,16 @@ function generate(repo::DataRepo,
                   dataname,
                   shortname = nothing
     )
-    generators = []
-    generator_meta = []
+    generators = [CKAN(), DataCite(), Figshare(), JSONLD_DOI(), JSONLD_Web()]
+    metadatas = []
     push!(generators, repo)
     for ii in generators
-        push!(generator_meta, find_metadata(ii, dataname, shortname))
+        meta = find_metadata(ii, dataname, shortname)
+        if !isa(meta, Void)
+            push!(metadatas, meta)
+        end
     end
-    aggregate(generator_meta)
+    aggregate(metadatas)
 end
 
 function format_checksums(csums::Vector)
@@ -236,8 +246,10 @@ function mainpage_url(repo::DataRepo, dataname)
     getpage(url), url
 end
 
-function remove_cite_version(code)
-    replace(code, r"\(Version 1\) " => "")
+struct GeneratorError <: Exception
+    repo::DataDepsGenerators.DataRepo
 end
+
+Base.showerror(io::IO, e::GeneratorError) = print(io, e.repo, " generator did not work")
 
 end # module

@@ -2,7 +2,7 @@ register(DataDep(
     "List of fire patch properties computed and associated NetCDF maps from the MCD64A1 Collection 6 (2000-2016) and the MERIS fire_cci v4.1 (2005-2011) BA products",
     """
 	Dataset: List of fire patch properties computed and associated NetCDF maps from the MCD64A1 Collection 6 (2000-2016) and the MERIS fire_cci v4.1 (2005-2011) BA products
-	Website: https://doi.org/10.15148/0e999ffc-e220-41ac-ac85-76e92ecd0320
+	Website: https://search.datacite.org/works/10.15148/0e999ffc-e220-41ac-ac85-76e92ecd0320
 	Author: Pierre Laurent et al.
 	Date of Publication: 2018
 

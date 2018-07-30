@@ -58,3 +58,19 @@ function escape_multiline_string(s::AbstractString)
     escaped = replace(escaped, '\\', raw"\\")
     escaped
 end
+
+function remove_cite_version(code)
+    replace(code, r"\(Version \d+\) " => "")
+end
+
+"""
+    leaf_subtypes(T)
+Returns all the nonabstract types decedent from `T`.
+"""
+function leaf_subtypes(T)
+       if isleaftype(T)
+           T
+       else
+           vcat(leaf_subtypes.(subtypes(T))...)
+       end
+end

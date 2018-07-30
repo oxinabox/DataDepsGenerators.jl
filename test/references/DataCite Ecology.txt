@@ -5,7 +5,7 @@ register(DataDep(
 	Website: https://doi.org/10.5061/dryad.74699
 	Author: Eric J. B. Von Wettberg et al.
 	Date of Publication: 2018
-	License: https://creativecommons.org/publicdomain/zero/1.0/
+	License: http://creativecommons.org/publicdomain/zero/1.0
 
 	
 	Please cite this paper: Von Wettberg, E. J. B., Chang, P. L., Başdemir, F., Carrasquila-Garcia, N., Korbu, L. B., Moenga, S. M., … Cook, D. R. (2018). Ecology and genomics of an important crop wild relative as a prelude to agricultural innovation. Nature Communications, 9(1). doi:10.1038/s41467-018-02867-z

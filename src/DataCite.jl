@@ -44,6 +44,6 @@ function mainpage_url(repo::DataCite, dataname)
         url = base_url(repo) * identifier
         JSON.parse(text_only(getpage(url).root))["data"], url
     else
-        error("Please use a valid url")
+        throw(GeneratorError(repo))
     end
 end

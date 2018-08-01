@@ -30,7 +30,7 @@ end
 
 function find_metadata(repo, dataname, shortname)
 
-    try
+    # try
         mainpage, url = mainpage_url(repo, dataname)
         fullname = data_fullname(repo, mainpage)
         shortname = data_shortname(repo, shortname, fullname)
@@ -51,10 +51,10 @@ function find_metadata(repo, dataname, shortname)
             get_urls(repo, mainpage),
             get_checksums(repo, mainpage)
         )
-    catch err
-        if isa(err, GeneratorError)
-        end
-    end
+    # catch err
+    #     # if isa(err, GeneratorError)
+    #     # end
+    # end
 
 end
 
@@ -175,20 +175,56 @@ function format_meta(data::Any, label="")
 end
 
 
-function generate(repo::DataRepo,
-                  dataname,
-                  shortname = nothing
-    )
-    generators = [CKAN(), DataCite(), Figshare(), JSONLD_DOI(), JSONLD_Web()]
-    metadatas = []
-    push!(generators, repo)
-    for ii in generators
-        meta = find_metadata(ii, dataname, shortname)
-        if !isa(meta, Void)
-            push!(metadatas, meta)
-        end
-    end
-    aggregate(metadatas)
+# function generate(repo::DataRepo,
+#                   dataname,
+#                   shortname = nothing
+#     )
+#     generators = [CKAN(), DataCite(), Figshare(), JSONLD_DOI(), JSONLD_Web()]
+#     metadatas = []
+#     push!(generators, repo)
+#     for ii in generators
+#         meta = find_metadata(ii, dataname, shortname)
+#         if !isa(meta, Void)
+#             push!(metadatas, meta)
+#         end
+#     end
+#     aggregate(metadatas)
+# end
+
+function generate(repo::DataRepo, dataname; kwargs...)
+    generate([repo], dataname; kwargs...)
+end
+
+function generate(dataname; kwargs...)
+    all_repos = [T() for T in leaf_subtypes(DataRepo)]
+    generate(all_repos , dataname; kwargs...)
+end
+
+function generate(repos, dataname, shortname = nothing, show_failures=false)
+	retrieved_metadatas = []
+	failures = Tuple{DataRepo, Exception}[]
+	
+	# Get all the metadata we can
+	@sync for repo in repos
+		@async try
+			metadata = find_metadata(repo, dataname, shortname)
+			push!(retrieved_metadatas, metadata)
+		catch err
+			push!(failures, (repo, err))
+		end
+	end
+	
+	# Displace errors if required
+	if length(retrieved_metadatas) == 0 || show_failures
+		for (repo, err) in failures
+			println(repo, " failed due to")
+			println(err)
+			println()
+		end
+	end
+	
+	# merge them
+	aggregate(retrieved_metadatas)
 end
 
 function format_checksums(csums::Vector)

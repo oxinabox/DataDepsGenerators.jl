@@ -13,7 +13,7 @@ tests = [
     "DataCite",
     "Figshare",
     "JSONLD/JSONLD",
-    "async",
+    "combine",
 ]
 
 @testset "DataDepGenerators" begin

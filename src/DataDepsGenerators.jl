@@ -29,33 +29,26 @@ struct Metadata
 end
 
 function find_metadata(repo, dataname, shortname)
+    mainpage, url = mainpage_url(repo, dataname)
+    fullname = data_fullname(repo, mainpage)
+    shortname = data_shortname(repo, shortname, fullname)
 
-    # try
-        mainpage, url = mainpage_url(repo, dataname)
-        fullname = data_fullname(repo, mainpage)
-        shortname = data_shortname(repo, shortname, fullname)
-
-        Metadata(
-            shortname,
-            fullname,
-            website(repo, url, mainpage),
-            description(repo, mainpage),
-            author(repo, mainpage),
-            maintainer(repo, mainpage),
-            license(repo, mainpage),
-            published_date(repo, mainpage),
-            create_date(repo, mainpage),
-            modified_date(repo, mainpage),
-            paper_cite(repo, mainpage),
-            dataset_cite(repo, mainpage),
-            get_urls(repo, mainpage),
-            get_checksums(repo, mainpage)
-        )
-    # catch err
-    #     # if isa(err, GeneratorError)
-    #     # end
-    # end
-
+    Metadata(
+        shortname,
+        fullname,
+        website(repo, url, mainpage),
+        description(repo, mainpage),
+        author(repo, mainpage),
+        maintainer(repo, mainpage),
+        license(repo, mainpage),
+        published_date(repo, mainpage),
+        create_date(repo, mainpage),
+        modified_date(repo, mainpage),
+        paper_cite(repo, mainpage),
+        dataset_cite(repo, mainpage),
+        get_urls(repo, mainpage),
+        get_checksums(repo, mainpage)
+    )
 end
 
 function data_shortname(repo, shortname::Void, fullname)
@@ -126,15 +119,17 @@ function combine_all(values::Vector, sym::Symbol)
     ret
 end
 
-combine(::Missing, ::Missing, z) = missing
-combine(::Missing, x, z) = x
-combine(x, ::Missing, z) = x
-combine(x::Vector,y::Vector, z) = length(x) > length(y) ? x : y
-combine(x::String,y::String,s::Symbol) = combine(x,y,Val{s}())
-combine(x::String,y::String, ::Val{:license}) = length(x) < length(y) ? x : y
-combine(x::String,y::String, z) = length(x) > length(y) ? x : y
-combine(x::Union{DateTime, Date},y::String, z) = x
-combine(x::String,y::Union{DateTime, Date}, z) = y
+#Redispatch based on Value
+combine(x::String, y::String, s::Symbol) = combine(x,y,Val{s}())
+
+combine(::Missing, ::Missing, ::Any) = missing
+combine(::Missing, x, ::Any) = x
+combine(x, ::Missing, ::Any) = x
+combine(x::Vector, y::Vector, ::Any) = length(x) > length(y) ? x : y
+combine(x::String, y::String, ::Val{:license}) = length(x) < length(y) ? x : y
+combine(x::String, y::String, ::Any) = length(x) > length(y) ? x : y
+combine(x::Union{DateTime, Date}, y::String, ::Any) = x
+combine(x::String, y::Union{DateTime, Date}, ::Any) = y
 
 function body(meta)
     netString =  """
@@ -157,7 +152,7 @@ function body(meta)
     netString *= "\n\t\"\"\","
     netString = netString |> strip
     ## End of the message
-    netString *= format_meta(meta.dataurls)
+    netString *= format_meta(ismissing(meta.dataurls)?"missing":meta.dataurls)
     netString *= ","
     netString *= format_meta(format_checksums(meta.datachecksums))
     netString *= "\n))"
@@ -174,23 +169,6 @@ function format_meta(data::Any, label="")
     return "\n" * indent(label * string(data))
 end
 
-
-# function generate(repo::DataRepo,
-#                   dataname,
-#                   shortname = nothing
-#     )
-#     generators = [CKAN(), DataCite(), Figshare(), JSONLD_DOI(), JSONLD_Web()]
-#     metadatas = []
-#     push!(generators, repo)
-#     for ii in generators
-#         meta = find_metadata(ii, dataname, shortname)
-#         if !isa(meta, Void)
-#             push!(metadatas, meta)
-#         end
-#     end
-#     aggregate(metadatas)
-# end
-
 function generate(repo::DataRepo, dataname; kwargs...)
     generate([repo], dataname; kwargs...)
 end
@@ -201,30 +179,30 @@ function generate(dataname; kwargs...)
 end
 
 function generate(repos, dataname, shortname = nothing, show_failures=false)
-	retrieved_metadatas = []
-	failures = Tuple{DataRepo, Exception}[]
-	
-	# Get all the metadata we can
-	@sync for repo in repos
-		@async try
-			metadata = find_metadata(repo, dataname, shortname)
-			push!(retrieved_metadatas, metadata)
-		catch err
-			push!(failures, (repo, err))
-		end
-	end
-	
-	# Displace errors if required
-	if length(retrieved_metadatas) == 0 || show_failures
-		for (repo, err) in failures
-			println(repo, " failed due to")
-			println(err)
-			println()
-		end
-	end
-	
-	# merge them
-	aggregate(retrieved_metadatas)
+    retrieved_metadatas = []
+    failures = Tuple{DataRepo, Exception}[]
+    
+    # Get all the metadata we can
+    @sync for repo in repos
+        @async try
+            metadata = find_metadata(repo, dataname, shortname)
+            push!(retrieved_metadatas, metadata)
+        catch err
+            push!(failures, (repo, err))
+        end
+    end
+    
+    # Display errors if required
+    if length(retrieved_metadatas) == 0 || show_failures
+        for (repo, err) in failures
+            println(repo, " failed due to")
+            println(err)
+            println()
+        end
+    end
+    
+    # merge them
+    aggregate(retrieved_metadatas)
 end
 
 function format_checksums(csums::Vector)
@@ -282,10 +260,13 @@ function mainpage_url(repo::DataRepo, dataname)
     getpage(url), url
 end
 
-struct GeneratorError <: Exception
-    repo::DataDepsGenerators.DataRepo
+struct GeneratorError{T<:DataRepo} <: Exception
+    repo::T
+    message::String
 end
 
-Base.showerror(io::IO, e::GeneratorError) = print(io, e.repo, " generator did not work")
+GeneratorError(repo)=GeneratorError(repo, "")
+
+Base.showerror(io::IO, e::GeneratorError) = print(io, e.repo, " generator was not suitable. $(e.message)")
 
 end # module

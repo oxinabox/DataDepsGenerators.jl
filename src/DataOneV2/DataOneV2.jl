@@ -8,11 +8,9 @@ description(repo::DataOneV2, mainpage) = try desc_(repo, mainpage) catch missing
 
 author(repo::DataOneV2, mainpage) = try authors_(repo, mainpage) catch missing end
 
-license(repo::DataOneV2, mainpage) = try license_(repo, mainpage) catch missing end
-
 published_date(repo::DataOneV2, mainpage) = try pub_date(repo, mainpage) catch missing end
 
-function license_(repo::DataOneV2, mainpage)
+function license(repo::DataOneV2, mainpage)
     try
         license_ele = matchall(sel"intellectualRights", mainpage.root)
         if length(license_ele) > 0

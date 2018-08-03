@@ -7,7 +7,7 @@ using ReferenceTests
 
 @testset "Figshare test" begin
 
-    @testset "Figshare Gene Diversity" begin
+    @testset "Chile Activism" begin
         registration_code = generate(Figshare(), "https://figshare.com/articles/Youth_Activism_in_Chile_from_urban_educational_inequalities_to_experiences_of_living_together_and_solidarity/6504206")
 
         @testset "Integration Test" begin

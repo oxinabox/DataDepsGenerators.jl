@@ -152,7 +152,7 @@ function body(meta)
     netString *= "\n\t\"\"\","
     netString = netString |> strip
     ## End of the message
-    netString *= format_meta(ismissing(meta.dataurls)?"missing":meta.dataurls)
+    netString *= format_meta(ismissing(meta.dataurls) ? "missing" : meta.dataurls)
     netString *= ","
     netString *= format_meta(format_checksums(meta.datachecksums))
     netString *= "\n))"
@@ -175,23 +175,27 @@ end
 
 function generate(dataname; kwargs...)
     all_repos = [T() for T in leaf_subtypes(DataRepo)]
-    generate(all_repos , dataname; kwargs...)
+    generate(all_repos, dataname; kwargs...)
 end
 
-function generate(repos, dataname, shortname = nothing, show_failures=false)
-    retrieved_metadatas = []
-    failures = Tuple{DataRepo, Exception}[]
+
+function generate(repos::Vector, dataname; shortname = nothing, show_failures=false)
+    retrieved_metadatas_ch = Channel{Any}(128)
+    failures = Channel{Tuple{DataRepo, Exception}}(128)
     
     # Get all the metadata we can
-    @sync for repo in repos
-        @async try
+    for repo in repos
+        try
             metadata = find_metadata(repo, dataname, shortname)
-            push!(retrieved_metadatas, metadata)
+            push!(retrieved_metadatas_ch, metadata)
         catch err
             push!(failures, (repo, err))
         end
     end
+    close(retrieved_metadatas_ch)
+    close(failures)
     
+    retrieved_metadatas = collect(retrieved_metadatas_ch)
     # Display errors if required
     if length(retrieved_metadatas) == 0 || show_failures
         for (repo, err) in failures

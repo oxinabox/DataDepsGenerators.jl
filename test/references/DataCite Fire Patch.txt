@@ -19,5 +19,6 @@ register(DataDep(
 	eccentricity of the SDE, Ratio of SDE half axes. The NetCDF files are self-described.
 	
 	Please cite this dataset: Laurent, P., Mouillot, F., Yue, C., Moreno Dominguez, M. V., Ciais, P., & Nogueira, J. M. P. (2018). List of fire patch properties computed and associated NetCDF maps from the MCD64A1 Collection 6 (2000-2016) and the MERIS fire_cci v4.1 (2005-2011) BA products [Data set]. OSU OREME. https://doi.org/10.15148/0e999ffc-e220-41ac-ac85-76e92ecd0320
-	""",,
+	""",
+	missing,
 ))

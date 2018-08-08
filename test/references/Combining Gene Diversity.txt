@@ -1,0 +1,16 @@
+register(DataDep(
+    "Supplemental Material For "Overcoming Challenges In Variant Calling Exploring Sequence Diversity In Candidate Genes For Plant Development In Perennial Ryegrass (Lolium Perenne)"",
+    """
+	Dataset: Supplemental Material For "Overcoming Challenges In Variant Calling: Exploring Sequence Diversity In Candidate Genes For Plant Development In Perennial Ryegrass (Lolium Perenne)"
+	Website: https://figshare.com/articles/Supplemental_Material_for_Overcoming_challenges_in_variant_calling_exploring_sequence_diversity_in_candidate_genes_for_plant_development_in_perennial_ryegrass_Lolium_perenne_/5969383
+	Author: Elisabeth Veeckman
+	Date of Publication: 2019-03-09T00:00:00Z
+	License: https://creativecommons.org/licenses/by/4.0
+
+	Supplemental materials to the manuscript.
+	
+	Please cite this dataset: Veeckman, E. (2019). Supplemental Material For ‘Overcoming Challenges In Variant Calling: Exploring Sequence Diversity In Candidate Genes For Plant Development In Perennial Ryegrass (Lolium Perenne)’ [Data set]. Zenodo. https://doi.org/10.5281/zenodo.1194927
+	""",
+	Any["https://ndownloader.figshare.com/files/10703311", "https://ndownloader.figshare.com/files/10703314"],
+	[(md5, "a167841695f0349fe3ce0c8858eaf452"), (md5, "b951ef090d8bd8a037df7d466da1f848")]
+))

@@ -46,11 +46,12 @@ function mainpage_url(repo::Figshare, dataname)
         down_url = base_url(repo) * "?doi=" * identifier
         doi_page = JSON.parse(text_only(getpage(down_url).root))
         url = doi_page[1]["url_public_api"]
+        return JSON.parse(text_only(getpage(url).root)), url
     elseif match_figshare(dataname)!= nothing
         identifier = match_figshare(dataname)
         url = base_url(repo) * "/" *identifier
+        return JSON.parse(text_only(getpage(url).root)), url
     else
-        error("Please use a valid url, DOI, or Figshare ID")
+        throw(GeneratorError(repo))
     end
-    JSON.parse(text_only(getpage(url).root)), url
 end

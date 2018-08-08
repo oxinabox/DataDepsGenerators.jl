@@ -24,12 +24,6 @@ function paper_cite(::DataCite, mainpage)
     paper_cite
 end
 
-function get_urls(repo::DataCite, page)
-    urls = ["PUT DOWNLOAD URL HERE"]
-    info("DataCite based generation can only generate partial registration blocks, as DataCite metadata does not (currently) include the URL to the resource. You will have to edit in the URL after generation.")
-    urls
-end
-
 function data_fullname(::DataCite, mainpage)
     mainpage["attributes"]["title"]
 end
@@ -44,6 +38,6 @@ function mainpage_url(repo::DataCite, dataname)
         url = base_url(repo) * identifier
         JSON.parse(text_only(getpage(url).root))["data"], url
     else
-        error("Please use a valid url")
+        throw(GeneratorError(repo))
     end
 end

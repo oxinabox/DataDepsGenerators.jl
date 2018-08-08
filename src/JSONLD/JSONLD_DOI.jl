@@ -5,6 +5,8 @@ function mainpage_url(repo::JSONLD_DOI, dataname)
         url = joinpath("https://data.datacite.org/", match_doi(dataname))
         resp = HTTP.get(url, ["Accept"=>"application/vnd.schemaorg.ld+json"]; forwardheaders=true)
         json = resp.body |> String |> JSON.parse
+        return json, dataname
+    else
+        throw(GeneratorError(repo))
     end
-    json, dataname
 end

@@ -3,9 +3,7 @@ end
 
 description(repo::CKAN, mainpage) = mainpage["notes"]
 
-function author(repo::CKAN, mainpage)
-    authors = [mainpage["author"]]
-end
+author(repo::CKAN, mainpage) = [mainpage["author"]]
 
 maintainer(repo::CKAN, mainpage) = mainpage["maintainer"]
 
@@ -24,9 +22,7 @@ function get_urls(repo::CKAN, page)
     urls
 end
 
-function data_fullname(::CKAN, mainpage)
-    mainpage["title"]
-end
+data_fullname(::CKAN, mainpage) = mainpage["title"]
 
 function website(repo::CKAN, mainpage_url, mainpage)
     replace(mainpage_url, "/api/3/action/package_show?id=", "/dataset/")
@@ -35,8 +31,9 @@ end
 function mainpage_url(repo::CKAN, dataname)
     if startswith(dataname, "http")
         url = replace(dataname, "/dataset/", "/api/3/action/package_show?id=")
+        return JSON.parse(text_only(getpage(url).root))["result"], dataname
     else
-        error("Please use a valid url")
+        # error("Please use a valid url")
+        throw(GeneratorError(repo))
     end
-    JSON.parse(text_only(getpage(url).root))["result"], dataname
 end

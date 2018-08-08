@@ -5,7 +5,7 @@ using JSON
 using HTTP
 using Missings
 
-export generate, citation_text
+export generate, citation_text, remove_cite_version
 export UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN, DataCite, Figshare, JSONLD
 
 abstract type DataRepo end
@@ -29,7 +29,6 @@ struct Metadata
 end
 
 function find_metadata(repo, dataname, shortname)
-
     mainpage, url = mainpage_url(repo, dataname)
     fullname = data_fullname(repo, mainpage)
     shortname = data_shortname(repo, shortname, fullname)
@@ -87,6 +86,51 @@ include("DataCite.jl")
 include("Figshare.jl")
 include("JSONLD/JSONLD.jl")
 
+function aggregate(metadatas)
+
+    meta = Metadata(
+        combine_all(metadatas, :shortname),
+        combine_all(metadatas, :fullname),
+        combine_all(metadatas, :website),
+        combine_all(metadatas, :description),
+        combine_all(metadatas, :author),
+        combine_all(metadatas, :maintainer),
+        combine_all(metadatas, :license),
+        combine_all(metadatas, :published_date),
+        combine_all(metadatas, :create_date),
+        combine_all(metadatas, :modified_date),
+        combine_all(metadatas, :paper_cite),
+        combine_all(metadatas, :dataset_cite),
+        combine_all(metadatas, :dataurls),
+        combine_all(metadatas, :datachecksums),
+    )
+    body(meta)  
+end
+
+function getfieldlist(metadatas::Vector, sym::Symbol)
+    return [getfield(i, sym) for i in metadatas]
+end
+
+function combine_all(values::Vector, sym::Symbol)
+    ret = missing
+    for value in getfieldlist(values, sym)
+        ret = combine(ret, value, sym)
+    end
+    ret
+end
+
+#Redispatch based on Value
+combine(x::String, y::String, s::Symbol) = combine(x,y,Val{s}())
+
+combine(::Missing, ::Missing, ::Any) = missing
+combine(::Missing, x, ::Any) = x
+combine(x, ::Missing, ::Any) = x
+combine(x::Vector, y::Vector, ::Any) = length(x) > length(y) ? x : y
+combine(x::String, y::String, ::Val{:license}) = length(x) < length(y) ? x : y
+combine(x::String, y::String, ::Any) = length(x) > length(y) ? x : y
+combine(x::Union{DateTime, Date}, y::String, ::Any) = x
+combine(x::String, y::Union{DateTime, Date}, ::Any) = y
+
 function body(meta)
     netString =  """
     register(DataDep(
@@ -108,7 +152,7 @@ function body(meta)
     netString *= "\n\t\"\"\","
     netString = netString |> strip
     ## End of the message
-    netString *= format_meta(meta.dataurls)
+    netString *= format_meta(ismissing(meta.dataurls) ? "missing" : meta.dataurls)
     netString *= ","
     netString *= format_meta(format_checksums(meta.datachecksums))
     netString *= "\n))"
@@ -125,14 +169,44 @@ function format_meta(data::Any, label="")
     return "\n" * indent(label * string(data))
 end
 
-function generate(repo::DataRepo,
-                  dataname,
-                  shortname = nothing
-    )
+function generate(repo::DataRepo, dataname; kwargs...)
+    generate([repo], dataname; kwargs...)
+end
 
-    meta = find_metadata(repo, dataname, shortname)
+function generate(dataname; kwargs...)
+    all_repos = [T() for T in leaf_subtypes(DataRepo)]
+    generate(all_repos, dataname; kwargs...)
+end
 
-    body(meta)
+
+function generate(repos::Vector, dataname; shortname = nothing, show_failures=false)
+    retrieved_metadatas_ch = Channel{Any}(128)
+    failures = Channel{Tuple{DataRepo, Exception}}(128)
+    
+    # Get all the metadata we can
+    for repo in repos
+        try
+            metadata = find_metadata(repo, dataname, shortname)
+            push!(retrieved_metadatas_ch, metadata)
+        catch err
+            push!(failures, (repo, err))
+        end
+    end
+    close(retrieved_metadatas_ch)
+    close(failures)
+    
+    retrieved_metadatas = collect(retrieved_metadatas_ch)
+    # Display errors if required
+    if length(retrieved_metadatas) == 0 || show_failures
+        for (repo, err) in failures
+            println(repo, " failed due to")
+            println(err)
+            println()
+        end
+    end
+    
+    # merge them
+    aggregate(retrieved_metadatas)
 end
 
 function format_checksums(csums::Vector)
@@ -189,5 +263,14 @@ function mainpage_url(repo::DataRepo, dataname)
     end
     getpage(url), url
 end
+
+struct GeneratorError{T<:DataRepo} <: Exception
+    repo::T
+    message::String
+end
+
+GeneratorError(repo)=GeneratorError(repo, "")
+
+Base.showerror(io::IO, e::GeneratorError) = print(io, e.repo, " generator was not suitable. $(e.message)")
 
 end # module

@@ -235,9 +235,9 @@ https://releases.dataone.org/online/api-documentation-v2.0/apis/index.html
 Supports DataOne API version 2. There are differences in the API structure in each of them, hence are accounted for, separately:
 
 Data Repositories:
-* Knowledge Network for Biocomplexity `KnowledgeNetworkforBiocomplexity()`:
-* Knowledge Network for Biocomplexity `ArcticDataCenter()`: 
-* Terrestrial Ecosystem Research Network `TERN()`:
+* Knowledge Network for Biocomplexity `KnowledgeNetworkforBiocomplexity()`: `generate(KnowledgeNetworkforBiocomplexity(), "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/doi:10.5063/F1T43R7N")`
+* Arctic Data Center `ArcticDataCenter()`: `generate(ArcticDataCenter(), "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/doi:10.5063%2FF1HT2M7Q")`
+* Terrestrial Ecosystem Research Network `TERN()`: `generate(TERN(), "https://dataone.tern.org.au/mn/v2/object/aekos.org.au/collection/nsw.gov.au/nsw_atlas/vis_flora_module/KAHDRAIN.20150515")`
 
 
 

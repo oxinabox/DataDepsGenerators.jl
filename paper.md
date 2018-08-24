@@ -19,7 +19,7 @@ bibliography: paper.bib
 
 # Summary
 
-DataDepsGenerators.jl is an tool written to help uses of the Julia programming language ()[@Julia]),
+DataDepsGenerators.jl is an tool written to help users of the Julia programming language ()[@Julia]),
 to observe best practices when making use of published datasets.
 Using the metadata present in published datasets, in generates the code for the data dependency registration blocks required by DataDeps.jl ([@2018arXiv180801091W]).
 These registration blocks are effectively executable metadata,
@@ -28,7 +28,7 @@ They include a message that is displayed to the user whenever the data set is au
 This message should include provenance information on the dataset,
 so that downstream users know its original source and details on its processing.
 
-DataDepsGenerators.jl attempt to use the metadata available for a dataset to capture and record:
+DataDepsGenerators.jl attempts to use the metadata available for a dataset to capture and record:
  - The dataset name.
  - A URL for a website about the dataset.
  - The names of the authors and maintainers
@@ -41,9 +41,9 @@ DataDepsGenerators.jl attempt to use the metadata available for a dataset to cap
  - A description of the dataset.
 
 Depending on the APIs supported by the repository some of this information may not be available.
-DataDepsGenerators.jl makes a best effort attempt to acquire as much provenance information as possible.
+DataDepsGenerators.jl makes a best-effort attempt to acquire as much provenance information as possible.
 Where multiple APIs are supported, it makes use of all APIs possible, merging their responses to fill any gaps.
-It thus often produces higher quality and more comprehensive dataset metadata that in available from any one source.
+It thus often produces higher quality and more comprehensive dataset metadata than is available from any one source.
 
 DataDepsGenerators.jl leavages many different APIs to support a very large number of repositories.
 By current estimates tens of millions of datasets are supported, from hundreds of repositories.
@@ -68,9 +68,9 @@ The APIs supported include:
 	- Including many of those listed above.
 	- But also [Zenodo](https://zenodo.org/), [Kaggle Datasets](https://www.kaggle.com/datasets), all [DataVerse](https://dataverse.org/) sites and many others.
 
-DataDepsGenerators.jl as the name suggests, generated static code which the user can add into their project's julia source code to make use of with DataDeps.jl.
+DataDepsGenerators.jl as the name suggests, generates static code which the user can add into their project's julia source code to make use of with DataDeps.jl.
 There are a number of reasons why static code generation is preferred over directly using the APIs.
- - On occasions the information reported by the APIs is wrong or incomplete. By generating code that the user may edit they may tweak the details as required.
+ - On occasion the information reported by the APIs is wrong or incomplete. By generating code that the user may edit they may tweak the details as required.
  - The process of accessing the APIs requires a number of heavy dependencies, such as HTML and JSON parsers. If these APIs were to be access directly by a project, it would require adding this large dependency tree to the project.
  - It is important to know if a dataset has changed. As such retrieving the file hash and last modification date would be pointless if they are updated automatically.
 Finally: having the provenance information recorded in plain text, makes the dataset metadata readily accessible to anyone reading the source code; without having to run the project's application.

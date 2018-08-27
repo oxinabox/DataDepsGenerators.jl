@@ -7,11 +7,15 @@ tags:
 authors:
  - name: Lyndon White
    orcid: 0000-0003-1386-1646
+   affiliation: 1
  - name: SebastinSanty
+   affiliation: 2
 
 affiliations:
  - name: The University of Western Australia
+   index: 1
  - name: Birla Institute of Technology and Science, Pilani
+   index: 2
 
 date: 24 Aug 2018
 bibliography: paper.bib

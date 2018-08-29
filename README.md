@@ -29,21 +29,36 @@ An example of use [is in this blog-post](http://white.ucc.asn.au/2018/01/18/Data
 
 ## Usage
 
-Basic usage is around the `generate` command.
+All usage revolves around the `generate` command. `generate()` is an overloaded method with two ways of usage:
 
-`generate(::DataRepo, id_or_url, [datadep_name])::String`
+### Default Usage:
+```julia
+generate("https://datadryad.org/resource/doi:10.5061/dryad.74699")
+```
 
- - the first argument is a data repository.
-     - Where the data is from.
-     - Basically this determines which generator to use.
-     - this is an instance of a type, like `GitHub()`, or `UCI()`
- - the second is the `id_or_url`
+- the first argument is the `id_or_url`
      - this lets us know which dataset (from that repository) is being targetted.
      - in general just copy and paste the URL of the webpage discribing the dataset out of your webbrowser
- - the last is the `datadep_name`, this is what to use as the name of the datadep
+ - the second argument is the `datadep_name`, this is what to use as the name of the datadep
      - i.e. if you put `"Foo"`, when you use the datadep in your code, you'll write `datadep"Foo"`
      - if you skip it, DataDepsGenerators will generate a name from the page
      - you can always edit the resulting code anyway
+
+The is the default usage as we provide a hassle-free experience in downloading the data without knowing the specifics of Data Repos we support. This scrounges for data in all the supported repositories and reaps the best result combining all the information it acquired from these sources. However the user might want to make use of a specific repository, for that: 
+
+### Specific Repo Usage
+
+```julia
+generate(::DataRepo, id_or_url, [datadep_name])::String
+```
+
+An extra argument needs to be provided to specify the data repository
+
+ - the first (or the additional) argument is a data repository.
+     - Where the data is from.
+     - Basically this determines which generator to use.
+     - this is an instance of a type, like `GitHub()`, or `UCI()`
+ 
      
 This returns a `String`.
 On the REPL if you just return it, it will be full of escape characters.
@@ -58,7 +73,7 @@ To write the dependency block to a file, you just need to open the file (`"data.
 using DataDepsGenerators
 
 open("data.jl", "w") do fh
-  generate(UCI(), "https://archive.ics.uci.edu/ml/datasets/Air+quality", "UCI Air"))
+  generate("https://archive.ics.uci.edu/ml/datasets/Air+quality", "UCI Air"))
 end
 ```
 
@@ -99,17 +114,6 @@ eval(parse(generate(UCI(), "https://archive.ics.uci.edu/ml/datasets/Air+quality"
 
 Then just use anywhere in your code (later in the REPL session for example)  `datadep"UCI Air"` as if it were the name of a directory holding that data.
 (Which indeed what that string macro expands into -- even if it has to download the data first).
-
-
-## Wildcard Use
-
-The above examples show the usage of `generate()` with a DataRepo. There are instances when the user isn’t sure of the data generators to use or if the user wants to reap maximum benefits from all the generators. Hence in order to facilitate that, you can use `generate()` without providing the DataRepo as an argument:
-
-```julia
-    generate("10.5061/dryad.74699")
-```
-
-This will scrounge in all the available supported DataRepos asynchronously to get the best of all the data according to rules defined.
 
 ## Supported DataRepos 
 

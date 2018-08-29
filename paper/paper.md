@@ -8,13 +8,14 @@ authors:
  - name: Lyndon White
    orcid: 0000-0003-1386-1646
    affiliation: 1
- - name: SebastinSanty
+ - name: Sebastin Santy
+   orcid: 0000-0003-1162-0865
    affiliation: 2
 
 affiliations:
  - name: The University of Western Australia
    index: 1
- - name: Birla Institute of Technology and Science, Pilani
+ - name: BITS Pilani, KK Birla Goa Campus, India
    index: 2
 
 date: 24 Aug 2018
@@ -23,9 +24,9 @@ bibliography: paper.bib
 
 # Summary
 
-DataDepsGenerators.jl is an tool written to help users of the Julia programming language ([@Julia]),
+DataDepsGenerators.jl is a tool written to help users of the Julia programming language ([@Julia]),
 to observe best practices when making use of published datasets.
-Using the metadata present in published datasets, in generates the code for the data dependency registration blocks required by DataDeps.jl ([@2018arXiv180801091W]).
+Using the metadata present in published datasets, it generates the code for the data dependency registration blocks required by DataDeps.jl ([@2018arXiv180801091W]).
 These registration blocks are effectively executable metadata,
 which can be resolved by DataDeps.jl to download the dataset.
 They include a message that is displayed to the user whenever the data set is automatically downloaded.

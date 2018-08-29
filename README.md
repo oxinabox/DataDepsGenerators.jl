@@ -44,7 +44,7 @@ generate("https://datadryad.org/resource/doi:10.5061/dryad.74699")
      - if you skip it, DataDepsGenerators will generate a name from the page
      - you can always edit the resulting code anyway
 
-The is the default usage as we provide a hassle-free experience in downloading the data without knowing the specifics of Data Repos we support. This scrounges for data in all the supported repositories and reaps the best result combining all the information it acquired from these sources. However the user might want to make use of a specific repository, for that: 
+This the default usage as we provide a hassle-free experience in downloading data without knowing the specifics of data repositories we support. It scrounges for data in all the supported repositories and reaps the best result combining all the information it acquires from these sources. However the user might want to make use of a specific repository and for that: 
 
 ### Specific Repo Usage
 
@@ -59,8 +59,9 @@ An extra argument needs to be provided to specify the data repository
      - Basically this determines which generator to use.
      - this is an instance of a type, like `GitHub()`, or `UCI()`
  
-     
-This returns a `String`.
+
+
+Both of these returns a `String`.
 On the REPL if you just return it, it will be full of escape characters.
 So best to `print` it, or write it to file.
      

@@ -1,0 +1,13 @@
+register(DataDep(
+    "Comparing Food versus Cash for Education Program in Bangladesh, 2003",
+    """
+	Dataset: Comparing Food versus Cash for Education Program in Bangladesh, 2003
+	Website: https://dataverse.harvard.edu/dataset.xhtml?persistentId=hdl:1902.1/15580
+	Author: Akhter Ahmed
+	Date of Publication: March 11, 2011
+	License:  IFPRI  DATAVERSE TERMS OF USE   By using this website and any of the materials made available through it, you agree to abide by the Terms of Use of IFPRI Dataverse. The datasets and documents in this study are licensed under a  Creative Commons Attribution-NonCommercial 3.0 Unported License .
+
+	The Comparing Food versus Cash for Education survey was conducted in Bangladesh in 2003 to compare the effect of using food or cash as a conditional transfer, designed to increase school attendance, to poor households. The original survey, carried out in 2000 including Food for Education (FFE) program beneficiaries and nonbeneficiaries, covered 600 households in 60 villages in 30 unions in 10 thanas, and 110 schools in the same 30 unions from which the household sample was drawn. Ten thanas were first randomly selected with probability proportional to size (PPS), based on thana-level population data from the 1991 census, and two FFE unions and one non-FFE union were selected per thana. From each union, two villages were randomly selected with PPS using village-level population data from the 1991 census. A complete census of the households was then carried out in each of the selected villages, and ten households that had at least one primary-school-age child (6 to 12 years old) were randomly selected in each village from the census list of households. IFPRI resurveyed the same households in 2003, to construct the 2000 and 2003 panel dataset for households and schools, with the exception of households in two thanas, which were dropped from the 2003 survey.
+	""",
+	missing,
+))

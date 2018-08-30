@@ -4,6 +4,7 @@ register(DataDep(
 	Dataset: shows examples of coordinated and uncoordinated motion for dangerous and non-dangerous crowd behavior.
 	Website: https://figshare.com/articles/_shows_examples_of_coordinated_and_uncoordinated_motion_for_dangerous_and_non_dangerous_crowd_behavior_/186003
 	Author: Florian Raudies, Heiko Neumann
+	Date of Publication: 2012-12-31T01:40:03Z
 
 	shows examples of coordinated and uncoordinated motion for dangerous and non-dangerous crowd behavior.
 	

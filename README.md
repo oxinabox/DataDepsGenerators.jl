@@ -29,23 +29,39 @@ An example of use [is in this blog-post](http://white.ucc.asn.au/2018/01/18/Data
 
 ## Usage
 
-Basic usage is around the `generate` command.
+All usage revolves around the `generate` command. `generate()` is an overloaded method with two ways of usage:
 
-`generate(::DataRepo, id_or_url, [datadep_name])::String`
+### Default Usage:
+```julia
+generate("https://datadryad.org/resource/doi:10.5061/dryad.74699")
+```
 
- - the first argument is a data repository.
-     - Where the data is from.
-     - Basically this determines which generator to use.
-     - this is an instance of a type, like `GitHub()`, or `UCI()`
- - the second is the `id_or_url`
+- the first argument is the `id_or_url`
      - this lets us know which dataset (from that repository) is being targetted.
      - in general just copy and paste the URL of the webpage discribing the dataset out of your webbrowser
- - the last is the `datadep_name`, this is what to use as the name of the datadep
+ - the second argument is the `datadep_name`, this is what to use as the name of the datadep
      - i.e. if you put `"Foo"`, when you use the datadep in your code, you'll write `datadep"Foo"`
      - if you skip it, DataDepsGenerators will generate a name from the page
      - you can always edit the resulting code anyway
-     
-This returns a `String`.
+
+This the default usage as we provide a hassle-free experience in downloading data without knowing the specifics of data repositories we support. It scrounges for data in all the supported repositories and reaps the best result combining all the information it acquires from these sources. However the user might want to make use of a specific repository and for that: 
+
+### Specific Repo Usage
+
+```julia
+generate(::DataRepo, id_or_url, [datadep_name])::String
+```
+
+An extra argument needs to be provided to specify the data repository
+
+ - the first (or the additional) argument is a data repository.
+     - Where the data is from.
+     - Basically this determines which generator to use.
+     - this is an instance of a type, like `GitHub()`, or `UCI()`
+ 
+
+
+Both of these returns a `String`.
 On the REPL if you just return it, it will be full of escape characters.
 So best to `print` it, or write it to file.
      
@@ -58,7 +74,7 @@ To write the dependency block to a file, you just need to open the file (`"data.
 using DataDepsGenerators
 
 open("data.jl", "w") do fh
-  generate(UCI(), "https://archive.ics.uci.edu/ml/datasets/Air+quality", "UCI Air"))
+  generate("https://archive.ics.uci.edu/ml/datasets/Air+quality", "UCI Air"))
 end
 ```
 
@@ -100,14 +116,12 @@ eval(parse(generate(UCI(), "https://archive.ics.uci.edu/ml/datasets/Air+quality"
 Then just use anywhere in your code (later in the REPL session for example)  `datadep"UCI Air"` as if it were the name of a directory holding that data.
 (Which indeed what that string macro expands into -- even if it has to download the data first).
 
+## Supported DataRepos 
 
-
-
-
- ## Supported DataRepos 
+For the API based DataRepos, we give a short description of all the data repositories we have tested it out and found to be working.
  
  
-### `UCI()`
+### `UCI()` - Web Based
  https://archive.ics.uci.edu/ml/datasets
  
 A fairly classic repository for (mostly) small Machine Learning datasets
@@ -115,7 +129,7 @@ A fairly classic repository for (mostly) small Machine Learning datasets
 It not very consistantly written or formatted, so the registrations can be a bit chopy and may e.g. contain links that should have been removed etc.
  
  
-### `GitHub()`
+### `GitHub()` - Web Based
  https://github.com
 
 Notable Datasets:
@@ -141,16 +155,96 @@ So the if the repository is updated, the DataDep will still download the old dat
 At present, we do not support generating for any branch's other than master.
 Though it is a simple matter to do a find and replace for the commit SHAs in the generated code so as to point at any commit.
 
+Also, the reference tests present in this package have been stripped off of urls, as they are observed to be changing frequently.
 
+### `DataDryad()` - Web Based
 
-### `DataDryadWeb()`
 https://datadryad.org
 
 DataDryad is one of the bigger research data stores.
 Almost all the data in it is directly linked to one paper or another.
 
 Example of use:
+```julia
+    generate(DataDryad(), "https://datadryad.org/resource/doi:10.5061/dryad.74699", "Wild Crop Genomics")
+```
 
-    generate(DataDryadWeb(), "https://datadryad.org/resource/doi:10.5061/dryad.74699", "Wild Crop Genomics")
-    
+### `CKAN()` - API Based
+
+http://docs.ckan.org/en/2.8/
+
+CKAN is majorly used by government organizations.
+
+Data Repositories and examples of use:
+* CKAN Demo API: `generate(CKAN(), "https://demo.ckan.org/dataset/gold-prices")`
+* Data.gov: `generate(CKAN(), "https://catalog.data.gov/api/3/action/package_show?id=consumer-complaint-database")`
+* Data.gov.au: `generate(CKAN(), "https://data.gov.au/api/3/action/package_show?id=2016-soe-atmosphere-hourly-co-and-24h-pm2-5-concentrations-measured-during-the-hazelwood-mine-fire")`
+
+### `DataCite()` - API Based
+
+https://www.datacite.org/
+
+Example of use:
+```julia
+    generate(DataCite(), "10.5063/F1HT2M7Q")
+    generate(DataCite(), "https://search.datacite.org/works/10.15148/0e999ffc-e220-41ac-ac85-76e92ecd0320")
+```
+Either URL or DOI can be provided as arguments.
+
+### `Figshare()` - API Based
+
+https://figshare.com/
+
+Example of use:
+```julia
+    generate(Figshare(), "10.5281/zenodo.1194927")
+    generate(Figshare(), "https://figshare.com/articles/Youth_Activism_in_Chile_from_urban_educational_inequalities_to_experiences_of_living_together_and_solidarity/6504206")
+```
+URL or DOI or Figshare ID can be provided as arguments.
+
+### `DataOneV1()` - API Based
+
+https://releases.dataone.org/online/api-documentation-v1.2.0/
+
+Data repositories like DataDryad, support version 1 API of the DataOne. 
+
+Data Repositories:
+* DataDryad: `generate(DataOneV1(), "https://datadryad.org/resource/doi:10.5061/dryad.74699", "Wild Crop Genomics")`
+
+### `JSONLD_DOI()` - API Based
+
+https://json-ld.org/
+
+A lot of DOIs are stored as JSONLD. This generator helps in retrieving such.
+
+Example of use:
+```julia
+    generate(JSONLD_DOI(), "10.1371/journal.pbio.2001414")
+```
+
+### `JSONLD_Web()` - Web Based
+
+https://json-ld.org/
+
+A lot of data hosting websites like Kaggle, Zenodo, ICRISAT store information in the form of JSONLD on their pages. This generator helps in retrieving such JSONLDs.
+
+Example of use:
+```julia
+    generate(JSONLD_Web(), "https://www.kaggle.com/stackoverflow/stack-overflow-2018-developer-survey")
+```
+
+### `DataOneV2`
+
+https://releases.dataone.org/online/api-documentation-v2.0/apis/index.html
+
+Supports DataOne API version 2. There are differences in the API structure in each of them, hence are accounted for, separately:
+
+Data Repositories:
+* Knowledge Network for Biocomplexity `KnowledgeNetworkforBiocomplexity()`: `generate(KnowledgeNetworkforBiocomplexity(), "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/doi:10.5063/F1T43R7N")`
+* Arctic Data Center `ArcticDataCenter()`: `generate(ArcticDataCenter(), "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/doi:10.5063%2FF1HT2M7Q")`
+* Terrestrial Ecosystem Research Network `TERN()`: `generate(TERN(), "https://dataone.tern.org.au/mn/v2/object/aekos.org.au/collection/nsw.gov.au/nsw_atlas/vis_flora_module/KAHDRAIN.20150515")`
+
+
+
+
     

@@ -34,6 +34,7 @@ This message should include provenance information on the dataset,
 so that downstream users know its original source and details on its processing.
 
 DataDepsGenerators.jl attempts to use the metadata available for a dataset to capture and record:
+
  - The dataset name.
  - A URL for a website about the dataset.
  - The names of the authors and maintainers
@@ -53,6 +54,7 @@ It thus often produces higher quality and more comprehensive dataset metadata th
 DataDepsGenerators.jl leavages many different APIs to support a very large number of repositories.
 By current estimates tens of millions of datasets are supported, from hundreds of repositories.
 The APIs supported include:
+
  - [DataCite](https://datacite.org/) / [CrossRef](https://www.crossref.org/)
     - This is valid for the majority of all dataset with a DOI.
  - [DataOne](https://www.dataone.org/)
@@ -67,7 +69,7 @@ The APIs supported include:
     - Most well known for hosting code; but is fairly regularly used to host versioned datasets.
  - [CKAN](http://ckan.org/)
     - This is the system behind a large number of government open data initiatives;
-	- such as Data.Gov](https://data.gov), [data.gov.au](https://data.gov.au/), and the [European Data Portal](https://www.europeandataportal.eu/)
+	- such as [Data.Gov](https://data.gov), [data.gov.au](https://data.gov.au/), and the [European Data Portal](https://www.europeandataportal.eu/)
  - Embedded JSON-LD fragments in HTML pages.
     - This is commonly used on many websites to describe their datasets.
 	- Including many of those listed above.

@@ -2,6 +2,8 @@ using DataDeps
 using DataDepsGenerators
 using Base.Test
 
+using Suppressor
+
 using ReferenceTests
 
 """

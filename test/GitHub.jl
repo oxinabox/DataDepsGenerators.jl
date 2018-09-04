@@ -16,7 +16,7 @@ end
     @testset "538 March" begin
         registration_code = generate(GitHub(), "https://github.com/fivethirtyeight/data/tree/master/march-madness-predictions-2015")
 
-        @testset "Integration Test" begin
+        @suppress @testset "Integration Test" begin
             eval(parse(registration_code))
             @test length(collect(readdir(datadep"March Madness Predictions"))) > 0
         end
@@ -37,7 +37,7 @@ end
     @testset "Pres Camp" begin
         registration_code = generate(GitHub(), "https://github.com/BuzzFeedNews/presidential-campaign-contributions")
         
-		@testset "Integration Test" begin
+		@suppress @testset "Integration Test" begin
 			eval(parse(registration_code)) # evaluate the new code
 			@test length(collect(readdir(datadep"Presidential Campaign Contributions"))) > 0
 		end

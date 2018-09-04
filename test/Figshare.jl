@@ -2,7 +2,7 @@ using DataDeps
 using DataDepsGenerators
 using Base.Test
 using MD5
-
+using Suppressor
 using ReferenceTests
 
 @testset "Figshare test" begin

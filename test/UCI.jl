@@ -1,7 +1,7 @@
 using DataDeps
 using DataDepsGenerators
 using Base.Test
-usinng Suppressor
+using Suppressor
 using ReferenceTests
 
 @testset "UCI Air Quality" begin

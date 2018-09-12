@@ -1,0 +1,23 @@
+name = "DataDepsGenerators"
+authors = ["oxinabox <oxinabox@ucc.asn.au>", "SebastinSanty <sebastinssanty@gmail.com>"]
+uuid = "a14fa8ac-7845-53f2-854f-e9bba4c623ff"
+version = "0.3.0"
+repository = "https://github.com/oxinabox/DataDepsGenerators.jl.git"
+description = "Generating registration blocks for DataDeps.jl in one key press"
+keywords = "data"
+
+[deps]
+AbstractTrees = "1520ce14-60c1-5f80-bbc7-55ef81b5835c"
+Cascadia = "54eefc05-d75b-58de-a785-1a3403f0919f"
+DataDepsGenerators = "a14fa8ac-7845-53f2-854f-e9bba4c623ff"
+Gumbo = "708ec375-b3d6-5a57-a7ce-8257bf98657a"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+Suppressor = "fd094767-a336-5f1f-9728-57cf17d0bbfb"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+DataDeps = "124859b0-ceae-595e-8997-d05f6a7a8dfe"
+
+[targets]
+test = ["Test", "DataDeps"]

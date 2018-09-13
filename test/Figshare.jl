@@ -18,5 +18,5 @@ using ReferenceTests
         @test_reference "references/Figshare Chile Activism.txt" registration_code
     end
 
-    @test_reference "references/Figshare Gene Diversity.txt" generate(Figshare(), "10.5281/zenodo.1194927")
+    @test_reference "references/Figshare from doi.txt" generate(Figshare(), "10.1371/journal.pbio.2001414")
 end

@@ -8,7 +8,7 @@ using ReferenceTests
     
     @test_reference "references/Combining Plasticity.txt" remove_cite_version(generate("https://datadryad.org/mn/object/http://dx.doi.org/10.5061/dryad.f9s4424"))
 
-    @test_reference "references/Combining Gene Diversity.txt" remove_cite_version(generate("10.5281/zenodo.1194927"))
+    @test_reference "references/Combining Gene Diversity.txt" remove_cite_version(generate("https://doi.org/10.5281/zenodo.1194927"))
 
     @test_reference "references/Combining Stack Overflow.txt" generate("https://www.kaggle.com/stackoverflow/stack-overflow-2018-developer-survey")
     

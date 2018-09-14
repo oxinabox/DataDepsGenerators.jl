@@ -11,5 +11,5 @@ register(DataDep(
 	Repository's  citation policy
 	Lichman, M. (2013). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
 	""",
-	String["https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/auto-mpg/Index", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/auto-mpg/auto-mpg.data", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/auto-mpg/auto-mpg.data-original", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/auto-mpg/auto-mpg.names"],
+	["https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/auto-mpg/Index", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/auto-mpg/auto-mpg.data", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/auto-mpg/auto-mpg.data-original", "https://archive.ics.uci.edu/ml/datasets/../machine-learning-databases/auto-mpg/auto-mpg.names"],
 ))

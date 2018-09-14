@@ -23,7 +23,7 @@ The only reuired parameter is the url/id.
 """
 function generate(repo::DataRepo, dataname, shortname=nothing; kwargs...)
     metadata = find_metadata(repo, dataname, shortname)
-    format_codeblock(merged_metadata)
+    format_codeblock(metadata)
 end
 
 function generate(dataname, shortname=nothing; kwargs...)

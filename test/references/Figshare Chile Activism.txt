@@ -1,0 +1,16 @@
+register(DataDep(
+    "Youth Activism in Chile from urban educational inequalities to experiences of living together and solidarity",
+    """
+	Dataset: Youth Activism in Chile: from urban educational inequalities to experiences of living together and solidarity
+	Website: https://figshare.com/articles/Youth_Activism_in_Chile_from_urban_educational_inequalities_to_experiences_of_living_together_and_solidarity/6504206
+	Author: Ivette Hernandez Santibañez
+	Date of Publication: 2018-09-01T03:04:44Z
+	License: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+
+	ABSTRACT: This article examines the geographies of youth political activism in Chile. It makes the argument that a historical spatial identity of public education, as the engine of working-class and middle-class mobility, intersecting both with contexts of social mixing and with a historical urban educational inequality, provides a different lens through which to understand youth activism. This article seeks to analyse the linkages between these spatialities of public education and different geographies of youth activism as spaces of living together and as practices of solidarity. It reflects on the need for ongoing debates on citizenship education to engage with these geographies of youth activism in order to fully understand the significance of youth political participation within neoliberal market-driven education agendas.
+	
+	Please cite this dataset: Hernandez Santibañez, Ivette (2018): Youth Activism in Chile: from urban educational inequalities to experiences of living together and solidarity. SciELO journals. Fileset.
+	""",
+	Any["https://ndownloader.figshare.com/files/11960399", "https://ndownloader.figshare.com/files/11960405", "https://ndownloader.figshare.com/files/11960411", "https://ndownloader.figshare.com/files/11960414"],
+	[(md5, "5b82eb513b794371a77b7c738ef24443"), (md5, "c1ba6354972849e73b10adea69df2c9f"), (md5, "1a7924b6cb539b955357bcebad108ca5"), (md5, "0b4e0eebea74024ee0b84b9a2ec26b44")]
+))

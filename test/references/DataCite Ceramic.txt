@@ -1,0 +1,15 @@
+register(DataDep(
+    "Study Of Surface Roughness With The Variation In Applied Load Of Rutile Ceramic Reinforced Aluminium Composite",
+    """
+	Dataset: Study Of Surface Roughness With The Variation In Applied Load Of Rutile Ceramic Reinforced Aluminium Composite
+	Website: https://doi.org/10.5281/zenodo.1147572
+	Author: Rama Arora
+	Date of Publication: 2018
+	License: https://creativecommons.org/licenses/by/4.0/
+
+	The objective of this work is to study the surface roughness of LM13alloy composites with rutile particles .The fabrication route adopted for preparing the samples containing variable ratio of rutile reinforcement is simple vortex technique. The wear tests were carried out under different loading conditions from 9.8N to 49N. The pin specimen travelled a distance of 3000m at constant sliding speed on the hard steel disc. The addition of fine size rutile particles results in higher hardness and strength. The stress concentration at the voids due to weak interfaces leads to crack intitation, arising from the particle fracture .This can be avoided by providing more strength to the matrix which is achieved by introducing hard ceramic rutile particulates. As the soft matrix aluminium alloy is prone to scratches and indentation during the contact sliding conditions, study of surface roughness of composite after wear studies need significant attention.
+	
+	Please cite this dataset: Arora, R. (2018). Study Of Surface Roughness With The Variation In Applied Load Of Rutile Ceramic Reinforced Aluminium Composite. https://doi.org/10.5281/zenodo.1147572
+	""",
+	missing,
+))

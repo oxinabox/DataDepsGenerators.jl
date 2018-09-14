@@ -1,0 +1,31 @@
+register(DataDep(
+    "College Majors",
+    """
+	Dataset: College Majors
+	Website: <URL>
+	Author: Authors not specified
+
+	# College Majors
+	
+	This folder contains the data and code behind the story [The Economic Guide To Picking A College Major](<URL>).
+	
+	All data is from American Community Survey 2010-2012 Public Use Microdata Series.
+	
+	Download data here: <URL>
+	
+	Documentation here: <URL>
+	
+	`college-majors-rscript.R`
+	- Assumes you've already downloaded the data and selected only records with non-NA values for college major (FOD1P)...
+	(Read more at <URL>)
+	
+	LICENSE
+	--------
+	Attribution 4.0 International
+	
+	=======================================================================
+	...
+	(Read more at <URL>)
+	""",
+	Any["<URL>", "<URL>", "<URL>", "<URL>", "<URL>", "<URL>", "<URL>"],
+))

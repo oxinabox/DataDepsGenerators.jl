@@ -1,0 +1,16 @@
+register(DataDep(
+    "Identifiers for the 21st century How to design, provision, and reuse persistent identifiers to maximize utility and impact of life science data",
+    """
+	Dataset: Identifiers for the 21st century: How to design, provision, and reuse persistent identifiers to maximize utility and impact of life science data
+	Website: https://figshare.com/articles/Identifiers_for_the_21st_century_How_to_design_provision_and_reuse_persistent_identifiers_to_maximize_utility_and_impact_of_life_science_data/5156008
+	Author: Julie A. McMurry et al.
+	Date of Publication: 2017-06-29T17:29:50Z
+	License: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+
+	In many disciplines, data are highly decentralized across thousands of online databases (repositories, registries, and knowledgebases). Wringing value from such databases depends on the discipline of data science and on the humble bricks and mortar that make integration possible; identifiers are a core component of this integration infrastructure. Drawing on our experience and on work by other groups, we outline 10 lessons we have learned about the identifier qualities and best practices that facilitate large-scale data integration. Specifically, we propose actions that identifier practitioners (database providers) should take in the design, provision and reuse of identifiers. We also outline the important considerations for those referencing identifiers in various circumstances, including by authors and data generators. While the importance and relevance of each lesson will vary by context, there is a need for increased awareness about how to avoid and manage common identifier problems, especially those related to persistence and web-accessibility/resolvability. We focus strongly on web-based identifiers in the life sciences; however, the principles are broadly relevant to other disciplines.
+	
+	Please cite this dataset: McMurry, Julie A.; Juty, Nick; Blomberg, Niklas; Burdett, Tony; Conlin, Tom; Conte, Nathalie; et al. (2017): Identifiers for the 21st century: How to design, provision, and reuse persistent identifiers to maximize utility and impact of life science data. PLOS Biology. Fileset.
+	""",
+	Any["https://ndownloader.figshare.com/files/8792425", "https://ndownloader.figshare.com/files/8792437", "https://ndownloader.figshare.com/files/8792482", "https://ndownloader.figshare.com/files/8792491", "https://ndownloader.figshare.com/files/8792503", "https://ndownloader.figshare.com/files/8792536", "https://ndownloader.figshare.com/files/8792545"],
+	[(md5, "5066bf01417f85028a09a2f4dadcbefe"), (md5, "5c3867e33c0d30952a884f1373ce3e21"), (md5, "47c7de1501dcba5d2571efc262a5cf3b"), (md5, "e9846e7297fa503771dbb6d352b31f99"), (md5, "0c46b3705abca5b99265736dcb18bf4d"), (md5, "a1220bb16027568a988ca21b86f5db1a"), (md5, "d21886f4ea8844823a03217284c34cc8")]
+))

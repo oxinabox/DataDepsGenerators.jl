@@ -12,7 +12,7 @@ tests = [
     "CKAN",
     "DataCite",
     "Figshare",
-    "JSONLD/JSONLD",
+    "JSONLD"
     "combine",
 ]
 

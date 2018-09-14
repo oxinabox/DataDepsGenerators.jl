@@ -7,7 +7,7 @@ lift(func, ::Missing)=missing
 lift(func, arg) = func(arg)
 
 function miss_null(attr::Any)
-    attr != nothing? attr : missing
+    attr != nothing ? attr : missing
 end
 
 quiet_download(url) = @suppress(download(url))
@@ -29,15 +29,27 @@ text_only(doc::HTMLDocument) = text_only(doc.root)
 text_only(frag) = join([replace(text(leaf), "\r","") for leaf in Leaves(frag) if leaf isa HTMLText], " ")
 text_only(frags::Vector) = join(text_only.(frags), " ")
 
+
+"""
+    filter_html(text)
+
+Strips any HTML tags out of the `text`.
+If that is required.
+"""
+function filter_html(text)
+    # Check if the text is a HTML or not
+    # Note we are not parsing it, just checking if we should parse it
+    if ismatch(r"<(\"[^\"]*\"|'[^']*'|[^'\">])*>", text)
+        # It seems like it may be HTML, so now parse it.
+        text_only(parsehtml(text))
+	else
+    	text
+    end
+end
+
 filter_html(::Missing) = missing
 
-function filter_html(content)
-    #Check if the incoming content is a HTML or not
-    if ismatch(r"<(\"[^\"]*\"|'[^']*'|[^'\">])*>", content)
-        return text_only(parsehtml(content))
-    end
-    return content
-end
+
 
 "
     indent(str)
@@ -74,3 +86,13 @@ function leaf_subtypes(T)
            vcat(leaf_subtypes.(subtypes(T))...)
        end
 end
+
+
+"""
+	match_doi(uri::String
+"""
+function match_doi(uri::String)
+    identifier_match = match(r"\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?![\"&\'<>])\S)+)\b", uri)
+    identifier_match === nothing ? nothing : identifier_match.match
+end
+

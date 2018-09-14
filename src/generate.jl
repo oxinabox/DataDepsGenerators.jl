@@ -22,7 +22,8 @@ The only reuired parameter is the url/id.
      - If *all* repos fail, then the failure list will be shown, regardless of if this is set or not.
 """
 function generate(repo::DataRepo, dataname, shortname=nothing; kwargs...)
-    generate([repo], dataname, shortname; kwargs...)
+    metadata = find_metadata(repo, dataname, shortname)
+    format_codeblock(merged_metadata)
 end
 
 function generate(dataname, shortname=nothing; kwargs...)
@@ -33,7 +34,7 @@ end
 
 function generate(repos::Vector, dataname, shortname = nothing; show_failures=false)
     retrieved_metadatas_ch = Channel{Any}(128)
-    failures = Channel{Tuple{DataRepo, Exception}}(128)
+    failures_ch = Channel{Tuple{DataRepo, Exception}}(128)
     
     # Get all the metadata we can
     for repo in repos
@@ -41,22 +42,15 @@ function generate(repos::Vector, dataname, shortname = nothing; show_failures=fa
             metadata = find_metadata(repo, dataname, shortname)
             push!(retrieved_metadatas_ch, metadata)
         catch err
-            push!(failures, (repo, err))
+            push!(failures_ch, (repo, err))
         end
     end
     close(retrieved_metadatas_ch)
-    close(failures)
+    close(failures_ch)
     
     retrieved_metadatas = collect(retrieved_metadatas_ch)
-
+    failures = collect(failures_ch)
     # ============ Handle errors ===========
-    if length(repos)==1
-        # Then we know what has failed us, so throw the error
-        if !isempty(failures)
-            repo, err = first(failures)
-            rethrow(err)
-        end
-    end
     
     # Display errors
     if length(retrieved_metadatas) == 0 || show_failures

@@ -3,7 +3,7 @@ end
 
 base_url(::GitHub) = "https://github.com"
 
-git_repo_page_url(page) = base_url(GitHub()) * getattr(first(matchall(sel"strong[itemprop=\"name\"] a", page.root)), "href")
+git_repo_page_url(page) = base_url(GitHub()) * getattr(first(eachmatch(sel"strong[itemprop=\"name\"] a", page.root)), "href")
 
 function description(::GitHub, mainpage)
     # Just load the readme -- it is all that we can do as this level of generic
@@ -61,7 +61,7 @@ end
 
 
 function get_urls(repo::GitHub, page, cdn_url_converter=get_cdn_url_converter(page))
-    links = matchall(sel".content span a", page.root)
+    links = eachmatch(sel".content span a", page.root)
     urls = Any[]
     for link in links
         urlsub =  getattr(link, "href")
@@ -77,5 +77,5 @@ function get_urls(repo::GitHub, page, cdn_url_converter=get_cdn_url_converter(pa
 end
 
 function data_fullname(::GitHub, mainpage)
-    text_only(last(matchall(sel"h1", mainpage.root)))
+    text_only(last(eachmatch(sel"h1", mainpage.root)))
 end

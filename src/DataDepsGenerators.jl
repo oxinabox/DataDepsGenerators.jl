@@ -5,6 +5,8 @@ using JSON
 using HTTP
 using Dates
 
+using InteractiveUtils: subtypes
+
 export generate, citation_text, remove_cite_version
 export UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN, DataCite, Figshare, JSONLD
 

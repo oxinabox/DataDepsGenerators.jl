@@ -10,6 +10,21 @@ function miss_null(attr::Any)
     attr != nothing ? attr : missing
 end
 
+
+"""
+    getfirst(dict, keys...)
+
+Returns the element coresponding to the first key that is found.
+Returns `missing` if no key is found.
+"""
+function getfirst(json, key, otherkeys...)
+    get(json,  key) do
+        getfirst(json, otherkeys...)
+    end
+end
+getfirst(json) = missing
+
+
 quiet_download(url) = @suppress(download(url))
 
 """

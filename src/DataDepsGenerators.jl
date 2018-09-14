@@ -32,7 +32,7 @@ include("metadata.jl")
 include("generate.jl")
 include("format_codeblock.jl")
 
-include("generic_extractors.jl")
+include("misc_extractors.jl")
 
 
 

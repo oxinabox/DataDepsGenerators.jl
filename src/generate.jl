@@ -22,10 +22,10 @@ The only reuired parameter is the url/id.
      - If *all* repos fail, then the failure list will be shown, regardless of if this is set or not.
 """
 function generate(repo::DataRepo, dataname, shortname=nothing; kwargs...)
-    generate([repo], dataname; kwargs...)
+    generate([repo], dataname, shortname; kwargs...)
 end
 
-function generate(dataname, shortname; kwargs...)
+function generate(dataname, shortname=nothing; kwargs...)
     all_repos = [T() for T in leaf_subtypes(DataRepo)]
     generate(all_repos, dataname, shortname; kwargs...)
 end
@@ -52,7 +52,7 @@ function generate(repos::Vector, dataname, shortname = nothing; show_failures=fa
     # ============ Handle errors ===========
     if length(repos)==1
         # Then we know what has failed us, so throw the error
-        if length(failures) > 0
+        if !isempty(failures)
             repo, err = first(failures)
             rethrow(err)
         end
@@ -78,7 +78,6 @@ function find_metadata(repo, dataname, shortname)
     mainpage, url = mainpage_url(repo, dataname)
     fullname = data_fullname(repo, mainpage)
     shortname = data_shortname(repo, shortname, fullname)
-
     Metadata(
         shortname,
         fullname,

@@ -20,7 +20,7 @@ end
 
 function get_docfile(::GitHub, page, docname, max_lines=typemax(Int))
     function inner(page)
-        nodes = matchall(Selector(".content span a :contains($(docname))"), page.root)
+        nodes = eachmatch(Selector(".content span a :contains($(docname))"), page.root)
         if length(nodes)>0
             node = first(nodes)
             url = "https://rawgit.com" * getattr(node.parent, "href")

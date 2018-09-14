@@ -3,7 +3,7 @@ using Gumbo, Cascadia, AbstractTrees
 using Suppressor
 using JSON
 using HTTP
-using Date
+using Dates
 
 export generate, citation_text, remove_cite_version
 export UCI, GitHub, DataDryad, DataOneV1, DataOneV2, CKAN, DataCite, Figshare, JSONLD

@@ -1,15 +1,37 @@
 
-function generate(repo::DataRepo, dataname; kwargs...)
+"""
+    generate([repo/s], url/id, [shortname]; show_failures=false)
+
+Generates a DataDeps code block.
+The only reuired parameter is the url/id.
+
+ - `url/id` The identifier for the dataset
+     - a URL for a landing page is normally best
+     - Other IDs like a DOIs also work.
+ - `repo/s` either a single repository/API or a list of such
+     - this takes on of the `DataRepo` types exported by this package.
+         - E.g `CKAN()`, or `Figshare()`.
+     - If not provided, this defaults to checking all of them.
+     - If only one repo is provided, and it fails, the error will be thrown.
+     - If multiple repos are provided, them the metadata from all of them is combined.
+ - `shortname`, the name to use in the generated DataDep
+     - if not provided will use the dataset's title, but these are often very long.
+ - `show_failures`, weather or not to list all the `repos` that fail and why.
+     - You generally do not want to turn this on, unless you are debugging.
+     - It is fine and expected for most repos to fail (after all the data is probably only on one of them)
+     - If *all* repos fail, then the failure list will be shown, regardless of if this is set or not.
+"""
+function generate(repo::DataRepo, dataname, shortname=nothing; kwargs...)
     generate([repo], dataname; kwargs...)
 end
 
-function generate(dataname; kwargs...)
+function generate(dataname, shortname; kwargs...)
     all_repos = [T() for T in leaf_subtypes(DataRepo)]
-    generate(all_repos, dataname; kwargs...)
+    generate(all_repos, dataname, shortname; kwargs...)
 end
 
 
-function generate(repos::Vector, dataname; shortname = nothing, show_failures=false)
+function generate(repos::Vector, dataname, shortname = nothing; show_failures=false)
     retrieved_metadatas_ch = Channel{Any}(128)
     failures = Channel{Tuple{DataRepo, Exception}}(128)
     
@@ -26,17 +48,26 @@ function generate(repos::Vector, dataname; shortname = nothing, show_failures=fa
     close(failures)
     
     retrieved_metadatas = collect(retrieved_metadatas_ch)
-    # Display errors if required
-    if length(retrieved_metadatas) == 0 || show_failures
-        for (repo, err) in failures
-            println(repo, " failed due to")
-            println(err)
-            println()
+
+    # ============ Handle errors ===========
+    if length(repos)==1
+        # Then we know what has failed us, so throw the error
+        if length(failures) > 0
+            repo, err = first(failures)
+            rethrow(err)
         end
     end
     
-    # merge them
-    aggregate(retrieved_metadatas)
+    # Display errors
+    if length(retrieved_metadatas) == 0 || show_failures
+        for (repo, err) in failures
+            @warn("$repo failed", exception=err)
+        end
+    end
+    
+    # ============= Produce final result ===========
+    merged_metadata = aggregate(retrieved_metadatas)
+    format_codeblock(merged_metadata)
 end
 
 

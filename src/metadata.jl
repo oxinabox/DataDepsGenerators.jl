@@ -24,7 +24,7 @@ Given a collection of `Metadata` from differenct sources,
 combined them to create the most complete and detailed accounting of metadata.
 """
 function aggregate(metadatas)
-    meta = Metadata(
+    Metadata(
         combine_all(metadatas, :shortname),
         combine_all(metadatas, :fullname),
         combine_all(metadatas, :website),
@@ -40,7 +40,6 @@ function aggregate(metadatas)
         combine_all(metadatas, :dataurls),
         combine_all(metadatas, :datachecksums),
     )
-    format_codeblock(meta)
 end
 
 

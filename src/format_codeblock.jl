@@ -68,7 +68,7 @@ function format_authors(authors::Vector)
     elseif length(authors) >2
         authors[1] * " et al."
     else
-        warn("Not able to retrieve any authors")
+        @warn("Not able to retrieve any authors")
         format_authors(missing)
     end
 end

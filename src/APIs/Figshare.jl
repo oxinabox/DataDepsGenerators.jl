@@ -22,7 +22,7 @@ function get_urls(repo::Figshare, page)
 end
 
 function get_checksums(repo::Figshare, page)
-    info("Generated registration block uses MD5 hashes, the MD5.jl package will be required.")
+    @info("Generated registration block uses MD5 hashes, the MD5.jl package will be required.")
     [(:md5, ii["computed_md5"]) for ii in page["files"]]
 end
 

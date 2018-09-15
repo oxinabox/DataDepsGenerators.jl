@@ -1,5 +1,5 @@
 using DataDepsGenerators:format_checksums
-using Base.Test
+using Test
 
 @testset "Formatting Checksums" begin
     @test  format_checksums("898237b") ==

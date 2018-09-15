@@ -1,5 +1,5 @@
 using DataDepsGenerators
-using Base.Test
+using Test
 
 using ReferenceTests
 

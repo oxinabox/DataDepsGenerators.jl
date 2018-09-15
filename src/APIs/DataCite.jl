@@ -4,13 +4,11 @@ end
 base_url(::DataCite) = "https://api.datacite.org/works/"
 
 description(repo::DataCite, mainpage) = miss_null(mainpage["attributes"]["description"])
-
+data_fullname(::DataCite, mainpage) = mainpage["attributes"]["title"]
 author(::DataCite, mainpage) = join.([[names[2] for names in value] for value in  mainpage["attributes"]["author"]], " ")
-
+website(repo::DataCite, mainpage_url, mainpage) =  replace(mainpage_url, base_url(repo), "https://doi.org/")
 license(::DataCite, mainpage) = miss_null(mainpage["attributes"]["license"])
-
 published_date(::DataCite, mainpage) = mainpage["attributes"]["published"]
-
 dataset_cite(::DataCite, mainpage) = citation_text(mainpage["id"])
 
 function paper_cite(::DataCite, mainpage)
@@ -24,13 +22,6 @@ function paper_cite(::DataCite, mainpage)
     paper_cite
 end
 
-function data_fullname(::DataCite, mainpage)
-    mainpage["attributes"]["title"]
-end
-
-function website(repo::DataCite, mainpage_url, mainpage)
-    replace(mainpage_url, base_url(repo), "https://doi.org/")
-end
 
 function mainpage_url(repo::DataCite, dataname)
     if match_doi(dataname) != nothing

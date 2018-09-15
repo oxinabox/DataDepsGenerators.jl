@@ -11,5 +11,5 @@ register(DataDep(
 	
 	Please cite this dataset: Veeckman, E. (2019). Supplemental Material For ‘Overcoming Challenges In Variant Calling: Exploring Sequence Diversity In Candidate Genes For Plant Development In Perennial Ryegrass (Lolium Perenne)’ [Data set]. Zenodo. https://doi.org/10.5281/zenodo.1194927
 	""",
-	String["https://zenodo.org/api/files/056ac4e4-94e1-4bad-8efa-d95f0691a92f/3. AnnotatedVariants_503TargetGenes_736Genotypes_SnpEff.csv.zip", "https://zenodo.org/api/files/056ac4e4-94e1-4bad-8efa-d95f0691a92f/5. CAP3contigs_503CandidateGenes.fasta.zip"],
+	["https://zenodo.org/api/files/056ac4e4-94e1-4bad-8efa-d95f0691a92f/3. AnnotatedVariants_503TargetGenes_736Genotypes_SnpEff.csv.zip", "https://zenodo.org/api/files/056ac4e4-94e1-4bad-8efa-d95f0691a92f/5. CAP3contigs_503CandidateGenes.fasta.zip"],
 ))

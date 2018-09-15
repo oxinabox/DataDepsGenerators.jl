@@ -1,6 +1,5 @@
 module DataDepsGenerators
 using Gumbo, Cascadia, AbstractTrees
-using Suppressor
 using JSON
 using HTTP
 using Dates

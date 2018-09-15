@@ -11,7 +11,7 @@ URLS tend to go out of date fast on github (as we always generate using the late
 so strip them from the recorded reference
 """
 function discard_urls(code)
-    replace(code, r"http.*?([\s\"\)])", s"<URL>\1")
+    replace(code, r"http.*?([\s\"\)])" => s"<URL>\1")
 end
 
 @testset "fivethirtyeight (folders in 1 repo)" begin
@@ -28,7 +28,7 @@ end
     
     @test_reference "references/538 steak.txt" discard_urls(replace(
         generate(GitHub(), "https://github.com/fivethirtyeight/data/tree/master/steak-survey"),
-        r"Article.*"s, "")) # Delete most of the text harvested from top level readme, as that will go out of date fast 
+        r"Article.*"s=> "")) # Delete most of the text harvested from top level readme, as that will go out of date fast 
     
     
     @test_reference "references/538 college.txt" discard_urls(generate(GitHub(), "fivethirtyeight/data/tree/master/college-majors"))

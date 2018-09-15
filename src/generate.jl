@@ -92,7 +92,7 @@ end
 
 function data_shortname(repo, shortname::Nothing, fullname)
     # Remove any characters not allowed in a file path
-    reduce((s,r)->replace(s, r => ""), fullname, ['\\', '/', ':', '*', '?', '<', '>', '|'])
+    reduce((s,r)->replace(s, r => ""), ['\\', '/', ':', '*', '?', '<', '>', '|']; init=fullname)
 end
 
 data_shortname(repo, shortname, fullname) = shortname

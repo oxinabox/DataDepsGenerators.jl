@@ -66,7 +66,8 @@ function get_urls(repo::GitHub, page, cdn_url_converter=get_cdn_url_converter(pa
     for link in links
         urlsub =  getattr(link, "href")
         github_url = base_url(repo) * urlsub
-        if contains(getattr(link.parent.parent.parent[1][1], "class"), "directory") # is a dirctory
+        linkclass = getattr(link.parent.parent.parent[1][1], "class")
+        if occursin("directory", linkclass) # is a dirctory
             push!(urls, get_urls(repo, getpage(github_url), cdn_url_converter)) # making a list of lists
         else # it is a file
             push!(urls, cdn_url_converter(urlsub))

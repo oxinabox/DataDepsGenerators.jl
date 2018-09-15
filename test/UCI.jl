@@ -24,7 +24,7 @@ end
 @testset "ForestFires" begin
     registration_block = generate(UCI(), "Forest+Fires")
 
-    @test contains(registration_block, "A Data Mining Approach to Predict Forest Fires using Meteorological Data") # must get the citation info
+    @test occursin("A Data Mining Approach to Predict Forest Fires using Meteorological Data", registration_block) # must get the citation info
 
     # All the above tests in this section (and more) are covered by the final check below
     # But more specific tests let us know which bits are broken

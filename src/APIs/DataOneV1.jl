@@ -36,7 +36,7 @@ function get_checksums(repo::DataOneV1, page)
     for link in links
         spans = eachmatch(sel".file-list span", getpage(text_only(link)).root)
         for span in spans
-            if ismatch(r"^[a-f0-9]{32}$", text_only(span))
+            if occursin(r"^[a-f0-9]{32}$", text_only(span))
                 push!(checksums, (:md5, text_only(span)))
             end
         end

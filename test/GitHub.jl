@@ -1,6 +1,6 @@
 using DataDeps
 using DataDepsGenerators
-using Base.Test
+using Test
 
 using Suppressor
 

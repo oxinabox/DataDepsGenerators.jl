@@ -48,7 +48,7 @@ function get_checksums(repo::DataDryad, page)
     links = eachmatch(sel"a", page.root)
     regex = r"\bresource\/doi:[0-9]*.[0-9]*\/dryad.[a-z, 0-9]*\/[0-9]+\b"
     for checksum_link in links
-        if ismatch(regex,checksum_link.attributes["href"])
+        if occursin(regex,checksum_link.attributes["href"])
             checksum = match(regex, checksum_link.attributes["href"])
             url = replace(checksum.match, "resource/doi:", "https://datadryad.org/mn/checksum/doi:")
             md5 = (:md5, text_only(getpage(url).root))

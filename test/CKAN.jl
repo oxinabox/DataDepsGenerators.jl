@@ -1,4 +1,4 @@
-using Base.Test
+using Test
 using DataDeps
 using DataDepsGenerators
 using Suppressor

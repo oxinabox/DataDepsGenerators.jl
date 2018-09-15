@@ -50,7 +50,7 @@ function get_cdn_url_converter(mainpage)
     function(urlsub)
         ret = "https://cdn.rawgit.com"*urlsub
         if commit === nothing
-            warn("Not able to retrieve commit hash. Switching to master.")
+            @warn("Not able to retrieve commit hash. Switching to master.")
             rep_string = "master"
         else
             rep_string = commit.match

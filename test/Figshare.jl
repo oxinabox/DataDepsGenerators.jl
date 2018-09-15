@@ -1,6 +1,6 @@
 using DataDeps
 using DataDepsGenerators
-using Base.Test
+using Test
 using MD5
 using Suppressor
 using ReferenceTests

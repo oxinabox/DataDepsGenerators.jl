@@ -90,7 +90,7 @@ function find_metadata(repo, dataname, shortname)
     )
 end
 
-function data_shortname(repo, shortname::Void, fullname)
+function data_shortname(repo, shortname::Nothing, fullname)
     # Remove any characters not allowed in a file path
     reduce((s,r)->replace(s, r, ""), fullname, ['\\', '/', ':', '*', '?', '<', '>', '|'])
 end

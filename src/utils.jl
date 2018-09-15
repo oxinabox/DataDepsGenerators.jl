@@ -63,7 +63,7 @@ If that is required.
 function filter_html(text)
     # Check if the text is a HTML or not
     # Note we are not parsing it, just checking if we should parse it
-    if ismatch(r"<(\"[^\"]*\"|'[^']*'|[^'\">])*>", text)
+    if occursin(r"<(\"[^\"]*\"|'[^']*'|[^'\">])*>", text)
         # It seems like it may be HTML, so now parse it.
         text_only(parsehtml(text))
 	else
@@ -106,7 +106,7 @@ end
 Returns all the nonabstract types decedent from `T`.
 """
 function leaf_subtypes(T)
-       if isleaftype(T)
+       if isconcretetype(T)
            T
        else
            vcat(leaf_subtypes.(subtypes(T))...)

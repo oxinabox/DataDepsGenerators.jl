@@ -25,7 +25,7 @@ function get_docfile(::GitHub, page, docname, max_lines=typemax(Int))
             node = first(nodes)
             url = "https://rawgit.com" * getattr(node.parent, "href")
             url = replace(url, "blob/", "")
-            text = String(read(quiet_download(url)))
+            text = getpage_raw(url) # It is plain-text/markdown probs.
             lines = split(text, "\n")
             if length(lines) > max_lines
                 text = join(lines[1:max_lines], "\n")

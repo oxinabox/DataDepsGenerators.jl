@@ -6,9 +6,9 @@ Calls `func(arg)`, propagating `missing` values
 lift(func, ::Missing)=missing
 lift(func, arg) = func(arg)
 
-function miss_null(attr::Any)
-    attr != nothing ? attr : missing
-end
+
+miss_null(::Nothing) = missing
+miss_null(x) = x
 
 
 """
@@ -24,15 +24,24 @@ function getfirst(json, key, otherkeys...)
 end
 getfirst(json) = missing
 
+###############################
+"""
+    getpage_raw(url)
 
-quiet_download(url) = @suppress(download(url))
+Downloads the page from the URL,
+returning the raw (unparsed) text of the body.
+"""
+getpage_raw(url) = String(HTTP.request("GET", url).body)
+
 
 """
     getpage(url)
 
 downloads and parses the page from the URL
 """
-getpage(url) = parsehtml(String(read(quiet_download(url))))
+const getpage = parsehtml ∘ getpage_raw
+
+###
 
 """
     text_only(doc)
@@ -65,6 +74,8 @@ end
 filter_html(::Missing) = missing
 
 
+
+###########
 
 "
     indent(str)
@@ -102,6 +113,7 @@ function leaf_subtypes(T)
        end
 end
 
+##############################################
 
 """
 	match_doi(uri::String

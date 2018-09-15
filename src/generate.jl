@@ -37,8 +37,8 @@ function generate(repos::Vector, dataname, shortname = nothing; show_failures=fa
     failures_ch = Channel{Tuple{DataRepo, Exception}}(128)
     
     # Get all the metadata we can
-    for repo in repos
-        try
+    @sync for repo in repos
+        @async try
             metadata = find_metadata(repo, dataname, shortname)
             push!(retrieved_metadatas_ch, metadata)
         catch err

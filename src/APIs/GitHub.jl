@@ -3,7 +3,7 @@ end
 
 base_url(::GitHub) = "https://github.com"
 
-git_repo_page_url(page) = base_url(GitHub()) * getattr(first(matchall(sel"strong[itemprop=\"name\"] a", page.root)), "href")
+git_repo_page_url(page) = base_url(GitHub()) * getattr(first(eachmatch(sel"strong[itemprop=\"name\"] a", page.root)), "href")
 
 function description(::GitHub, mainpage)
     # Just load the readme -- it is all that we can do as this level of generic
@@ -20,12 +20,12 @@ end
 
 function get_docfile(::GitHub, page, docname, max_lines=typemax(Int))
     function inner(page)
-        nodes = matchall(Selector(".content span a :contains($(docname))"), page.root)
+        nodes = eachmatch(Selector(".content span a :contains($(docname))"), page.root)
         if length(nodes)>0
             node = first(nodes)
             url = "https://rawgit.com" * getattr(node.parent, "href")
             url = replace(url, "blob/", "")
-            text = String(read(quiet_download(url)))
+            text = getpage_raw(url) # It is plain-text/markdown probs.
             lines = split(text, "\n")
             if length(lines) > max_lines
                 text = join(lines[1:max_lines], "\n")
@@ -61,7 +61,7 @@ end
 
 
 function get_urls(repo::GitHub, page, cdn_url_converter=get_cdn_url_converter(page))
-    links = matchall(sel".content span a", page.root)
+    links = eachmatch(sel".content span a", page.root)
     urls = Any[]
     for link in links
         urlsub =  getattr(link, "href")
@@ -77,5 +77,5 @@ function get_urls(repo::GitHub, page, cdn_url_converter=get_cdn_url_converter(pa
 end
 
 function data_fullname(::GitHub, mainpage)
-    text_only(last(matchall(sel"h1", mainpage.root)))
+    text_only(last(eachmatch(sel"h1", mainpage.root)))
 end

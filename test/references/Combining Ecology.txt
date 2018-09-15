@@ -3,7 +3,7 @@ register(DataDep(
     """
 	Dataset: Data from: Ecology and genomics of an important crop wild relative as a prelude to agricultural innovation
 	Website: http://dx.doi.org/10.5061/dryad.74699
-	Author: Eric J. B. Von Wettberg et al.
+	Author: von Wettberg, Eric J. B. et al.
 	Date of Publication: 2018-02-27T21:46:38
 	License: http://creativecommons.org/publicdomain/zero/1.0
 

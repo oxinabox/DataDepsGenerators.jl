@@ -24,7 +24,7 @@ function get_docfile(::GitHub, page, docname, max_lines=typemax(Int))
         if length(nodes)>0
             node = first(nodes)
             url = "https://rawgit.com" * getattr(node.parent, "href")
-            url = replace(url, "blob/", "")
+            url = replace(url, "blob/" => "")
             text = getpage_raw(url) # It is plain-text/markdown probs.
             lines = split(text, "\n")
             if length(lines) > max_lines
@@ -55,7 +55,7 @@ function get_cdn_url_converter(mainpage)
         else
             rep_string = commit.match
         end
-        replace(ret, "blob/master", rep_string)
+        replace(ret, "blob/master" => rep_string)
     end
 end
 

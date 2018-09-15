@@ -92,7 +92,7 @@ end
 
 function data_shortname(repo, shortname::Nothing, fullname)
     # Remove any characters not allowed in a file path
-    reduce((s,r)->replace(s, r, ""), fullname, ['\\', '/', ':', '*', '?', '<', '>', '|'])
+    reduce((s,r)->replace(s, r => ""), fullname, ['\\', '/', ':', '*', '?', '<', '>', '|'])
 end
 
 data_shortname(repo, shortname, fullname) = shortname
@@ -116,7 +116,7 @@ function mainpage_url(repo::DataRepo, dataname)
     if startswith(dataname, "http")
         url = dataname
         #TODO: This isn't going to take https/http differences.
-        dataname = first(split(replace(url, base_url(repo), ""), "/"))
+        dataname = first(split(replace(url, base_url(repo) => ""), "/"))
     else # not a URL
         url = joinpath(base_url(repo), dataname)
     end

@@ -9,13 +9,13 @@ include("KnowledgeNetworkforBiocomplexity.jl")
 function get_urls(repo::KNB, page)
     urls = []
     links = eachmatch(sel"distribution online", page.root)
-    url_links = [replace(text_only(i), "ecogrid://knb/", base_url(repo)) for i in links]
+    url_links = [replace(text_only(i), "ecogrid://knb/"=>base_url(repo)) for i in links]
     push!(urls, url_links)
     urls
 end
 
 function website(repo::KNB, mainpage_url, mainpage)
-    replace(mainpage_url, base_url(repo), "http://dx.doi.org/")
+    replace(mainpage_url, base_url(repo) => "http://dx.doi.org/")
 end
 
 function desc_(repo::KNB, mainpage)
@@ -25,7 +25,7 @@ end
 
 function authors_(repo::KNB, mainpage)
     author_ele = eachmatch(sel"individualName", mainpage.root)
-    [text_only(i) for i in author_ele if contains(string(i.parent), "creator")]
+    [text_only(i) for i in author_ele if occursin("creator", string(i.parent))]
 end
 
 function pub_date(repo::KNB, mainpage)

@@ -53,5 +53,5 @@ function data_fullname(::DataOneV1, mainpage)
 end
 
 function website(::DataOneV1, mainpage_url, mainpage)
-    replace(mainpage_url, "https://datadryad.org/mn/object/", "")
+    replace(mainpage_url, "https://datadryad.org/mn/object/" => "")
 end

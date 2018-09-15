@@ -6,7 +6,7 @@ base_url(::DataCite) = "https://api.datacite.org/works/"
 description(repo::DataCite, mainpage) = miss_null(mainpage["attributes"]["description"])
 data_fullname(::DataCite, mainpage) = mainpage["attributes"]["title"]
 author(::DataCite, mainpage) = join.([[names[2] for names in value] for value in  mainpage["attributes"]["author"]], " ")
-website(repo::DataCite, mainpage_url, mainpage) =  replace(mainpage_url, base_url(repo), "https://doi.org/")
+website(repo::DataCite, mainpage_url, mainpage) =  replace(mainpage_url, base_url(repo) => "https://doi.org/")
 license(::DataCite, mainpage) = miss_null(mainpage["attributes"]["license"])
 published_date(::DataCite, mainpage) = mainpage["attributes"]["published"]
 dataset_cite(::DataCite, mainpage) = citation_text(mainpage["id"])

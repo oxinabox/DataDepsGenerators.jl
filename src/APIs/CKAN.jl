@@ -33,7 +33,6 @@ function mainpage_url(repo::CKAN, dataname)
         url = replace(dataname, "/dataset/" =>  "/api/3/action/package_show?id=")
         return JSON.parse(text_only(getpage(url).root))["result"], dataname
     else
-        # error("Please use a valid url")
         throw(GeneratorError(repo))
     end
 end

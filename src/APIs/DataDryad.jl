@@ -52,7 +52,7 @@ function get_checksums(repo::DataDryad, page)
         end
     end
     if length(checksums) > 0
-        info("The generated registration block uses md5 hash, " *
+        @info("The generated registration block uses md5 hash, " *
             "the MD5.jl package must be loaded to run the registration")
     end
     checksums

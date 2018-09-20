@@ -46,24 +46,28 @@ end
 function combine_all(metadatas::Vector, field::Symbol)
     ret = missing
     for value in getfield.(metadatas, Ref(field))
-        ret = combine(ret, value, field)
+        ret = combine(ret, value, Val{field})
     end
     ret
 end
 
-#dispatch based on Value of fieldname
-combine(x::String, y::String, fieldname::Symbol) = combine(x,y,Val{fieldname}())
+# ====dispatch based on Value of fieldname ====
 
 combine(::Missing, ::Missing, ::Any) = missing
 combine(::Missing, x, ::Any) = x
 combine(x, ::Missing, ::Any) = x
 
-combine(x::Vector, y::Vector, ::Any) = length(x) > length(y) ? x : y
+combine(x::Vector, y::Vector, ::Any) = tblength(x) > tblength(y) ? x : y
 
-combine(x::String, y::String, ::Any) = length(x) > length(y) ? x : y
-combine(x::String, y::String, ::Val{:license}) = length(x) > 0 && length(x) < length(y) ? x : y
+combine(x::AbstractString, y::AbstractString, ::Any) = tblength(x) > tblength(y) ? x : y
 
-combine(x::Union{DateTime, Date}, y::String, ::Any) = x
-combine(x::String, y::Union{DateTime, Date}, ::Any) = y
+# Shorter is better for lisences as is is likely a human readble name or a URL, rather than the full text.
+combine(x::AbstractString, y::AbstractString, ::Val{:license}) = length(x) > 0 && tblength(x) < tblength(y) ? x : y
 
+combine(x::Union{DateTime, Date}, y::AbstractString, ::Any) = x
+combine(x::AbstractString, y::Union{DateTime, Date}, ::Any) = y
+
+
+#Tie-Breaking length: Returns a tuple, that will break ties on things of equal lengths)"
+tblength(x) = (length(x), hash(x))
 

@@ -5,7 +5,7 @@ register(DataDep(
 	Website: http://dx.doi.org/10.5061/dryad.74699
 	Author: von Wettberg, Eric J. B. et al.
 	Date of Publication: 2018-02-27T21:46:38
-	License: http://creativecommons.org/publicdomain/zero/1.0/
+	License: https://creativecommons.org/publicdomain/zero/1.0/
 
 	Domesticated species are impacted in unintended ways during domestication and breeding. Changes in the nature and intensity of selection impart genetic drift, reduce diversity, and increase the frequency of deleterious alleles. Such outcomes constrain our ability to expand the cultivation of crops into environments that differ from those under which domestication occurred. We address this need in chickpea, an important pulse legume, by harnessing the diversity of wild crop relatives. We document an extreme domestication-related genetic bottleneck and decipher the genetic history of wild populations. We provide evidence of ancestral adaptations for seed coat color crypsis, estimate the impact of environment on genetic structure and trait values, and demonstrate variation between wild and cultivated accessions for agronomic properties. A resource of genotyped, association mapping progeny functionally links the wild and cultivated gene pools and is an essential resource chickpea for improvement, while our methods inform collection of other wild crop progenitor species.
 	

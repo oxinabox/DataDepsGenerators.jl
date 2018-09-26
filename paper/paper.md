@@ -24,9 +24,9 @@ bibliography: paper.bib
 
 # Summary
 
-DataDepsGenerators.jl is a tool written to help users of the Julia programming language ([@Julia]),
+DataDepsGenerators.jl is a tool written to help users of the Julia programming language [@Julia],
 to observe best practices when making use of published datasets.
-Using the metadata present in published datasets, it generates the code for the data dependency registration blocks required by DataDeps.jl ([@2018arXiv180801091W]).
+Using the metadata present in published datasets, it generates the code for the data dependency registration blocks required by DataDeps.jl [@2018arXiv180801091W].
 These registration blocks are effectively executable metadata,
 which can be resolved by DataDeps.jl to download the dataset.
 They include a message that is displayed to the user whenever the data set is automatically downloaded.
@@ -37,7 +37,7 @@ DataDepsGenerators.jl attempts to use the metadata available for a dataset to ca
 
  - The dataset name.
  - A URL for a website about the dataset.
- - The names of the authors and maintainers
+ - The names of the authors and maintainers.
  - The creation date, publication date, and the date of the most recent modification.
  - The license that the dataset is released under.
  - The formatted bibliographic details of any paper about or relating to the dataset.
@@ -75,18 +75,43 @@ The APIs supported include:
 	- Including many of those listed above.
 	- But also [Zenodo](https://zenodo.org/), [Kaggle Datasets](https://www.kaggle.com/datasets), all [DataVerse](https://dataverse.org/) sites and many others.
 
+
 DataDepsGenerators.jl as the name suggests, generates static code which the user can add into their project's julia source code to make use of with DataDeps.jl.
 There are a number of reasons why static code generation is preferred over directly using the APIs.
+
  - On occasion the information reported by the APIs is wrong or incomplete. By generating code that the user may edit they may tweak the details as required.
  - The process of accessing the APIs requires a number of heavy dependencies, such as HTML and JSON parsers. If these APIs were to be access directly by a project, it would require adding this large dependency tree to the project.
  - It is important to know if a dataset has changed. As such retrieving the file hash and last modification date would be pointless if they are updated automatically.
+ 
 Finally: having the provenance information recorded in plain text, makes the dataset metadata readily accessible to anyone reading the source code; without having to run the project's application.
+
 
 
 The automatic downloading of data is important to allow for robustly replicable scientific code.
 The inclusion of provenance information is required to give proper credit and to allow for good understanding of the dataset's real world context.
 DataDepsGenerators.jl makes this easy by automating most of the work.
-	
+
+
+## Other similar packages
+
+In the R software ecosystem there exists a several packages which only support a single provider of data.
+These vary in their support for different functionality.
+They often support things beyond the scope of DataDepsGenerators.jl, to search, or upload data to the supported repository.
+For example:
+
+ - [rdryad for DataDryad](https://github.com/ropensci/rdryad)
+ - [rfigshare for FigShare](https://github.com/ropensci/rfigshare)
+ - [ckanr for CKAN](https://github.com/ropensci/ckanr)
+ - [rdatacite for DataCite](https://github.com/ropensci/rdatacite)
+ - [rdataone for DataOne](https://github.com/DataONEorg/rdataone)
+
+To the best of our knowledge at present their is not any unifying R package that supports anywhere near the range of data repostories supported by DataDepsGenerators.jl.
+Contemporaneously, with the creation of DataDepsGenerator.jl,
+the was proposed package to acquire data based on a DOI [doidata](https://github.com/ropenscilabs/doidata).
+While this has yet to eventuate into usable software, several of the discussions relating to it were insightful,
+and contributed to the functionality of DataDepsGenerators.jl
+
+
 ## Acknowledgements
  
 This work was largely carried out as a [Google Summer of Code project](https://medium.com/@sebastinsanty/google-summer-of-code-2018-julia-computing-report-8d3f553d7050), as part of the NumFocus organisation.

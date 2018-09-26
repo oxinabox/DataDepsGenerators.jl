@@ -2,7 +2,6 @@ using DataDeps
 using DataDepsGenerators
 using Test
 using MD5
-using Suppressor
 using ReferenceTests
 
 @testset "Figshare test" begin

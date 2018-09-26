@@ -97,7 +97,7 @@ DataDepsGenerators.jl makes this easy by automating most of the work.
 In the R software ecosystem there exists a several packages which only support a single provider of data.
 These vary in their support for different functionality.
 They often support things beyond the scope of DataDepsGenerators.jl, to search, or upload data to the supported repository.
-For example:
+Examples include:
 
  - [rdryad for DataDryad](https://github.com/ropensci/rdryad)
  - [rfigshare for FigShare](https://github.com/ropensci/rfigshare)

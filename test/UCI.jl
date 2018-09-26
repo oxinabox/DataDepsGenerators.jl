@@ -1,14 +1,13 @@
 using DataDeps
 using DataDepsGenerators
 using Test
-using Suppressor
 using ReferenceTests
 
 @testset "UCI Air Quality" begin
     registration_code = generate(UCI(), "Air+Quality")
 
-    @suppress @testset "Integration Test" begin
-        eval(parse(registration_code))
+    @testset "Integration Test" begin
+        eval(Meta.parse(registration_code))
         @test length(collect(readdir(datadep"Air Quality Data Set (UCI ML Repository)"))) > 0
     end
 

@@ -1,14 +1,13 @@
 using Test
 using DataDeps
 using DataDepsGenerators
-using Suppressor
 using ReferenceTests
 
 @testset "CKAN Demo test" begin
     registration_code = generate(CKAN(), "https://demo.ckan.org/dataset/gold-prices")
 
-    @suppress @testset "Integration Test" begin
-        eval(parse(registration_code))
+    @testset "Integration Test" begin
+        eval(Meta.parse(registration_code))
         @test length(collect(readdir(datadep"Gold Prices in London 1950-2008 (Monthly)"))) > 0
     end
 

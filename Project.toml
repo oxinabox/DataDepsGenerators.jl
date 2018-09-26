@@ -21,7 +21,6 @@ DataDeps = "124859b0-ceae-595e-8997-d05f6a7a8dfe"
 MD5 = "6ac74813-4b46-53a4-afec-0b5dc9d7885c"
 ReferenceTests = "324d217c-45ce-50fc-942e-d289b448e8cf"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
-Suppressor = "fd094767-a336-5f1f-9728-57cf17d0bbfb"
 
 [targets]
-test = ["MD5", "DataDeps", "ReferenceTests", "Test", "Suppressor"]
+test = ["MD5", "DataDeps", "ReferenceTests", "Test"]

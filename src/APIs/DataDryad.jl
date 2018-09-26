@@ -3,7 +3,7 @@ end
 
 base_url(::DataDryad) = "https://datadryad.org/resource/doi:"
 
-description(repo::DataDryad, mainpage) = replace(text_only(first(eachmatch(sel".article-abstract", mainpage.root))), "Abstract ", "")
+description(repo::DataDryad, mainpage) = replace(text_only(first(eachmatch(sel".article-abstract", mainpage.root))), "Abstract " => "")
 
 function author(::DataDryad, mainpage)
     author = missing
@@ -19,12 +19,12 @@ license(::DataDryad, mainpage) = getattr(first(eachmatch(sel".single-image-link"
 
 function published_date(::DataDryad, mainpage)
     dateelem = eachmatch(sel".publication-header p", mainpage.root)
-    replace(text_only(dateelem[length(dateelem)-1]), "Date Published: ", "")
+    replace(text_only(dateelem[length(dateelem)-1]), "Date Published: " => "")
 end
 
 paper_cite(::DataDryad, mainpage) = text_only(first(eachmatch(sel".citation-sample", mainpage.root)))
 
-dataset_cite(::DataDryad, mainpage) = replace(text_only(last(eachmatch(sel".publication-header p", mainpage.root))), "DOI: ", "")
+dataset_cite(::DataDryad, mainpage) = replace(text_only(last(eachmatch(sel".publication-header p", mainpage.root))), "DOI: " => "")
 
 function get_urls(repo::DataDryad, page)
     urls = []
@@ -32,14 +32,10 @@ function get_urls(repo::DataDryad, page)
     for link in links
         urlhref = getattr(link, "href")
         dryadurl = "https://datadryad.org" * string(urlhref)
-        if contains(string(link.parent.parent), "Download")
+        if occursin("Download" , string(link.parent.parent))
             push!(urls, dryadurl)
         end
     end
-    # download_url = replace(paper, "DOI: https://", "https://datadryad.org/mn/object/http://dx.") * "/1/bitstream"
-
-    # md5 = ("md5", text_only(getpage(replace(paper, "DOI: https://doi.org/", "https://datadryad.org/mn/checksum/doi:") * "/1").root))
-    # push!(urls, md5)
     urls
 end
 
@@ -50,13 +46,13 @@ function get_checksums(repo::DataDryad, page)
     for checksum_link in links
         if occursin(regex,checksum_link.attributes["href"])
             checksum = match(regex, checksum_link.attributes["href"])
-            url = replace(checksum.match, "resource/doi:", "https://datadryad.org/mn/checksum/doi:")
+            url = replace(checksum.match, "resource/doi:" => "https://datadryad.org/mn/checksum/doi:")
             md5 = (:md5, text_only(getpage(url).root))
             push!(checksums, md5)
         end
     end
     if length(checksums) > 0
-        info("The generated registration block uses md5 hash, " *
+        @info("The generated registration block uses md5 hash, " *
             "the MD5.jl package must be loaded to run the registration")
     end
     checksums

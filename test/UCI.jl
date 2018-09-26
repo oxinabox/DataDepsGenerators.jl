@@ -1,14 +1,13 @@
 using DataDeps
 using DataDepsGenerators
 using Test
-using Suppressor
 using ReferenceTests
 
 @testset "UCI Air Quality" begin
     registration_code = generate(UCI(), "Air+Quality")
 
-    @suppress @testset "Integration Test" begin
-        eval(parse(registration_code))
+    @testset "Integration Test" begin
+        eval(Meta.parse(registration_code))
         @test length(collect(readdir(datadep"Air Quality Data Set (UCI ML Repository)"))) > 0
     end
 
@@ -24,7 +23,7 @@ end
 @testset "ForestFires" begin
     registration_block = generate(UCI(), "Forest+Fires")
 
-    @test contains(registration_block, "A Data Mining Approach to Predict Forest Fires using Meteorological Data") # must get the citation info
+    @test occursin("A Data Mining Approach to Predict Forest Fires using Meteorological Data", registration_block) # must get the citation info
 
     # All the above tests in this section (and more) are covered by the final check below
     # But more specific tests let us know which bits are broken

@@ -42,7 +42,7 @@ function get_checksums(repo::DataOneV1, page)
         end
     end
     if length(checksums) > 0
-        info("The generated registration block uses md5 hash, " *
+        @info("The generated registration block uses md5 hash, " *
             "the MD5.jl package must be loaded to run the registration")
     end
     checksums
@@ -53,5 +53,5 @@ function data_fullname(::DataOneV1, mainpage)
 end
 
 function website(::DataOneV1, mainpage_url, mainpage)
-    replace(mainpage_url, "https://datadryad.org/mn/object/", "")
+    replace(mainpage_url, "https://datadryad.org/mn/object/" => "")
 end

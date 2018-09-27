@@ -115,7 +115,7 @@ To the best of our knowledge at present their is not any unifying R package that
 Contemporaneously, with the creation of DataDepsGenerator.jl,
 the was proposed package ([`doidata`](https://github.com/ropenscilabs/doidata)) to acquire data based on a DOI.
 While this has yet to eventuate into usable software, several of the discussions relating to it were insightful,
-and contributed to the functionality of DataDepsGenerators.jl
+and contributed to the functionality of DataDepsGenerators.jl.
 
 
 ## Acknowledgements

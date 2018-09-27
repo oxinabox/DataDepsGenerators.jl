@@ -61,7 +61,7 @@ The APIs supported include:
     - This supports a number of data repositories used in the earth sciences.
  - [FigShare](http://figshare.com/)
     - A popular general purpose data repository.
- - [DataDryad](http://datadryad.org/)
+ - [Dryad](http://datadryad.org/)
     - A data repository particularly popular with evolutionary biology and ecology.
  - [UCI ML repository](https://archive.ics.uci.edu/ml/)
     - A data repository commonly used for small-medium machine learning benchmark datasets.
@@ -93,21 +93,27 @@ DataDepsGenerators.jl makes this easy by automating most of the work.
 
 
 ## Other similar packages
+In the R software ecosystem  there is the [`suppdata`](https://github.com/ropensci/suppdata) [@suppdata] package.
+`suppdata` is a package for easily downloading supplementary data files attached to journal articles.
+It is thus very similar in purpose: to make research data more accessible.
+It is a direct download tool, rather than DataDepsGenerators.jl's approach of generating metadata that is evaluated to preform the download.
+While there is some overlap, in that both support FigShare and Dryad,
+`suppdata` supports primarily journals rather than data repositories.
 
-In the R software ecosystem there exists a several packages which only support a single provider of data.
+When it comes to accessing data repositories, there exists several R packages which only support a single provider of data.
 These vary in their support for different functionality.
 They often support things beyond the scope of DataDepsGenerators.jl, to search, or upload data to the supported repository.
 Examples include:
 
- - [rdryad for DataDryad](https://github.com/ropensci/rdryad)
- - [rfigshare for FigShare](https://github.com/ropensci/rfigshare)
- - [ckanr for CKAN](https://github.com/ropensci/ckanr)
- - [rdatacite for DataCite](https://github.com/ropensci/rdatacite)
- - [rdataone for DataOne](https://github.com/DataONEorg/rdataone)
+ - [`rdryad` for DataDryad](https://github.com/ropensci/rdryad)
+ - [`rfigshare` for FigShare](https://github.com/ropensci/rfigshare)
+ - [`ckanr` for CKAN](https://github.com/ropensci/ckanr)
+ - [`rdatacite` for DataCite](https://github.com/ropensci/rdatacite)
+ - [`rdataone` for DataOne](https://github.com/DataONEorg/rdataone)
 
 To the best of our knowledge at present their is not any unifying R package that supports anywhere near the range of data repostories supported by DataDepsGenerators.jl.
 Contemporaneously, with the creation of DataDepsGenerator.jl,
-the was proposed package ([doidata](https://github.com/ropenscilabs/doidata)) to acquire data based on a DOI.
+the was proposed package ([`doidata`](https://github.com/ropenscilabs/doidata)) to acquire data based on a DOI.
 While this has yet to eventuate into usable software, several of the discussions relating to it were insightful,
 and contributed to the functionality of DataDepsGenerators.jl
 
@@ -115,7 +121,7 @@ and contributed to the functionality of DataDepsGenerators.jl
 ## Acknowledgements
  
 This work was largely carried out as a [Google Summer of Code project](https://medium.com/@sebastinsanty/google-summer-of-code-2018-julia-computing-report-8d3f553d7050), as part of the NumFocus organisation.
-It also benefited from funding from Australian Research Council Grants DP150102405 and LP110100050.  
+It also benefited from funding from Australian Research Council Grants DP150102405 and LP110100050.
 
 We also wish to thank the support teams behind the APIs and repositories listed above.
 In the course of creating this tool we thoroughly exercised a number of APIs.

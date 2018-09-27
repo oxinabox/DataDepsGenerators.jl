@@ -1,6 +1,6 @@
 # DataDepsGenerators
-Travis CI Master: [![Build Status](https://travis-ci.org/oxinabox/DataDeps.jl.svg?branch=master)](https://travis-ci.org/oxinabox/DataDepsGenerators.jl)
-AppVeyor Master: [![Build status](https://ci.appveyor.com/api/projects/status/2q9u3a961j438aq9/branch/master?svg=true)](https://ci.appveyor.com/project/oxinabox/datadepsgenerators-jl/branch/master)
+[![Build Status](https://travis-ci.org/oxinabox/DataDeps.jl.svg?branch=master)](https://travis-ci.org/oxinabox/DataDepsGenerators.jl)
+[![Build status](https://ci.appveyor.com/api/projects/status/2q9u3a961j438aq9/branch/master?svg=true)](https://ci.appveyor.com/project/oxinabox/datadepsgenerators-jl/branch/master)
 [![JOSS status](http://joss.theoj.org/papers/f52340014957dc0e74d5935162221c29/status.svg)](http://joss.theoj.org/papers/f52340014957dc0e74d5935162221c29)
 
 **Generating registration blocks for [DataDeps.jl](https://github.com/oxinabox/DataDeps.jl) in one key press.**

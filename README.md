@@ -1,7 +1,7 @@
 # DataDepsGenerators
 Travis CI Master: [![Build Status](https://travis-ci.org/oxinabox/DataDeps.jl.svg?branch=master)](https://travis-ci.org/oxinabox/DataDepsGenerators.jl)
 AppVeyor Master: [![Build status](https://ci.appveyor.com/api/projects/status/2q9u3a961j438aq9/branch/master?svg=true)](https://ci.appveyor.com/project/oxinabox/datadepsgenerators-jl/branch/master)
-
+[![JOSS status](http://joss.theoj.org/papers/f52340014957dc0e74d5935162221c29/status.svg)](http://joss.theoj.org/papers/f52340014957dc0e74d5935162221c29)
 
 **Generating registration blocks for [DataDeps.jl](https://github.com/oxinabox/DataDeps.jl) in one key press.**
 An example of use [is in this blog-post](http://white.ucc.asn.au/2018/01/18/DataDeps.jl-Repeatabled-Data-Setup-for-Repeatable-Science.html#example-3-538-avenegers-comic-book-characters--datadepsgeneratorsjl)

@@ -26,8 +26,8 @@ The registration block can be immediately evaluated using `eval(Meta.parse(gener
 which is handy for interactive prototyping,
 it is not great to put this code in a package packages;
 as it involves triggering web requests every time the package is loaded.
-Not to mention DataDepsGenerators.jl has a pretty heavy set of dependencies,
-that you don't really want weighing down your package.
+Not to mention that DataDepsGenerators.jl has a pretty heavy set of dependencies,
+which you really don't want weighing down your package.
 
 
 **Note:** DataDepsGenerators does it's best to generate the correct registration code block.
@@ -61,7 +61,7 @@ generate(id_or_url, [datadep_name])::String
      - you can always edit the resulting code anyway
 
  - This returns a `String` containing the generated DataDeps registration block
-	 - `diplay`ing it in the REPL will show it as full of escape characters.
+	 - `display`ing it in the REPL will show it as full of escape characters.
      - If it is `print`ed or written to file, it will be the understandable julia code you expect.
 
 	 

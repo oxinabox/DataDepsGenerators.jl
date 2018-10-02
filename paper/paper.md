@@ -111,7 +111,7 @@ Examples include:
  - [`rdatacite` for DataCite](https://github.com/ropensci/rdatacite)
  - [`rdataone` for DataOne](https://github.com/DataONEorg/rdataone)
 
-To the best of our knowledge at present there does not exist a unifying R package that supports anywhere near the range of data repostories supported by DataDepsGenerators.jl.
+To the best of our knowledge at present there does not exist a unifying R package that supports anywhere near the range of data repositories supported by DataDepsGenerators.jl.
 Contemporaneously, during the creation of DataDepsGenerator.jl,
 there was another R package ([`doidata`](https://github.com/ropenscilabs/doidata)) that was proposed in order to acquire data based on a DOI.
 While this has yet to eventuate into usable software, several of the discussions relating to it were insightful,

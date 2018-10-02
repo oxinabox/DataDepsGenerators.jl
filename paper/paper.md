@@ -98,7 +98,7 @@ In the R software ecosystem  there is the [`suppdata`](https://github.com/ropens
 It is thus very similar in purpose: to make research data more accessible.
 It is a direct download tool, rather than DataDepsGenerators.jl's approach of generating metadata that is evaluated to preform the download.
 While there is some overlap, in that both support FigShare and Dryad,
-`suppdata` supports primarily journals rather than data repositories.
+`suppdata` primarily supports journals rather than data repositories.
 
 When it comes to accessing data repositories, there exists several R packages which only support a single provider of data.
 These vary in their support for different functionality.
@@ -111,9 +111,9 @@ Examples include:
  - [`rdatacite` for DataCite](https://github.com/ropensci/rdatacite)
  - [`rdataone` for DataOne](https://github.com/DataONEorg/rdataone)
 
-To the best of our knowledge at present their is not any unifying R package that supports anywhere near the range of data repostories supported by DataDepsGenerators.jl.
-Contemporaneously, with the creation of DataDepsGenerator.jl,
-the was proposed package ([`doidata`](https://github.com/ropenscilabs/doidata)) to acquire data based on a DOI.
+To the best of our knowledge at present there does not exist a unifying R package that supports anywhere near the range of data repostories supported by DataDepsGenerators.jl.
+Contemporaneously, during the creation of DataDepsGenerator.jl,
+there was another R package ([`doidata`](https://github.com/ropenscilabs/doidata)) that was proposed in order to acquire data based on a DOI.
 While this has yet to eventuate into usable software, several of the discussions relating to it were insightful,
 and contributed to the functionality of DataDepsGenerators.jl.
 

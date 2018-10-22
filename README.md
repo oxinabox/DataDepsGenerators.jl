@@ -102,8 +102,8 @@ To write the dependency block to a file, you just need to open the file (`"data.
 using DataDepsGenerators
 
 open("data.jl", "w") do fh
-  registation = generate("https://archive.ics.uci.edu/ml/datasets/Air+quality", "UCI Air"))
-  print(fh, registation)
+  registration = generate("https://archive.ics.uci.edu/ml/datasets/Air+quality", "UCI Air")
+  print(fh, registration)
 end
 ```
 
@@ -138,7 +138,7 @@ It is probably most useful in the REPL/IJulia.
 using DataDeps
 using DataDepsGenerators
 
-eval(Meta.parse(generate(UCI(), "https://archive.ics.uci.edu/ml/datasets/Air+quality", "UCI Air"))
+eval(Meta.parse(generate(UCI(), "https://archive.ics.uci.edu/ml/datasets/Air+quality", "UCI Air")))
 ```
 
 Then just use anywhere in your code (later in the REPL session for example)  `datadep"UCI Air"` as if it were the name of a directory holding that data.

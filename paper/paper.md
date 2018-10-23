@@ -18,7 +18,7 @@ affiliations:
  - name: BITS Pilani, KK Birla Goa Campus, India
    index: 2
 
-date: 24 Aug 2018
+date: 23 Oct 2018
 bibliography: paper.bib
 ---
 
@@ -68,19 +68,16 @@ The APIs supported include:
  - [GitHub](https://github.com)
     - Most well known for hosting code; but is fairly regularly used to host versioned datasets.
  - [CKAN](http://ckan.org/)
-    - This is the system behind a large number of government open data initiatives;
-	- such as [Data.Gov](https://data.gov), [data.gov.au](https://data.gov.au/), and the [European Data Portal](https://www.europeandataportal.eu/)
+    - This is the system behind a large number of government open data initiatives such as [Data.Gov](https://data.gov), [data.gov.au](https://data.gov.au/), and the [European Data Portal](https://www.europeandataportal.eu/).
  - Embedded JSON-LD fragments in HTML pages.
-    - This is commonly used on many websites to describe their datasets.
-	- Including many of those listed above.
-	- But also [Zenodo](https://zenodo.org/), [Kaggle Datasets](https://www.kaggle.com/datasets), all [DataVerse](https://dataverse.org/) sites and many others.
+    - This is commonly used on many websites to describe their datasets. Including some of those listed above; as well as [Zenodo](https://zenodo.org/), [Kaggle Datasets](https://www.kaggle.com/datasets), all [DataVerse](https://dataverse.org/) sites and many others.
 
 
-DataDepsGenerators.jl as the name suggests, generates static code which the user can add into their project's julia source code to make use of with DataDeps.jl.
+DataDepsGenerators.jl as the name suggests, generates static code which the user can add into their project's Julia source code to make use of with DataDeps.jl.
 There are a number of reasons why static code generation is preferred over directly using the APIs.
 
- - On occasion the information reported by the APIs is wrong or incomplete. By generating code that the user may edit they may tweak the details as required.
- - The process of accessing the APIs requires a number of heavy dependencies, such as HTML and JSON parsers. If these APIs were to be access directly by a project, it would require adding this large dependency tree to the project.
+ - On occasion the information reported by the APIs is wrong, incomplete or overly detailed. The user may tweak the details as required by  editting the generated code.
+ - The process of accessing the APIs requires a number of heavy dependencies, such as HTML and JSON parsers. If these APIs were to be accessed directly by a project, it would require adding this large dependency tree to the project.
  - It is important to know if a dataset has changed. As such retrieving the file hash and last modification date would be pointless if they are updated automatically.
  
 Finally: having the provenance information recorded in plain text, makes the dataset metadata readily accessible to anyone reading the source code; without having to run the project's application.
@@ -102,7 +99,7 @@ While there is some overlap, in that both support FigShare and Dryad,
 
 When it comes to accessing data repositories, there exists several R packages which only support a single provider of data.
 These vary in their support for different functionality.
-They often support things beyond the scope of DataDepsGenerators.jl, to search, or upload data to the supported repository.
+They often support features beyond the scope of DataDepsGenerators.jl, to search, or upload data to the supported repository.
 Examples include:
 
  - [`rdryad` for DataDryad](https://github.com/ropensci/rdryad)
@@ -112,8 +109,8 @@ Examples include:
  - [`rdataone` for DataOne](https://github.com/DataONEorg/rdataone)
 
 To the best of our knowledge at present there does not exist a unifying R package that supports anywhere near the range of data repositories supported by DataDepsGenerators.jl.
-Contemporaneously, during the creation of DataDepsGenerator.jl,
-there was another R package ([`doidata`](https://github.com/ropenscilabs/doidata)) that was proposed in order to acquire data based on a DOI.
+Contemporaneously, with the creation of DataDepsGenerator.jl,
+there was a proposal for another related R package ([`doidata`](https://github.com/ropenscilabs/doidata)) which would access data based on a DOI.
 While this has yet to eventuate into usable software, several of the discussions relating to it were insightful,
 and contributed to the functionality of DataDepsGenerators.jl.
 

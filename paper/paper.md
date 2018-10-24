@@ -51,7 +51,7 @@ DataDepsGenerators.jl makes a best-effort attempt to acquire as much provenance 
 Where multiple APIs are supported, it makes use of all APIs possible, merging their responses to fill any gaps.
 It thus often produces higher quality and more comprehensive dataset metadata than is available from any one source.
 
-DataDepsGenerators.jl leavages many different APIs to support a very large number of repositories.
+DataDepsGenerators.jl lavages many different APIs to support a very large number of repositories.
 By current estimates tens of millions of datasets are supported, from hundreds of repositories.
 The APIs supported include:
 
@@ -76,7 +76,7 @@ The APIs supported include:
 DataDepsGenerators.jl as the name suggests, generates static code which the user can add into their project's Julia source code to make use of with DataDeps.jl.
 There are a number of reasons why static code generation is preferred over directly using the APIs.
 
- - On occasion the information reported by the APIs is wrong, incomplete or overly detailed. The user may tweak the details as required by  editting the generated code.
+ - On occasion the information reported by the APIs is wrong, incomplete or overly detailed. The user may tweak the details as required by  editing the generated code.
  - The process of accessing the APIs requires a number of heavy dependencies, such as HTML and JSON parsers. If these APIs were to be accessed directly by a project, it would require adding this large dependency tree to the project.
  - It is important to know if a dataset has changed. As such retrieving the file hash and last modification date would be pointless if they are updated automatically.
  
@@ -115,7 +115,7 @@ While this has yet to eventuate into usable software, several of the discussions
 and contributed to the functionality of DataDepsGenerators.jl.
 
 
-## Acknowledgements
+## Acknowledgments
  
 This work was largely carried out as a [Google Summer of Code project](https://medium.com/@sebastinsanty/google-summer-of-code-2018-julia-computing-report-8d3f553d7050), as part of the NumFocus organisation.
 It also benefited from funding from Australian Research Council Grants DP150102405 and LP110100050.

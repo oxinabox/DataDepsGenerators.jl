@@ -4,18 +4,20 @@ using DataDepsGenerators
 using ReferenceTests
 
 @testset "CKAN Demo test" begin
-    registration_code = generate(CKAN(), "https://demo.ckan.org/dataset/gold-prices")
-
-    @testset "Integration Test" begin
-        eval(Meta.parse(registration_code))
-        @test length(collect(readdir(datadep"Gold Prices in London 1950-2008 (Monthly)"))) > 0
-    end
-
-    @test_reference "references/CKAN Gold Prices.txt" registration_code
+    #WARNING: This dataset is actually invalid on CKAN is the original data it references has moved
+    # At some point it will break when the data set changes
+    @test_reference "references/CKAN Gold Prices.txt" registration_code generate(CKAN(), "https://demo.ckan.org/dataset/gold-prices")
 end
 
 @testset "data.gov test" begin
-    @test_reference "references/CKAN Consumer Complaint.txt" generate(CKAN(), "https://catalog.data.gov/api/3/action/package_show?id=consumer-complaint-database")
+    registration_code = generate(CKAN(), "https://catalog.data.gov/api/3/action/package_show?id=consumer-complaint-database")
+    
+    @testset "Integration Test" begin
+        eval(Meta.parse(registration_code))
+        @test length(collect(readdir(datadep"Consumer Complaint Database"))) > 0
+    end
+
+    @test_reference "references/CKAN Consumer Complaint.txt" registration_code
 end
 
 @testset "data.gov.au test" begin

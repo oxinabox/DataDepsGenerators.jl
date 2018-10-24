@@ -6,7 +6,7 @@ using ReferenceTests
 @testset "CKAN Demo test" begin
     #WARNING: This dataset is actually invalid on CKAN is the original data it references has moved
     # At some point it will break when the data set changes
-    @test_reference "references/CKAN Gold Prices.txt" registration_code generate(CKAN(), "https://demo.ckan.org/dataset/gold-prices")
+    @test_reference "references/CKAN Gold Prices.txt" generate(CKAN(), "https://demo.ckan.org/dataset/gold-prices")
 end
 
 @testset "data.gov test" begin

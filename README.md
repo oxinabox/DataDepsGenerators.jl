@@ -248,7 +248,7 @@ FigShare is a popular website for sharing figures and data.
 
 Example of use:
 ```julia
-    generate(Figshare(), "10.5281/zenodo.1194927")
+    generate(Figshare(), "10.1371/journal.pbio.2001414")
     generate(Figshare(), "https://figshare.com/articles/Youth_Activism_in_Chile_from_urban_educational_inequalities_to_experiences_of_living_together_and_solidarity/6504206")
 ```
 

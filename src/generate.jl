@@ -3,7 +3,7 @@
     generate([repo/s], url/id, [shortname]; show_failures=false)
 
 Generates a DataDeps code block.
-The only reuired parameter is the url/id.
+The only required parameter is the url/id.
 
  - `url/id` The identifier for the dataset
      - a URL for a landing page is normally best
@@ -115,8 +115,6 @@ get_urls(::DataRepo, mainpage) = missing
 function mainpage_url(repo::DataRepo, dataname)
     if startswith(dataname, "http")
         url = dataname
-        #TODO: This isn't going to take https/http differences.
-        dataname = first(split(replace(url, base_url(repo) => ""), "/"))
     else # not a URL
         url = joinpath(base_url(repo), dataname)
     end

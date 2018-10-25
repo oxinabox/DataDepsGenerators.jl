@@ -1,0 +1,3 @@
+
+# Denote all files that are truly binary and should not have line endings modified.
+test/references/** binary

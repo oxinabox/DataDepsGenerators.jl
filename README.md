@@ -188,22 +188,13 @@ Example of use:
 ```
 
 
-### `DataOneV1()` - API Based
-
-https://releases.dataone.org/online/api-documentation-v1.2.0/
-
-Data repositories like DataDryad, support version 1 API of the DataOne. 
-
-Data Repositories:
-* DataDryad: `generate(DataOneV1(), "https://datadryad.org/resource/doi:10.5061/dryad.74699", "Wild Crop Genomics")`
-
-
 
 ### `DataOneV2`
 
 https://releases.dataone.org/online/api-documentation-v2.0/apis/index.html
 
-Supports DataOne API version 2. There are differences in the API structure in each of them, hence are accounted for, separately:
+Supports DataOne API version 2.
+There are differences in the API structure for each repository each of them, hence are accounted for, separately:
 
 Data Repositories:
 * Knowledge Network for Biocomplexity `KnowledgeNetworkforBiocomplexity()`: `generate(KnowledgeNetworkforBiocomplexity(), "https://knb.ecoinformatics.org/knb/d1/mn/v2/object/doi:10.5063/F1T43R7N")`

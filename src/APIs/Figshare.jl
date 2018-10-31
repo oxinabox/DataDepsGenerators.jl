@@ -2,6 +2,9 @@ struct Figshare <: DataRepo
 end
 
 base_url(::Figshare) = "https://api.figshare.com/v2/articles"
+# Note: Unlike other generators, FigShare base_url is sometimes a "directory" and sometimes a file
+# But it is OK, because Figshare also overloads all the functions that use `base_url`
+# Most importantly `mainpage_url`
 
 description(repo::Figshare, mainpage) = mainpage["description"]
 
@@ -49,7 +52,7 @@ function mainpage_url(repo::Figshare, dataname)
         return JSON.parse(text_only(getpage(url).root)), url
     elseif match_figshare(dataname)!= nothing
         identifier = match_figshare(dataname)
-        url = base_url(repo) * "/" *identifier
+        url = joinpath(base_url(repo), identifier)
         return JSON.parse(text_only(getpage(url).root)), url
     else
         throw(GeneratorError(repo))

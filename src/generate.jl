@@ -116,7 +116,7 @@ function mainpage_url(repo::DataRepo, dataname)
     if startswith(dataname, "http")
         url = dataname
     else # not a URL
-        url = joinpath(base_url(repo), dataname)
+        url = base_url(repo) * dataname
     end
     getpage(url), url
 end

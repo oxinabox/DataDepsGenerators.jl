@@ -1,7 +1,7 @@
 struct GitHub <: DataRepo
 end
 
-base_url(::GitHub) = "https://github.com"
+base_url(::GitHub) = "https://github.com/"
 
 git_repo_page_url(page) = base_url(GitHub()) * getattr(first(eachmatch(sel"strong[itemprop=\"name\"] a", page.root)), "href")
 

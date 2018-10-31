@@ -6,7 +6,6 @@ tests = [
     "UCI",
     "GitHub",
     "DataDryad",
-    "DataOneV1",
     "DataOneV2/KNB",
     "DataOneV2/TERN",
     "CKAN",

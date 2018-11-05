@@ -51,7 +51,7 @@ DataDepsGenerators.jl makes a best-effort attempt to acquire as much provenance 
 Where multiple APIs are supported, it makes use of all APIs possible, merging their responses to fill any gaps.
 It thus often produces higher quality and more comprehensive dataset metadata than is available from any one source.
 
-DataDepsGenerators.jl lavages many different APIs to support a very large number of repositories.
+DataDepsGenerators.jl leverages many different APIs to support a very large number of repositories.
 By current estimates tens of millions of datasets are supported, from hundreds of repositories.
 The APIs supported include:
 

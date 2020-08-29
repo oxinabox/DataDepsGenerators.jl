@@ -43,12 +43,18 @@ function license(::JSONLD, mainpage)
     if license isa Dict
         license = getfirst(license, "url", "text")
     end
+    if license isa AbstractVector
+        license = first(license)
+    end
     filter_html(license)
 end
 
 
 function get_urls(repo::JSONLD, page)
     lift(getfirst(page, "distribution")) do url_list
+        if url_list isa AbstractDict  # sometimes it is just 1 dict.
+            url_list = (url_list,)  # make it a collection
+        end
         urls = collect(skipmissing(getfirst.(url_list, "contentUrl")))
     end
 end

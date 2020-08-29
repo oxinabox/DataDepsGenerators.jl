@@ -43,6 +43,9 @@ function license(::JSONLD, mainpage)
     if license isa Dict
         license = getfirst(license, "url", "text")
     end
+    if license isa AbstractVector
+        license = first(license)
+    end
     filter_html(license)
 end
 
